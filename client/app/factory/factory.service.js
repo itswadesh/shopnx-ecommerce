@@ -2,8 +2,6 @@
 
 angular.module('angularFullstackApp')
   .factory('factory', function () {
-    // Service logic
-    // ...
 
     var meaningOfLife = 42;
 
@@ -15,20 +13,18 @@ angular.module('angularFullstackApp')
     };
   })
   .factory('Product', function($resource) {
+    return $resource('/api/products/:id', null, {'update': { method:'PUT' } });
+  })
+  .factory('Category', function($resource) {
+    return $resource('/api/category/:id', null, {'update': { method:'PUT' } });
+  })
+  .factory('Brand', function($resource) {
+    return $resource('/api/brands/:id', null, {'update': { method:'PUT' } });
+  })
+  .factory('Customer', function($resource) {
+    return $resource('/api/customers/:id', null, {'update': { method:'PUT' } });
+  });
 
-    return $resource('/api/products/:id', null,
-      {
-          'update': { method:'PUT' }
-      }
-    );
-    // return $resource('/api/products/:id', null, { 'update': { method:'PUT' } });
-
-  // var Product= $resource('/api/products/:id', {
-  //   update: {
-  //     method: 'PUT'
-  //   }
-  // });
-  //
   // Product.prototype.update = function(cb) {
   //   return Product.update({
   //     id: this.id
@@ -57,14 +53,3 @@ angular.module('angularFullstackApp')
     //    todo.$save();
     // });
     //  return Product;
-  })
-
-  .factory('Category', function($resource) {
-    return $resource('/api/category/:id'); // Note the full endpoint address
-  })
-  .factory('Brand', function($resource) {
-    return $resource('/api/brands/:id'); // Note the full endpoint address
-  })
-  .factory('Customer', function($resource) {
-    return $resource('/api/customers/:id'); // Note the full endpoint address
-  });

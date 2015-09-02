@@ -6,6 +6,7 @@ var mongoose = require('mongoose'),
 var OrderSchema = new Schema({
   order_no: String,
   name: String,
+  slug: String,
   info: String,
   active: Boolean,
   uid: Number,

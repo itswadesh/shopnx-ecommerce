@@ -4,15 +4,16 @@ angular.module('angularFullstackApp')
 .factory('Modal', function ($rootScope, $modal) {
 
   var obj = {};
-  obj.selectModalInstanceCtrl = function ($scope,$modalInstance, Product, product, options) {
+  obj.selectModalInstanceCtrl = function ($scope,$modalInstance, $injector, product, options) {
+    var api = $injector.get(options.api);
     $scope.product = angular.copy(product);
     $scope.options = options;
 
-    $scope.saveItem = function(item){ // Save (Edit or Add) revenue allocation when user clicks the save button
+    $scope.saveItem = function(item){
         if($scope.product._id)
-          Product.update({ id:$scope.product._id }, $scope.product);
+          api.update({ id:$scope.product._id }, $scope.product);
         else
-          Product.save($scope.product);
+          api.save($scope.product);
         $modalInstance.close(item);
     }
     $scope.cancel = function () {

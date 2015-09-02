@@ -17,7 +17,7 @@ angular.module('angularFullstackApp')
     };
 
     $scope.editProduct = function(product) {
-      var modalInstance = Modal.show(product,{title:product.name});
+      var modalInstance = Modal.show(product,{title:product.name, api: 'Product'});
     };
     $scope.deleteProduct = Modal.delete(function(product) {
       Product.delete({id:product._id});

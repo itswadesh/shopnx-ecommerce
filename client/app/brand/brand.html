@@ -1,0 +1,65 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h1></h1>
+
+      <section>
+          <legend>
+          <button type="button" class="btn btn-danger fa fa-plus" ng-click="add();">&nbsp;</button>
+          </legend>
+      <hr/>
+
+      <div class="table-responsive">
+      <div class="panel panel-primary">
+        <div class="panel-heading">List of brands
+            <div class="sw-search" >
+                  <div class="nav-search" id="nav-search">
+                          Filter: <span class="input-icon">
+                              <input placeholder="Filter brands list ..." class="nav-search-input" ng-model="filter" autocomplete="off" type="text" style="width:300px;" autofocus>
+                              <i class="search-icon fa fa-search nav-search-icon"></i>
+                          </span>
+                  </div>
+              </div>
+          </div>
+
+        <div class="panel-body">
+           <div infinite-scroll='loadMore()'>
+           <table class="table table-striped" ts-wrapper>
+          <tr ng-hide="brands.length>-1"><td style="vertical-align:middle;"><i class="fa fa-cog fa-3x fa-spin"></i>&nbsp;Loading</td></tr>
+
+          <thead>
+              <tr>
+                  <th ts-criteria="id" ts-default="descending">ID</th>
+                  <th ts-criteria="info|lowercase">Description</th><!--  -->
+                  <th ts-criteria="parent">Parent</th>
+                  <th ts-criteria="uid|parseInt">User</th>
+                  <th ts-criteria="created">Date Added</th>
+                  <th ts-criteria="status">Status</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr ng-repeat="p in brands.slice().reverse()" id="{{p._id}}" animate-on-change='p.category+p.description+p.parent+p.status' ng-animate="'animate'" ts-repeat>
+                  <!-- <td><img src="img/{{p.category}}/{{p.image}}"/></td> --><td>{{$index+1}}</td><td>{{p.info}}</td><td>{{p.parent}}</td><td>{{p.uid}}</td><td>{{p.id}}</td><td>{{p.created}}</td>
+                  <td>
+                      <button class="btn" ng-class="{true:'btn-success', false:''}[p.active]" ng-click="changeActive(p);">{{p.active | active}}</button>
+                  </td>
+                  <td>
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-default fa fa-edit" ng-click="edit(p);"></button>
+                        <button type="button" class="btn btn-danger fa fa-trash-o" ng-click="delete(p);"></button>
+                      </div>
+                  </td>
+              </tr>
+          </tbody>
+          </table>
+      </div>
+      </div>
+      </div>
+      </div>
+
+
+    </div>
+</div>
+</div>

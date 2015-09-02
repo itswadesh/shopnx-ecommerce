@@ -6,7 +6,7 @@ angular.module('angularFullstackApp')
       return 'filter filter: ' + input;
     };
   })
-  
+
   .filter('reverse', function() {
     return function(items) {
       return items.slice().reverse();
@@ -20,9 +20,18 @@ angular.module('angularFullstackApp')
     };
   })
 
-  .filter('status', function() {
+  .filter('active', function() {
       return function(input) {
           // console.log(input);
+        var out = "I";
+        if(input==true){ out='A';}
+        return out;
+      };
+  })
+
+  .filter('status', function() {
+      return function(input) {
+          console.log(input);
         var out = "I";
         if(input=='0'){ out='A';}
         return out;
