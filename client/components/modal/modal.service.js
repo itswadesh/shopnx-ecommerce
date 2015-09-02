@@ -26,6 +26,7 @@ angular.module('angularFullstackApp')
       var args = Array.prototype.slice.call(arguments),
           name = args.shift(),
           deleteModal;
+      console.log(args);
 
       deleteModal = openModal({
         modal: {

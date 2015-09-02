@@ -3,7 +3,7 @@
 angular.module('angularFullstackApp')
   .controller('BrandCtrl', function ($scope, socket, Brand, Modal, toastr) {
 
-    var columns = ['name','info','parent'];
+    var columns = ['name','info','parent','image'];
 
     $scope.brands = [];
     var brands = $scope.brands =
@@ -20,16 +20,13 @@ angular.module('angularFullstackApp')
           b.active = !b.active;
       });
     };
-    $scope.add = function() {
-      var brandsModel = {name: '', info: '', parent: 0, image: '', uid: 0, active: true};
-      var modalInstance = Modal.show(brandsModel,{title:'Add New', api:'Brand', columns: columns});
+    $scope.edit = function(item) {
+      var title; if(item) title = 'Editing ' + item.name; else title = 'Add New';
+      var modalInstance = Modal.show(item,{title:title, api:'Brand', columns: columns});
     };
 
-    $scope.edit = function(brand) {
-      var modalInstance = Modal.show(brand,{title:brand.name,api:'Brand', columns: columns});
-    };
-    $scope.delete = Modal.delete(function(brand) {
-      Brand.delete({id:brand._id});
+    $scope.delete = Modal.delete(function(item) {
+      Brand.delete({id:item._id});
     });
 
     $scope.$on('$destroy', function () {
