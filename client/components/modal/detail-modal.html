@@ -5,12 +5,19 @@
 <form name="modal-form" class="form-horizontal" role="form" novalidate>
 <div class="modal-body">
   <p ng-if="options.body" ng-bind="options.body"></p>
-  <div class="form-group" ng-repeat="(i, name) in product track by $index" ng-if="i!='__v'">
-     <!-- -->
+  <div class="form-group" ng-repeat="i in options.columns" ng-if="options.columns">
     <label class="col-sm-3 control-label no-padding-right">{{i}}</label>
     <div class="col-sm-7">
       <span class="block input-icon input-icon-right">
-        <!-- <input type="text" class="form-control" name="name" ng-model="product[i]" ng-if="i!='_id'"> -->
+        <input type="text" class="form-control" name="name" ng-model="product[i]" ng-disabled="i=='_id'" autofocus="i=='name'">
+      </span>
+    </div>
+  </div>
+
+  <div class="form-group" ng-repeat="(i, name) in product track by $index" ng-if="!options.columns">
+    <label class="col-sm-3 control-label no-padding-right">{{i}}</label>
+    <div class="col-sm-7">
+      <span class="block input-icon input-icon-right">
         <input type="text" class="form-control" name="name" ng-model="product[i]" ng-disabled="i=='_id'" autofocus="i=='name'">
       </span>
     </div>

@@ -31,12 +31,13 @@
 
           <thead>
               <tr>
-                  <th ts-criteria="id" ts-default="descending">ID</th>
+                  <th ts-criteria="id|parseFloat" ts-default="descending">ID</th>
                   <th ts-criteria="info|lowercase">Description</th><!--  -->
                   <th ts-criteria="parent">Parent</th>
                   <th ts-criteria="uid">User</th>
                   <th ts-criteria="created">Date Added</th>
                   <th ts-criteria="status">Status</th>
+                  <th>Action</th>
               </tr>
           </thead>
           <tbody>
