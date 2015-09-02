@@ -9,9 +9,10 @@ var CategorySchema = new Schema({
   info: String,
   parent: String,
   image: String,
-  uid: Number,
-  created: Date,
-  active: Boolean,
+  uid: String,
+  active: { type: Boolean, default: false },
+  created: {type: Date, default: Date.now},
+  updated: {type: Date, default: Date.now},
   sub_categories: [{}]
 });
 

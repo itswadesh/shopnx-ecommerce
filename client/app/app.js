@@ -3,6 +3,8 @@
 angular.module('angularFullstackApp', [
   'ngCookies',
   'ngResource',
+  'ngAnimate',
+  'toastr',
   'ngSanitize',
   'btford.socket-io',
   'ui.router',

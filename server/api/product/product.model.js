@@ -12,10 +12,11 @@ var ProductSchema = new Schema({
   status: String,
   brand: String,
   info: String,
-  uid: Number,
-  created: Date,
+  uid: String,
   variants: [],
-  active: Boolean
+  active: { type: Boolean, default: false },
+  created: {type: Date, default: Date.now},
+  updated: {type: Date, default: Date.now}
 });
 
 module.exports = mongoose.model('Product', ProductSchema);

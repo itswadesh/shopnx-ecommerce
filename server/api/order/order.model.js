@@ -8,13 +8,14 @@ var OrderSchema = new Schema({
   name: String,
   slug: String,
   info: String,
-  active: Boolean,
   uid: Number,
   email: String,
   address: String,
   city: String,
   phone: String,
-  created: Date,
+  active: { type: Boolean, default: false },
+  created: {type: Date, default: Date.now},
+  updated: {type: Date, default: Date.now},
   items: [{ sku: String, packing: String, quantity: String, mrp: String, price: String, image: String, category: String }]
 });
 

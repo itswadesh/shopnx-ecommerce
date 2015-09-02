@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('angularFullstackApp')
-  .controller('BrandCtrl', function ($scope, socket, Brand, Modal) {
+  .controller('BrandCtrl', function ($scope, socket, Brand, Modal, toastr) {
     $scope.brands = [];
 
     var brands = $scope.brands =
@@ -10,7 +10,14 @@ angular.module('angularFullstackApp')
     });
     $scope.changeActive = function(b){
       b.active = !b.active;
-      Brand.update({ id:b._id }, b);
+      Brand.update({ id:b._id }, b).$promise.then(function(data) {
+          // success handler
+      }, function(error) {
+          // error handler
+          console.log(error);
+          toastr.error(error.statusText + ' (' +  error.status + ')');
+          b.active = !b.active;
+      });
     };
     $scope.add = function() {
       var brandsModel = {name: '', info: '', parent: 0, image: '', uid: 0, active: true};

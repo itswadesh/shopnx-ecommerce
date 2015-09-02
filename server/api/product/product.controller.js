@@ -22,6 +22,17 @@ exports.show = function(req, res) {
 
 // Creates a new product in the DB.
 exports.create = function(req, res) {
+  req.body.uid = req.user.email; // id change on every login hence email is used
+  req.body.created = Date.now();
+  req.body.updated = Date.now();
+  req.body.name_lower = req.body.name.toString().toLowerCase();
+  if(!req.body.slug && req.body.info)
+  req.body.slug = req.body.info.toString().toLowerCase()
+                      .replace(/\s+/g, '-')        // Replace spaces with -
+                      .replace(/[^\w\-]+/g, '')   // Remove all non-word chars
+                      .replace(/\-\-+/g, '-')      // Replace multiple - with single -
+                      .replace(/^-+/, '')          // Trim - from start of text
+                      .replace(/-+$/, '');
   Product.create(req.body, function(err, product) {
     if(err) { return handleError(res, err); }
     return res.status(201).json(product);
@@ -31,6 +42,16 @@ exports.create = function(req, res) {
 // Updates an existing product in the DB.
 exports.update = function(req, res) {
   if(req.body._id) { delete req.body._id; }
+  req.body.uid = req.user.email; // id change on every login hence email is used
+  req.body.updated = Date.now();
+  req.body.name_lower = req.body.name.toString().toLowerCase();
+  if(!req.body.slug && req.body.info)
+  req.body.slug = req.body.info.toString().toLowerCase()
+                      .replace(/\s+/g, '-')        // Replace spaces with -
+                      .replace(/[^\w\-]+/g, '')   // Remove all non-word chars
+                      .replace(/\-\-+/g, '-')      // Replace multiple - with single -
+                      .replace(/^-+/, '')          // Trim - from start of text
+                      .replace(/-+$/, '');
   Product.findById(req.params.id, function (err, product) {
     if (err) { return handleError(res, err); }
     if(!product) { return res.status(404).send('Not Found'); }

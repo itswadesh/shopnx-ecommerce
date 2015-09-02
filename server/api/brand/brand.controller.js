@@ -22,6 +22,17 @@ exports.show = function(req, res) {
 
 // Creates a new brand in the DB.
 exports.create = function(req, res) {
+  req.body.uid = req.user.email; // id change on every login hence email is used
+  req.body.created = Date.now();
+  req.body.updated = Date.now();
+  if(!req.body.slug && req.body.info)
+  req.body.slug = req.body.info.toString().toLowerCase()
+                      .replace(/\s+/g, '-')        // Replace spaces with -
+                      .replace(/[^\w\-]+/g, '')   // Remove all non-word chars
+                      .replace(/\-\-+/g, '-')      // Replace multiple - with single -
+                      .replace(/^-+/, '')          // Trim - from start of text
+                      .replace(/-+$/, '');
+
   Brand.create(req.body, function(err, brand) {
     if(err) { return handleError(res, err); }
     return res.status(201).json(brand);
@@ -31,6 +42,16 @@ exports.create = function(req, res) {
 // Updates an existing brand in the DB.
 exports.update = function(req, res) {
   if(req.body._id) { delete req.body._id; }
+  req.body.uid = req.user.email; // id change on every login hence email is used
+  req.body.updated = Date.now();
+  if(!req.body.slug && req.body.info)
+  req.body.slug = req.body.info.toString().toLowerCase()
+                      .replace(/\s+/g, '-')        // Replace spaces with -
+                      .replace(/[^\w\-]+/g, '')   // Remove all non-word chars
+                      .replace(/\-\-+/g, '-')      // Replace multiple - with single -
+                      .replace(/^-+/, '')          // Trim - from start of text
+                      .replace(/-+$/, '');
+
   Brand.findById(req.params.id, function (err, brand) {
     if (err) { return handleError(res, err); }
     if(!brand) { return res.status(404).send('Not Found'); }

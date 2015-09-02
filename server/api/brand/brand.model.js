@@ -7,11 +7,12 @@ var BrandSchema = new Schema({
   name: String,
   slug: String,
   info: String,
-  parent: Number,
+  parent: String,
   image: String,
-  uid: Number,
-  active: Boolean,
-  created: Date
+  uid: String,
+  active: { type: Boolean, default: false },
+  created: {type: Date, default: Date.now},
+  updated: {type: Date, default: Date.now}
 });
 
 module.exports = mongoose.model('Brand', BrandSchema);
