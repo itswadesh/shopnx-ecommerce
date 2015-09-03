@@ -1,12 +1,12 @@
-<div ng-include="'components/navbar/navbar.html'"></div>
-<crud-table api='Category' cols='["name","info","parent","image","active"]'></crud-table>
-<!-- <div class="container">
+<link rel="stylesheet" href="bower_components/angular-tablesort/tablesort.css" />
+
+<div class="container">
   <div class="row">
     <div class="col-sm-12">
       <h1></h1>
       <div class="table-responsive">
       <div class="panel panel-primary">
-        <div class="panel-heading">List of category
+        <div class="panel-heading">List of {{title}}
             <div class="sw-search" >
                   <div class="nav-search" id="nav-search">
                           Filter: <span class="input-icon">
@@ -27,35 +27,51 @@
             </div>
           </div>
         <div class="panel-body">
+           <!-- <div infinite-scroll='loadMore()'>  ts-wrapper-->
            <table class="table table-striped" ts-wrapper>
-          <tr ng-hide="category.length>-1"><td style="vertical-align:middle;"><i class="fa fa-cog fa-3x fa-spin"></i>&nbsp;Loading</td></tr>
+          <tr ng-hide="data.length>-1"><td style="vertical-align:middle;"><i class="fa fa-cog fa-3x fa-spin"></i>&nbsp;Loading</td></tr>
 
           <thead>
               <tr>
-                  <th ts-criteria="id|parseFloat" ts-default="descending">ID</th>
-                  <th ts-criteria="name|lowercase">Name</th>
-                  <th ts-criteria="info|lowercase">Description</th>
-                  <th ts-criteria="parent">Parent</th>
-                  <th ts-criteria="uid">User</th>
-                  <th ts-criteria="created">Date Added</th>
-                  <th ts-criteria="status">Status</th>
-                  <th>Action</th>
+                <th>#</th>
+                <th ng-repeat="c in cols" ts-criteria="{{c}}">{{c}}</th>
+                <th>Action</th>
+                  <!-- <th>ID</th>
+                  <th>Name</th>
+                  <th>Description</th>
+                  <th>Parent</th>
+                  <th>User</th>
+                  <th>Date Added</th>
+                  <th>Status</th>
+                  <th>Action</th> -->
               </tr>
           </thead>
           <tbody>
-              <tr ng-repeat="p in category.slice().reverse()" id="{{p._id}}" ts-repeat>
-                  <td>
+              <tr ng-repeat="p in data.slice().reverse() track by p._id" id="{{p._id}}" ts-repeat>
+                  <!-- <td><img src="img/{{p.category}}/{{p.image}}"/></td> -->
+                  <td>{{$index+1}}</td>
+                  <td ng-repeat="c in cols" ng-switch="c">
+                    <span  ng-switch-when="active">
                       <button class="btn" ng-class="{true:'btn-success', false:''}[p.active]" ng-click="changeActive(p);">{{p.active | active}}</button>
+                    </span>
+                    <span ng-switch-default="c === 'active'">{{p[c]}}</span>
                   </td>
+                  <!-- <td>{{p.name}}</td>
+                  <td>{{p.info}}</td>
+                  <td>{{p.parent}}</td>
+                  <td>{{p.uid}}</td>
+                  <td>{{p.created}}</td> -->
+
                   <td>
                       <div class="btn-group">
                         <button type="button" class="btn btn-default fa fa-edit" ng-click="edit(p);"></button>
-                        <button type="button" class="btn btn-danger fa fa-trash-o" ng-click="delete(p);"></button>
+                        <button type="button" class="btn btn-danger fa fa-trash-o" ng-confirm-message="Are you sure to delete?" ng-confirm-click="delete(p)" item="p"></button>
                       </div>
                   </td>
               </tr>
           </tbody>
           </table>
+      <!-- </div> -->
       </div>
       </div>
       </div>
@@ -63,4 +79,4 @@
 
     </div>
 </div>
-</div> -->
+</div>

@@ -1,22 +1,59 @@
 'use strict';
 
 angular.module('angularFullstackApp')
-  .directive('directive', function () {
+  .directive('crudTable',['Modal','$injector','socket','toastr', function (Modal,$injector,socket,toastr) {
     return {
-      template: '<div></div>',
+      templateUrl: 'app/directive/table.html',
       restrict: 'EA',
+      scope: {obj:'='},
       link: function (scope, element, attrs) {
-        element.text('this is the directive directive');
+        // var cols = ['name','info','parent','image'];
+        scope.title = attrs.api+'s';
+        var cols = scope.cols = JSON.parse(attrs.cols);
+        var api = $injector.get(attrs.api);
+        // console.log(cols);
+        scope.data = [];
+        var data = scope.data =api.query(function(data) {
+          socket.syncUpdates(attrs.api.toLowerCase(), scope.data);
+        });
+        scope.edit = function(item) {
+          var title; if(item.name) title = 'Editing ' + item.name; else title = 'Add New';
+          var modalInstance = Modal.show(item,{title:title, api:attrs.api, columns: cols});
+        };
+        scope.changeActive = function(b){ // success handler
+          b.active = !b.active;
+          api.update({ id:b._id }, b).$promise.then(function(data) {
+
+          }, function(error) { // error handler
+              console.log(error);
+              toastr.error(error.statusText + ' (' +  error.status + ')');
+              b.active = !b.active;
+          });
+        };
+
+        scope.delete = function(item) {
+          api.delete({id:item._id});
+        };
+
+        // scope.delete = Modal.delete(function(item) {
+        //   console.log(item);
+        //   api.delete({id:item._id});
+        // });
+
+        scope.$on('$destroy', function () {
+          socket.unsyncUpdates(attrs.api.toLowerCase());
+        });
       }
-    }})
+    }}])
 
 .directive('modalWindow', function ($timeout) {
   return {
     priority: 1,
     link: function (scope, element, attrs) {
       $timeout(function () {
-        console.log(element[0].querySelector('[autofocus]'));
-        element[0].querySelector('[autofocus]').focus();
+        // var elem = element[0].querySelector('[autofocus]').focus();
+        var elem = element[0].querySelector('input');
+        if(elem) elem.focus();
       });
     }
   };
@@ -282,4 +319,59 @@ angular.module('angularFullstackApp')
             });
         }
     };
-}]);
+}])
+.directive('ngConfirmClick', ['$modal',
+    function($modal) {
+
+      var ModalInstanceCtrl = function($scope, $modalInstance) {
+        $scope.ok = function() {
+          $modalInstance.close();
+        };
+
+        $scope.cancel = function() {
+          $modalInstance.dismiss('cancel');
+        };
+      };
+
+      return {
+        restrict: 'A',
+        scope:{
+          ngConfirmClick:"&",
+          item:"="
+        },
+        link: function(scope, element, attrs) {
+          element.bind('click', function() {
+            var message = attrs.ngConfirmMessage || "Are you sure to delete? ";
+
+            /*
+            //This works
+            if (message && confirm(message)) {
+              scope.$apply(attrs.ngConfirmClick);
+            }
+            //*/
+
+            //*This doesn't works
+
+            var modalHtml = '<div class="modal-header">Confirm Delete</div>';
+            modalHtml += '<div class="modal-body">' + message + '</div>';
+            modalHtml += '<div class="modal-footer"><button class="btn btn-danger" ng-click="ok()">Delete</button><button class="btn" ng-click="cancel()">Cancel</button></div>';
+
+            var modalInstance = $modal.open({
+              template: modalHtml,
+              controller: ModalInstanceCtrl,
+              windowClass: 'modal-danger'
+            });
+
+            modalInstance.result.then(function() {
+              scope.ngConfirmClick({item:scope.item}); //raise an error : $digest already in progress
+            }, function() {
+              //Modal dismissed
+            });
+            //*/
+
+          });
+
+        }
+      }
+    }
+  ]);

@@ -20,40 +20,44 @@ angular.module('angularFullstackApp')
         $modalInstance.dismiss('cancel');
     };
   };
-  obj.delete = function(del){
-    del = del || angular.noop;
-    return function() {
-      var args = Array.prototype.slice.call(arguments),
-          name = args.shift(),
-          deleteModal;
-      console.log(args);
-
-      deleteModal = openModal({
-        modal: {
-          dismissable: true,
-          title: 'Confirm Delete',
-          html: '<p>Are you sure you want to delete <strong>' + name + '</strong> ?</p>',
-          buttons: [{
-            classes: 'btn-danger',
-            text: 'Delete',
-            click: function(e) {
-              deleteModal.close(e);
-            }
-          }, {
-            classes: 'btn-default',
-            text: 'Cancel',
-            click: function(e) {
-              deleteModal.dismiss(e);
-            }
-          }]
-        }
-      }, 'modal-danger','modal.html');
-
-      deleteModal.result.then(function(event) {
-        del.apply(event, args);
-      });
-    };
-  };
+  // obj.delete = function(del){
+  //   del = del || angular.noop;
+  //   return function() {
+  //     var args = arguments[0],
+  //         name = args.name,
+  //     // var args = Array.prototype.slice.call(arguments),
+  //         // name = args.shift(),
+  //         deleteModal;
+  //     console.log(arguments[0]);
+  //
+  //     deleteModal = openModal({
+  //       modal: {
+  //         dismissable: true,
+  //         title: 'Confirm Delete',
+  //         html: '<p>Are you sure you want to delete <strong>' + name + '</strong> ?</p>',
+  //         buttons: [{
+  //           classes: 'btn-danger',
+  //           text: 'Delete',
+  //           click: function(e) {
+  //             deleteModal.close(e);
+  //           }
+  //         }, {
+  //           classes: 'btn-default',
+  //           text: 'Cancel',
+  //           click: function(e) {
+  //             deleteModal.dismiss(e);
+  //           }
+  //         }]
+  //       }
+  //     }, 'modal-danger','modal.html');
+  //
+  //     deleteModal.result.then(function(event) {
+  //       // console.log(event,args);
+  //       return 'ok';
+  //       del.apply(event, args);
+  //     });
+  //   };
+  // };
   obj.show = function(product,options){
     // del = del || angular.noop;
       var modalOptions = {

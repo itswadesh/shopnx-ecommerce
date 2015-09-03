@@ -1,6 +1,6 @@
 'use strict';
 
 angular.module('angularFullstackApp')
-  .controller('CustomerCtrl', function ($scope) {
-    $scope.message = 'Hello';
+  .controller('CustomerCtrl', function ($scope, socket, Category, Modal, toastr) {
+
   });
