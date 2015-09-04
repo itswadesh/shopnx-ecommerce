@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('angularFullstackApp')
+angular.module('shopnxApp')
   .controller('InventoryCtrl', function ($scope, socket, Product, Modal) {
     $scope.products = [];
 

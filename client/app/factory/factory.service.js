@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('angularFullstackApp')
+angular.module('shopnxApp')
   .factory('factory', function () {
 
     var meaningOfLife = 42;
@@ -23,6 +23,9 @@ angular.module('angularFullstackApp')
   })
   .factory('Customer', function($resource) {
     return $resource('/api/customers/:id', null, {'update': { method:'PUT' } });
+  })
+  .factory('Order', function($resource) {
+    return $resource('/api/orders/:id', null, {'update': { method:'PUT' } });
   });
 
   // Product.prototype.update = function(cb) {

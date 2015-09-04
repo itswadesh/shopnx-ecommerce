@@ -1,6 +1,7 @@
 'use strict';
 
-angular.module('angularFullstackApp')
+angular.module('shopnxApp')
+
   .directive('crudTable',['Modal','$injector','socket','toastr', function (Modal,$injector,socket,toastr) {
     return {
       templateUrl: 'app/directive/table.html',
@@ -35,16 +36,50 @@ angular.module('angularFullstackApp')
           api.delete({id:item._id});
         };
 
-        // scope.delete = Modal.delete(function(item) {
-        //   console.log(item);
-        //   api.delete({id:item._id});
-        // });
+      //   scope.exportAction = function(){
+      //     switch(scope.export_action){
+      //     case 'pdf': scope.$broadcast('export-pdf', {});
+      //                 break;
+      //     case 'excel': scope.$broadcast('export-excel', {});
+      //                 break;
+      //     case 'doc': scope.$broadcast('export-doc', {});
+      //                 break;
+      //     default: scope.$broadcast('export-pdf', {});
+      //             // console.log('no event caught');
+      //   }
+      // }
 
         scope.$on('$destroy', function () {
           socket.unsyncUpdates(attrs.api.toLowerCase());
         });
       }
     }}])
+
+    //
+    // .directive('exportTable',function(){
+    // var link = function($scope, elm, attr){
+    //
+    // $scope.$on('export-pdf', function(e, d){
+    //
+    //       elm.tableExport({type:'pdf', escape:'false'});
+    //  });
+    //
+    // $scope.$on('export-excel', function(e, d){
+    //        elm.tableExport({type:'excel', escape:false});
+    //  });
+    //
+    // $scope.$on('export-doc', function(e, d){
+    //      elm.tableExport({type: 'doc', escape:false});
+    //  });
+    //
+    // }
+    //
+    // return {
+    //   restrict: 'C',
+    //   link: link
+    //    }
+    //  }
+    // )
 
 .directive('modalWindow', function ($timeout) {
   return {

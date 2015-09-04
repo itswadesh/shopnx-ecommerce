@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('angularFullstackApp')
+angular.module('shopnxApp')
   .controller('SettingsCtrl', function ($scope, User, Auth) {
     $scope.errors = {};
 

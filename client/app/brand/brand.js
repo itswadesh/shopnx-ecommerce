@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('angularFullstackApp')
+angular.module('shopnxApp')
   .config(function ($stateProvider) {
     $stateProvider
       .state('brand', {

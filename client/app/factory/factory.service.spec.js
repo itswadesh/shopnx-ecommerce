@@ -3,7 +3,7 @@
 describe('Service: factory', function () {
 
   // load the service's module
-  beforeEach(module('angularFullstackApp'));
+  beforeEach(module('shopnxApp'));
 
   // instantiate service
   var factory;

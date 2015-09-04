@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('angularFullstackApp')
+angular.module('shopnxApp')
   .controller('CustomerCtrl', function ($scope, socket, Category, Modal, toastr) {
 
   });

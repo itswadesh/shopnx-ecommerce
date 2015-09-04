@@ -3,7 +3,7 @@
 describe('Directive: directive', function () {
 
   // load the directive's module
-  beforeEach(module('angularFullstackApp'));
+  beforeEach(module('shopnxApp'));
 
   var element,
     scope;

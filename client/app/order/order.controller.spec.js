@@ -3,7 +3,7 @@
 describe('Controller: OrderCtrl', function () {
 
   // load the controller's module
-  beforeEach(module('angularFullstackApp'));
+  beforeEach(module('shopnxApp'));
 
   var OrderCtrl, scope;
 

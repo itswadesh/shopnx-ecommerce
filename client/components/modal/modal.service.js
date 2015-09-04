@@ -1,19 +1,31 @@
 'use strict';
 
-angular.module('angularFullstackApp')
+angular.module('shopnxApp')
 .factory('Modal', function ($rootScope, $modal) {
 
   var obj = {};
-  obj.selectModalInstanceCtrl = function ($scope,$modalInstance, $injector, product, options) {
+  obj.selectModalInstanceCtrl = function ($scope,$modalInstance, $injector, product, options, toastr) {
     var api = $injector.get(options.api);
     $scope.product = angular.copy(product);
     $scope.options = options;
 
     $scope.saveItem = function(item){
         if($scope.product._id)
-          api.update({ id:$scope.product._id }, $scope.product);
+          api.update({ id:$scope.product._id }, $scope.product).$promise.then(function(res) {
+
+          }, function(error) { // error handler
+            var err = error.data.errors;
+            // console.log(error,err);
+            toastr.error(err[Object.keys(err)].message,err[Object.keys(err)].name);
+          });
         else
-          api.save($scope.product);
+          api.save($scope.product).$promise.then(function(res) {
+
+          }, function(error) { // error handler
+              var err = error.data.errors;
+              // console.log(err);
+              toastr.error(err[Object.keys(err)].message,err[Object.keys(err)].name);
+          });
         $modalInstance.close(item);
     }
     $scope.cancel = function () {

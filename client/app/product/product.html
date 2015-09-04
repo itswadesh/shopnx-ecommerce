@@ -1,4 +1,6 @@
+<link rel="stylesheet" href="bower_components/angular-tablesort/tablesort.css" />
 <div ng-include="'components/navbar/navbar.html'"></div>
+<form name="product_form">
 
 <div class="container">
   <div class="row">
@@ -9,33 +11,155 @@
   </div>
 
   <div class="row">
-    <div class="col-lg-12">
-      <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="thing in awesomeThings">
-        <li>
-          <a href="#" tooltip="{{thing.info}}">{{thing.name}}
-            <button type="button" class="close" ng-click="deleteThing(thing)">&times;</button>
-          </a>
-        </li>
-      </ul>
-      <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="product in products">
-        <li>
-          <a href="#" tooltip="{{product.info}}" ng-click="editProduct(product)">{{product.name}}
-            <button type="button" class="close" ng-click="deleteProduct(product.name,product)">&times;</button>
-          </a>
-        </li>
-      </ul>
+    <div class="col-md-12">
+<pre>Product {{product | json}}</pre>
+  <div class="row">
+    <div class="col-md-12">
+      <button type="button" class="btn btn-danger fa fa-plus" ng-click="edit({});">&nbsp;Add New</button>
+      <button type="submit" class="btn btn-info fa fa-save" ng-click="save(product);">&nbsp;    Save</button>
+      <hr/>
     </div>
   </div>
-
-  <form class="product-form">
-    <label>Syncs in realtime across clients</label>
-    <p class="input-group">
-      <input type="text" class="form-control" placeholder="Name" ng-model="product.name">
-      <input type="text" class="form-control" placeholder="SKU" ng-model="product.sku">
-      <input type="text" class="form-control" placeholder="SKU" ng-model="product.category">
-      <span class="input-group-btn">
-        <button type="submit" class="btn btn-primary" ng-click="addProduct()">Add New</button>
-      </span>
-    </p>
+  <div class="row">
+  <div class="col-md-8">
+<div class="row">
+  <div class="col-md-12">
+    <form class="form-horizontal" role="form">
+      <!-- <div class="form-group">
+        <label for="inputType" class="col-md-2 control-label">Type</label>
+        <div class="col-md-3">
+            <input type="text" class="form-control" id="inputType" placeholder="Type">
+        </div>
+      </div> -->
+      <div class="form-group">
+          <!-- <span class="col-md-2 control-label">Metadata</span> -->
+          <div class="col-md-7">
+              <div class="form-group row">
+                  <label for="id" class="col-md-1 control-label">ID</label>
+                  <div class="col-md-2">
+                      <input ng-model="product.id" type="text" disabled="" style="width:50px" class="form-control" placeholder="ID"/>
+                  </div>
+                  <label for="sku" class="col-md-1 control-label">SKU</label>
+                  <div class="col-md-3">
+                      <input ng-model="product.sku" type="text" style="width:80px" class="form-control" placeholder="SKU"/>
+                  </div>
+                  <label for="name" class="col-md-2 control-label">Name</label>
+                  <div class="col-md-3">
+                      <input ng-model="product.name" type="text" style="width:400px" class="form-control" placeholder="Name"/>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <!-- <label for="category" class="col-md-1 control-label">Category</label> -->
+                  <div class="col-md-6">
+                    <select ng-model="product.category" ng-options="i._id as i.name for i in categories | orderBy:'name'" class="form-control">
+                        <option value="">Select Category</option>
+                    </select>
+                  </div>
+                  <!-- <label for="brand" class="col-md-1 control-label">Brand</label> -->
+                  <div class="col-md-6">
+                    <select ng-model="product.brand" ng-options="i._id as i.name for i in brands | orderBy:'description'" class="form-control">
+                        <option value="">Select Brand</option>
+                    </select>
+                  </div>
+              </div>
+          </div>
+      </div>
   </form>
+
+
+
+  </div>
 </div>
+
+<div class="panel panel-primary">
+  <div class="panel-heading">Product Variants</div>
+  <div class="panel-body">
+    <table class="table table-striped table-responsive">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Size</th>
+            <th>MRP</th><!--  ts-default -->
+            <th>Price</th>
+            <!-- <th>Stock</th> -->
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="p in product.variants track by $index" id="{{p._id}}">
+            <!-- <td><img src="img/{{p.category}}/{{p.image}}"/> </td>-->
+            <td>{{$index+1}}</td>
+            <td><input type="text" ng-model="p.size" style="width:100px;"/></td>
+            <td><input type="text" ng-model="p.mrp" style="width:80px;"/></td>
+            <td><input type="text" ng-model="p.price" style="width:80px;"/></td>
+            <!-- <td><input type="text" ng-model="p.stock" style="width:50px;"/></td> -->
+            <td>
+                <div class="btn-group">
+                  <button type="button" class="btn btn-danger fa fa-trash-o" ng-click="delete(p);"></button>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <!-- <td><img src="img/{{p.category}}/{{p.image}}"/> </td>-->
+            <td>New</td>
+            <td><input type="text" ng-model="variant.size" style="width:100px;"/></td>
+            <td><input type="text" ng-model="variant.mrp" style="width:80px;"/></td>
+            <td><input type="text" ng-model="variant.price" style="width:80px;"/></td>
+            <!-- <td><input type="text" ng-model="variant.stock" style="width:50px;"/></td> -->
+            <td>
+                <div class="btn-group">
+                  <button type="button" class="btn btn-danger fa fa-trash-o" ng-click="delete(p);"></button>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+    </table>
+</div>
+</div>
+
+
+</div>
+
+<div class="col-md-4">
+<div class="panel panel-primary">
+  <div class="panel-heading">List of products
+      <div class="sw-search" >
+            <div class="nav-search" id="nav-search">
+                    Filter: <span class="input-icon">
+                        <input placeholder="Filter products list ..." class="nav-search-input" ng-model="filter" autocomplete="off" type="text" autofocus>
+                        <i class="search-icon fa fa-search nav-search-icon"></i>
+                    </span>
+            </div>
+        </div>
+    </div>
+  <div class="panel-body">
+    <div infinite-scroll='loadMore()'>
+    <table class="table table-striped table-responsive" ts-wrapper>
+    <tr ng-show="products.length==0"><td style="vertical-align:middle;"><i class="fa fa-ban fa-3x"></i>&nbsp;No data found</td></tr>
+    <tr ng-hide="products.length>-1"><td style="vertical-align:middle;"><i class="fa fa-cog fa-3x fa-spin"></i>&nbsp;Loading</td></tr>
+    <!-- <tr sortable-columns columns="columns" items-to-sort="products"></tr> -->
+    <thead>
+        <tr>
+            <th ts-criteria="id" ts-default="descending">ID</th>
+            <th ts-criteria="name">Name</th>
+            <th ts-criteria="active">Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="p in products | filter:filter | limitTo:10" id="{{p._id}}" animate-on-change='p.price+p.quantity+p.packing+p.description' ng-animate="'animate'" ts-repeat>
+            <!-- <td><img src="img/{{p.category}}/{{p.image}}"/> </td>--><td>{{$index+1}}</td><td><a href=""  ng-click="productDetail(p);">{{p.name}}</a></td>
+            <td>
+                <button class="btn" ng-class="{true:'btn-success', false:''}[p.active]" ng-click="changeActive(p);">{{p.active | active}}</button>
+            </td>
+        </tr>
+    </tbody>
+    </table>
+</div> <!-- Infinite Scroll -->
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</form>

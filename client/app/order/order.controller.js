@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('angularFullstackApp')
+angular.module('shopnxApp')
   .controller('OrderCtrl', function ($scope) {
-    $scope.message = 'Hello';
+    // $scope.message = 'Hello';
   });

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('angularFullstackApp')
+angular.module('shopnxApp')
   .controller('CategoryCtrl', function ($scope) { //, socket, Category, Modal, toastr
     //
     // var columns = ['name','info','parent','image'];

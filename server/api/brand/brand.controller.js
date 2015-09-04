@@ -23,7 +23,6 @@ exports.show = function(req, res) {
 // Creates a new brand in the DB.
 exports.create = function(req, res) {
   req.body.uid = req.user.email; // id change on every login hence email is used
-  req.body.created = Date.now();
   req.body.updated = Date.now();
   if(!req.body.slug && req.body.info)
   req.body.slug = req.body.info.toString().toLowerCase()

@@ -6,16 +6,15 @@ var mongoose = require('mongoose'),
 var ProductSchema = new Schema({
   sku: String,
   name: String,
-  name_lower: String,
+  nameLower: String,
   slug: String,
   category: String,
   status: String,
   brand: String,
   info: String,
   uid: String,
-  variants: [],
+  variants: Array,
   active: { type: Boolean, default: false },
-  created: {type: Date, default: Date.now},
   updated: {type: Date, default: Date.now}
 });
 

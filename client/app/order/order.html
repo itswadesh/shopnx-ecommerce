@@ -1,9 +1,2 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
-
-<div class="container">
-  <div class="row">
-    <div class="col-sm-12">
-      <h1>Order</h1>
-    </div>
-</div>
-</div>
+<crud-table api='Order' cols='["orderNo","name","slug","info","uid","email","address","city","phone","active"]'></crud-table>
