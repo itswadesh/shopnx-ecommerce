@@ -1,42 +1,94 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
-<header class="hero-unit" id="banner">
+<!-- <header class="hero-unit" id="banner">
   <div class="container">
     <h1>'Hello, 'Hello!</h1>
     <p class="lead">Kick-start your next web app with Angular Fullstack</p>
     <img src="assets/images/yeoman.png" alt="I'm Yeoman">
   </div>
-</header>
+</header> -->
 
 <div class="container">
+  <span class="row">
+      <div class="col-sm-4">
+      <ol class="breadcrumb" ng-if="breadcrumb.type=='brand'">
+          <li><a ui-sref="store">All Brands</a></li>
+          <li ng-repeat="b in breadcrumb.items">{{b.name}}</li>
+      </ol>
+      <ol class="breadcrumb" ng-if="breadcrumb.type=='category'">
+          <li><a ui-sref="store">All Categories</a></li>
+          <li ng-repeat="b in breadcrumb.items | reverse">
+              <a href="#/category/{{b.id}}/{{b.slug}}" ng-if="!$last">{{b.name}}</a>
+              <span ng-if="$last">{{b.name}}</span>
+          </li>
+      </ol>
+      </div>
+      <div class="col-sm-2" style="font-size:20px;">{{title}}</div>
+      Showing {{ filtered.count }} of {{products.count}} items
+      Brand: <select ng-model="products.brand" style="width:128px;" ng-change="search({brand:products.brand});" ng-options="o.brand as o.name for o in brands">
+          <option value="">All Brands</option>
+      </select>
+
+      Sort: <select ng-model="products.sort" style="width:128px;" ng-change="search({sort:products.sort});" ng-options="o.val as o.name for o in sortOptions"></select>
+      <hr class="clearfix"/>
+
+  </span>
+
   <div class="row">
-    <div class="col-lg-12">
-      <h1 class="page-header">Features:</h1>
-      <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="thing in awesomeThings">
-        <li>
-          <a href="#" tooltip="{{thing.info}}">{{thing.name}}
-            <button type="button" class="close" ng-click="deleteThing(thing)">&times;</button>
-          </a>
-        </li>
-      </ul>
-    </div>
+
+  <div class="col-sm-3">
+  Display categories
+  <!-- Price Range: Rs: <strong>{{lower_price_bound}}</strong> &nbsp;-&nbsp; Rs: <strong>{{upper_price_bound}}</strong>
+      <slider floor="0" ceiling="1500" ng-model-low="lower_price_bound" ng-model-high="upper_price_bound"></slider>
+
+  {{fl.brands}}
+      <h4>Brand</h4><hr/>
+      <div class="checkbox" ng-repeat="b in brands | limitTo:10">
+          <label class="checkbox">
+          <input type="checkbox" value="{{b.name}}" checklist-model="fl.brands" checklist-value="b.brand" />
+          {{b.name}}<span>&nbsp;({{b.brand}})</span>
+          </label>
+      </div>
+   -->
+
   </div>
 
-  <form class="thing-form">
-    <label>Syncs in realtime across clients</label>
-    <p class="input-group">
-      <input type="text" class="form-control" placeholder="Add a new thing here." ng-model="newThing">
-      <span class="input-group-btn">
-        <button type="submit" class="btn btn-primary" ng-click="addThing()">Add New</button>
-      </span>
-    </p>
-  </form>
+  <div class="col-sm-9">
+  <div infinite-scroll='scroll()' infinite-scroll-disabled='products.busy' >
+  <div class="itemB" ng-repeat="product in products.items">
+      <div class="itemImage">
+          <a href="#/product/{{product._id}}/{{product.slug}}"><img src="http://s.angularcode.com/img/{{product.variants[0].image}}" alt="{{product.name}}" width="140" height="140"></a>
+      </div>
+  <!-- /{{product.category}}/{{product.variants[0].image}} -->
+      <div class="itemName">
+          <a href="#/product/{{product._id}}/{{product.slug}}">
+              <span>{{product.name}}  </span>
+          </a><span class="packing">{{product.variants[0].size}}</span>
+      </div>
+
+      <div class="itemPrice">
+          <span>{{product.variants[0].price | currency : 'Rs '}}</span> <span class="slash" ng-if="product.variants[0].price!=product.variants[0].mrp">{{product.variants[0].mrp | currency : 'Rs '}}</span>
+      </div>
+
+      <div class="addButton">
+          <img src="/assets/images/addtocartred.png" class="addButton" alt="Add" ng-click="cart.addItem(product._id, product.name, product.variants[0].mrp, product.variants[0].price, 1, product.variants[0].image,product.category, product.variants[0].size ,true);" ng-show="checkCart(product._id)">
+
+          <img src="/assets/images/deletered.png" class="decrease" alt="Add" ng-click="cart.addItem(product._id, product.name, product.variants[0].mrp, product.variants[0].price, -1)" ng-hide="checkCart(product._id)">
+
+          <span class="counter" style="display: inline-block;" ng-hide="checkCart(product._id)">{{getQuantity(product._id);}}</span>
+
+          <img src="/assets/images/addedred.png" class="increase" alt="Remove" ng-click="cart.addItem(product._id, product.name, product.variants[0].mrp, product.variants[0].price, +1)" ng-hide="checkCart(product._id)">
+      </div>
+  </div>
+  <div ng-show='products.busy'>Loading data...</div>
+  </div>
+  </div>
+  </div>
 </div>
 
 <footer class="footer">
   <div class="container">
-      <p>Angular Fullstack v2.1.1 |
-        <a href="https://twitter.com/tyhenkel">@tyhenkel</a> |
-         <a href="https://github.com/DaftMonk/generator-angular-fullstack/issues?state=open">Issues</a></p>
+      <p>Shopping Website created with AngularJS| ShopNx
+        <a href="https://twitter.com/itswadesh">@itswadesh</a> |
   </div>
 </footer>

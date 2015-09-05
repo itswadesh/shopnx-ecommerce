@@ -32,3 +32,77 @@
 .navbar-text {
     margin-left: 15px;
 }
+
+div.itemB {
+position: relative;
+height: 250px;
+background-position: center -28px;
+}
+div.itemB {
+margin: 0 4px 6px;
+background-position: center -14px;
+background-repeat: no-repeat;
+background-image: url('/assets/images/pd.png');
+float: left;
+border-style: none;
+width: 180px;
+border-bottom: 1px #e3e3e3 solid;
+}
+.itemB {
+border-radius: 4px 4px 0 0;
+}
+div.itemB div.itemName {
+top: -1px;
+text-overflow: ellipsis;
+overflow: hidden;
+padding-left: 6px;
+padding-bottom: 2px;
+padding-right: 6px;
+padding-top: 6px;
+text-align: center;
+font-size: 11px;
+height: 36px;
+}
+div.itemB div.itemImage {
+z-index: 0;
+top: -1px;
+text-align: center;
+height: 140px;
+width: auto;
+padding-left: 4px;
+padding-right: 4px;
+margin-bottom: 22px;
+}
+div.itemB div.itemPrice {
+top: -1px;
+padding-left: 6px;
+padding-bottom: 2px;
+padding-right: 6px;
+padding-top: 0px;
+color: black;
+font-size: 12px;
+text-align: center;
+font-weight: bold;
+}
+div.itemB div.addButton {
+top: -1px;
+padding-left: 63px;
+padding-bottom: 5px;
+padding-right: 6px;
+padding-top: 0px;
+text-align: left;
+}
+img.addButton, img.increase, img.decrease, img.showVariants, img.showDetails, div.controllerLeft, div.controllerRight, input.applyCoupon, input.checkOut {
+cursor: pointer;
+}
+img.addButton {
+width: auto;
+height: auto;
+}
+span.slash {
+color: #7f7f7f;
+font-size: 10px;
+text-decoration: line-through;
+font-style: normal;
+font-weight: normal;
+}

@@ -56,12 +56,8 @@ exports.update = function(req, res) {
   Product.findById(req.params.id, function (err, product) {
     if (err) { return handleError(res, err); }
     if(!product) { return res.status(404).send('Not Found'); }
-    // console.log(product,req.body);
+    product.variants = req.body.variants;
     var updated = _.merge(product, req.body);
-    console.log(updated);
-    updated.variants = [{stat_id: 545080c8e4e88b1d5a7a6d1b}, {stat_id: 54526ca6b294096d33ca6b36}];
-    console.log(updated);
-    
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
       return res.status(200).json(product);

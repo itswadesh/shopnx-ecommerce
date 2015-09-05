@@ -1,3 +1,43 @@
 <div class="col-md-12">
-This is the cart view.
+
+
+  <table class="table table-hover table-bordered">
+      <tr class="well">
+      <th class="my_item3">Item</th>
+      <th class="my_item1">Description</th>
+      <th class="my_item"><b>Closeout</b></th>
+          <td class="MyRight" colspan="4" >
+              <!--<a href="index.htm#/cart" title="go to shopping cart" ng-disabled="cart.getTotalCount() < 1">
+                  <i class="icon-shopping-cart" />
+                  <b>{{cart.getTotalCount()}}</b> items, <b>{{cart.getTotalPrice() | currency}}</b>
+              </a>-->
+              <p class="text">Buy Here</p>
+          </td>
+      </tr>
+      <tr ng-repeat="product in store.rings | orderBy:'name' | filter:search" >
+          <td class="MyCenter"><img ng-src="img/rings/{{product.sku}}.jpg" alt="{{product.name}}" /></td>
+          <td class="MyCenter">
+              <a href="#/rings/{{product.sku}}"><b>{{product.name}}</b></a><br />
+              {{product.description}}
+          </td>
+          <td class="MyRight">
+              {{product.price | currency}}
+          </td>
+          <td class="MyCenter">
+              <a href="" ng-click="cart.addItem(product.sku, product.name, product.price, 1)">
+                  add to cart
+              </a>
+          </td>
+      </tr>
+      <tr class="well">
+          <td class="MyRight2" colspan="4">
+              <a href="index.htm#/cart" title="go to shopping cart" ng-disabled="cart.getTotalCount() < 1">
+                  <i class="icon-shopping-cart" />
+                  <b>{{cart.getTotalCount()}}</b> items, <b>{{cart.getTotalPrice() | currency}}</b>
+              </a>
+          </td>
+      </tr>
+  </table>
+
+
 </div>
