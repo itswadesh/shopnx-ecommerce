@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('shopnxApp')
+
   .factory('factory', function () {
 
     var meaningOfLife = 42;

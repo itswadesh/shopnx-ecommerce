@@ -288,7 +288,7 @@ angular.module('shopnxApp')
       this.clearCart = false;
       this.checkoutParameters = {};
       this.items = [];
-
+      this.skuArray.push(item.sku);
       // load items from local storage when initializing
       this.loadItems();
 

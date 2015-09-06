@@ -1,11 +1,9 @@
 'use strict';
 
 angular.module('shopnxApp')
-  .controller('MainCtrl', function ($scope, $stateParams, $location, Product, Brand, Category, Cart, socket) {
-
-    // below both lines get store and cart from service “MyService”
-        // $scope.store = MyService.store;
-        $scope.cart = Cart.cart;
+  .controller('MainCtrl', function ($scope, $stateParams, $location, Product, Brand, Category, Cart2, socket) {
+        $scope.store = Cart2.store;
+        $scope.cart = Cart2.cart;
         if ($stateParams.productSku != null) {
             $scope.product = $scope.store.getProduct($stateParams.productSku);
         }
@@ -114,11 +112,12 @@ angular.module('shopnxApp')
         }, function(){ $scope.products.busy = false; });
         // console.log($scope.products.items)
     }
+    $scope.search({});
 
     $scope.scroll = function() {
         if ($scope.products.busy || $scope.products.end) return;
         $scope.products.busy = true;
-
+        console.log('ddddd');
         Product.query({filter:q()}, function(data){
             for (var i = 0; i < data.length; i++) {
                 $scope.products.items.push(data[i]);
@@ -126,9 +125,8 @@ angular.module('shopnxApp')
             if(data.length==5) { $scope.products.after = $scope.products.after + data.length; } else { $scope.products.end = true;}
             $scope.products.busy = false;
         }, function(){ $scope.products.busy = false; });
+        $scope.search();
     }
-
-
 
     // $scope.fl = { brands: [] };
 

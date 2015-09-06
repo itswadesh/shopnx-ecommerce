@@ -18,14 +18,14 @@
       <ol class="breadcrumb" ng-if="breadcrumb.type=='category'">
           <li><a ui-sref="store">All Categories</a></li>
           <li ng-repeat="b in breadcrumb.items | reverse">
-              <a href="#/category/{{b.id}}/{{b.slug}}" ng-if="!$last">{{b.name}}</a>
+              <a href="/c/{{b.id}}/{{b.slug}}" ng-if="!$last">{{b.name}}</a>
               <span ng-if="$last">{{b.name}}</span>
           </li>
       </ol>
       </div>
       <div class="col-sm-2" style="font-size:20px;">{{title}}</div>
       Showing {{ filtered.count }} of {{products.count}} items
-      Brand: <select ng-model="products.brand" style="width:128px;" ng-change="search({brand:products.brand});" ng-options="o.brand as o.name for o in brands">
+      Brand: <select ng-model="products.brand" style="width:128px;" ng-change="search({brand:products.brand});" ng-options="o.name as o.name for o in brands">
           <option value="">All Brands</option>
       </select>
 
@@ -54,14 +54,14 @@
   </div>
 
   <div class="col-sm-9">
-  <div infinite-scroll='scroll()' infinite-scroll-disabled='products.busy' >
+  <!-- <div infinite-scroll='scroll()' infinite-scroll-disabled='products.busy' > -->
   <div class="itemB" ng-repeat="product in products.items">
       <div class="itemImage">
-          <a href="#/product/{{product._id}}/{{product.slug}}"><img src="http://s.angularcode.com/img/{{product.variants[0].image}}" alt="{{product.name}}" width="140" height="140"></a>
+          <a href="/p/{{product._id}}/{{product.slug}}"><img src="http://s.angularcode.com/img/{{product.variants[0].image}}" alt="{{product.name}}" width="140" height="140"></a>
       </div>
   <!-- /{{product.category}}/{{product.variants[0].image}} -->
       <div class="itemName">
-          <a href="#/product/{{product._id}}/{{product.slug}}">
+          <a href="/p/{{product._id}}/{{product.slug}}">
               <span>{{product.name}}  </span>
           </a><span class="packing">{{product.variants[0].size}}</span>
       </div>
@@ -81,7 +81,7 @@
       </div>
   </div>
   <div ng-show='products.busy'>Loading data...</div>
-  </div>
+  <!-- </div> -->
   </div>
   </div>
 </div>

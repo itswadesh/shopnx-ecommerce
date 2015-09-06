@@ -2,7 +2,7 @@
 
 angular.module('shopnxApp')
   .controller('ProductCtrl', function ($scope, socket, Product, Category, Brand, Modal, toastr) {
-    var cols = ["sku","name","nameLower","slug","category","status","brand","info","uid","variants", "active"];
+    var cols = ["sku","name","nameLower","slug","status","info","uid", "active"];
     $scope.products = [];
     $scope.product = {};
     $scope.variant = {};

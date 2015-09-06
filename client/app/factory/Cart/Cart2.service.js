@@ -7,14 +7,14 @@ angular.module('shopnxApp')
     var myStore = new store();
 
     // create shopping cart
-    var myCart = new shoppingCart("MyStore");
+    var myCart = new shoppingCart("ShopNx");
 
     // enable PayPal checkout
     // note: the second parameter identifies the merchant; in order to use the
     // shopping cart with PayPal, you have to create a merchant account with
     // PayPal. You can do that here:
     // https://www.paypal.com/webapps/mpp/merchant
-    myCart.addCheckoutParameters("PayPal", "mahantesh.nagathan@gmail.com");
+    myCart.addCheckoutParameters("PayPal", "2lessons@gmail.com");
 
     // enable Google Wallet checkout
     // note: the second parameter identifies the merchant; in order to use the
@@ -46,7 +46,8 @@ function shoppingCart(cartName) {
     this.clearCart = false;
     this.checkoutParameters = {};
     this.items = [];
-
+    this.skuArray = [];
+    // this.skuArray.push(item.sku);
     // load items from local storage when initializing
     this.loadItems();
 
@@ -70,8 +71,9 @@ shoppingCart.prototype.loadItems = function () {
             for (var i = 0; i < items.length; i++) {
                 var item = items[i];
                 if (item.sku != null && item.name != null && item.price != null && item.quantity != null) {
-                    item = new cartItem(item.sku, item.name, item.price, item.quantity);
-                    this.items.push(item);
+                  item = new cartItem(item.sku, item.name, item.mrp, item.price, item.quantity, item.image, item.category, item.packing, item.status);
+                  this.items.push(item);
+                  this.skuArray.push(item.sku);
                 }
             }
         }
@@ -89,28 +91,32 @@ shoppingCart.prototype.saveItems = function () {
 }
 
 // adds an item to the cart
-shoppingCart.prototype.addItem = function (sku, name, price, quantity) {
-    console.log(this.items);
+shoppingCart.prototype.addItem = function (sku, name, mrp, price, quantity, image, category, packing, cart) {
+            console.log(this.skuArray, this.items);
+  // console.log('xxx',this,cart);
+
     quantity = this.toNumber(quantity);
     if (quantity != 0) {
-
         // update quantity for existing item
         var found = false;
         for (var i = 0; i < this.items.length && !found; i++) {
             var item = this.items[i];
             if (item.sku == sku) {
                 found = true;
-                item.quantity = this.toNumber(item.quantity + quantity);
+                item.quantity = this.toNumber(this.toNumber(item.quantity) + quantity);
                 if (item.quantity <= 0) {
                     this.items.splice(i, 1);
+                    this.skuArray.splice(i,1);
                 }
             }
         }
 
         // new item, add now
         if (!found) {
-            var item = new cartItem(sku, name, price, quantity);
+            var item = new cartItem(sku, name, mrp, price, quantity, image, category, packing, 0);
+            console.log(this.items, this.skuArray);
             this.items.push(item);
+            this.skuArray.push(item.sku);
         }
 
         // save changes
