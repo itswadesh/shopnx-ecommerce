@@ -24,20 +24,20 @@ angular.module('shopnxApp')
         // $label_clean = $label.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/ig,'');
         $location.path('product/'+$item.id+'/'+$item.slug);
     }
-    // var booking = Category.query( {id: '1000'} );
-    Category.parent('1000');
+    // var category = Category.category.query( {id: '1000'} );
+    // var parent = Category.parent.query({id:'0'});
 
 // Category.get({parent: 1000},{id:1, description:1, slug:1, parent:1}, function(parents){
   // console.log(parents);
-    // Category.get({parent:null},fields: {id: true, description:true, slug: true, parent:true} },function(parents){
-        // angular.forEach(parents,function(parent){
-        //     parent.children = [];
-        //     Category.query({filter:{ where : {parent:parent.id} }},function(children){
-        //             parent.children.push(children);
-        //     });
-        // });
-        // $scope.categories = parents;
-    // });
+    Category.parent.get({id:0},function(parents){
+        angular.forEach(parents,function(parent){
+            parent.children = [];
+            Category.parent.query({id:parent.id},function(children){
+                    parent.children.push(children);
+            });
+        });
+        $scope.categories = parents;
+    });
     $scope.globalSearch = function(input){
           // console.log(input);
           var input = input.toLowerCase();
