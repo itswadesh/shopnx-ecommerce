@@ -8,8 +8,11 @@ angular.module('shopnxApp')
         templateUrl: 'app/main/main.html',
         controller: 'MainCtrl'
       })
-      .state('p/:id/:slug', {
-        url: '/p/:id/:slug',
+      .state('product-detail', {
+        params: {
+          id: null,
+        },
+        url: '/p/:slug',
         templateUrl: 'app/main/product-details.html',
         controller: 'ProductDetailsCtrl'
       });
