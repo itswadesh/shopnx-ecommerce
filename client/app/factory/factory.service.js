@@ -22,16 +22,13 @@ angular.module('shopnxApp')
 
   .factory('Category', function($resource) {
     return $resource(
-        '/api/category/parent/:p:c:id', {
-            p: '@p',
-            c: '@c'
-        }, {
+        '/api/category/parent/:p:c', null, {
             update: {
                 method: 'PUT'
             },
             parent: {
                 method: 'GET',
-                params: {p},
+                params: {parentId:'@p'},
                 isArray: true
             }
         }
