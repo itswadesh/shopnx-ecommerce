@@ -37,7 +37,7 @@ Run the following commands and the application will start automatically
   Brand Selection
   Download Invoice
   All Orders in 1 page
-  Multiple product variants (size, color)
+  Multiple product variants (size, color, price)
 
 There are automated scripts that automatically generates the following modules for your AngularJS ecommerce application
 

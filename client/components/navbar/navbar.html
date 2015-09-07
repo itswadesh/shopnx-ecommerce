@@ -15,8 +15,24 @@
             <a ng-href="{{item.link}}">{{item.title}}</a>
         </li> -->
         <li ng-show="isAdmin()" ng-class="{active: isActive('/admin')}"><a href="/admin">Admin</a></li>
+        <li>
+            <form id="searchForm" class="ng-scope ng-pristine ng-valid">
+              <div class="input-group col-sm-12">
+              <!-- <span bind-html-unsafe="match.label.name | typeaheadHighlight:query"></span> -->
+                <script type="text/ng-template" id="searchTemplate.html">
+                    <a>
+                        <span>{{match.model.name}}</span>
+                    </a>
+                </script>
+                <input class="form-control ng-pristine ng-valid" type="text" ng-model="search" placeholder="Search for a product, category or brand..." typeahead="p as p.name for p in globalSearch($viewValue) | filter:{name:$viewValue}" typeahead-on-select="onSelectProduct($item, $model, $label)" typeahead-min-length="1" typeahead-template-url="searchTemplate.html" name="q" id="q" autocomplete="off">
+                <span class="input-group-btn">
+<!--
+                  <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button> -->
+                </span>
+              </div>
+            </form>
+        </li>
       </ul>
-
       <ul class="nav navbar-nav navbar-right">
         <li ng-hide="isLoggedIn()" ng-class="{active: isActive('/signup')}"><a href="/signup">Sign up</a></li>
         <li ng-hide="isLoggedIn()" ng-class="{active: isActive('/login')}"><a href="/login">Login</a></li>
@@ -29,8 +45,32 @@
         <li ng-show="isLoggedIn()"><p class="navbar-text">Hello {{ getCurrentUser().name }}</p> </li>
         <li ng-show="isLoggedIn()" ng-class="{active: isActive('/settings')}"><a href="/settings"><span class="glyphicon glyphicon-cog"></span></a></li>
         <li ng-show="isLoggedIn()" ng-class="{active: isActive('/logout')}"><a href="" ng-click="logout()">Logout</a></li>
-        <li ng-controller="MainCtrl"><a class="btn btn-success" ng-click="openCart(cart,'lg');" href=""> Cart ({{cart.getTotalCount()}}) - {{cart.getTotalPrice() | currency:"Rs "}}</a></li>
+        <li><a class="btn btn-success" ng-click="openCart(cart,'lg');" href=""> Cart ({{cart.getTotalCount()}}) - {{cart.getTotalPrice() | currency:"Rs "}}</a></li>
       </ul>
     </div>
   </div>
+
+  <div class="navbar navbar-default megamenu">
+    <div class="container">
+    <div class="col-sm-12">
+      <div class="navbar-header">
+        <button type="button" data-toggle="collapse" data-target="#navbar-collapse-grid" class="navbar-toggle"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+      </div>
+      <div id="navbar-collapse-grid" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li ng-repeat= "p in categories" class="dropdown megamenu-fw"><a href="#" data-toggle="dropdown" class="dropdown-toggle">{{p.description}}<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li class="grid-demo">
+                <div class="row">
+                  <div class="col-sm-3" ng-repeat="c in p.children[0]"><a href="/category/{{c.id}}/{{c.slug}}">{{c.description}}</a></div>
+                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      </div>
+    </div>
+  </div>
+
 </div>

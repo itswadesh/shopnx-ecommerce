@@ -1,9 +1,15 @@
 'use strict';
 
 angular.module('shopnxApp')
-  .controller('MainCtrl', function ($scope, $stateParams, $location, Product, Brand, Category, Cart2, socket) {
-        $scope.store = Cart2.store;
-        $scope.cart = Cart2.cart;
+  .controller('ProductDetailsCtrl', function ($scope, Product, socket,$stateParams) {
+    var id = $stateParams.id;
+    // console.log(Product);
+    var product = $scope.product =Product.query(id,function(data) {
+      socket.syncUpdates('product', $scope.data);
+    });
+  })
+  .controller('MainCtrl', function ($scope, $stateParams, $location, Product, Brand, Category, Cart, socket) {
+        $scope.cart = Cart.cart;
         if ($stateParams.productSku != null) {
             $scope.product = $scope.store.getProduct($stateParams.productSku);
         }
