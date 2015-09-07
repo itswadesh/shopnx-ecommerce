@@ -16,8 +16,31 @@ angular.module('shopnxApp')
   .factory('Product', function($resource) {
     return $resource('/api/products/:id', null, {'update': { method:'PUT' } });
   })
+  // .factory('Category', function($resource) {
+    // return $resource('/api/category/:id', null, {'update': { method:'PUT' } });
+  // });
+
   .factory('Category', function($resource) {
-    return $resource('/api/category/:id', null, {'update': { method:'PUT' } });
+    return $resource(
+        '/api/category/parent/:p:c:id', {
+            p: '@p',
+            c: '@c'
+        }, {
+            update: {
+                method: 'PUT'
+            },
+            parent: {
+                method: 'GET',
+                params: {p},
+                isArray: true
+            }
+        }
+    );
+
+    // 'where': {
+    //         method: "GET",
+    //         params: '@id'
+    //       }
   })
   .factory('Brand', function($resource) {
     return $resource('/api/brands/:id', null, {'update': { method:'PUT' } });

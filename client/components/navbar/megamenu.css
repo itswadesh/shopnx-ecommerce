@@ -1,0 +1,47 @@
+/*.navbar-default .navbar-nav>li>a {
+  color: #fff;
+}*/
+.megamenu.navbar-default {
+  background-color: #000;
+}
+/*.navbar-default .navbar-nav>li>a:hover {
+background-color: #fff;
+}*/
+.megamenu .grid-demo {
+  padding: 10px 30px;
+}
+.megamenu .dropdown:hover{
+    background-color: #fff;
+  }
+.megamenu .dropdown:hover .dropdown-menu {
+    display: block;
+ }
+.megamenu .grid-demo [class*="col-"] {
+    font-size: 1em;
+    line-height: 2;
+}
+.megamenu .grid-demo [class*="col-"] a {
+    padding: 5px 10px;
+}
+
+.megamenu .nav,
+.megamenu .collapse,
+.megamenu .dropup,
+.megamenu .dropdown {
+  position: static;
+}
+.megamenu .container {
+  position: relative;
+}
+.megamenu .dropdown-menu {
+  left: auto;
+  margin-top: 0;
+  top:auto;
+}
+.megamenu .megamenu-content {
+  padding: 20px 30px;
+}
+.megamenu .dropdown.megamenu-fw .dropdown-menu {
+  left: 0;
+  right: 0;
+}

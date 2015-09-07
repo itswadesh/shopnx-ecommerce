@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('shopnxApp')
-  .controller('CartCtrl', function ($scope, Cart2, $stateParams) {
-    $scope.store = Cart2.store;
-    $scope.cart = Cart2.cart;
+  .controller('CartCtrl', function ($scope, Cart, $stateParams) {
+    // $scope.store = Cart2.store;
+    // $scope.cart = Cart2.cart;
 
     // use routing to pick the selected product
     if ($stateParams.productSku != null) {

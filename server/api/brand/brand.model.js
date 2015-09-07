@@ -10,6 +10,7 @@ var BrandSchema = new Schema({
   parent: String,
   image: String,
   uid: String,
+  brand: Number,
   active: { type: Boolean, default: false },
   updated: {type: Date, default: Date.now}
 });

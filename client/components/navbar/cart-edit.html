@@ -1,0 +1,76 @@
+<style>
+/*td{padding: 0 5px;}*/
+</style>
+
+<button type="button" class="close" ng-click="cancel();">
+    <i class="fa fa-times-circle-o" style="margin:10px;color:blue;"></i>
+</button>
+
+<div class="modal-header">
+    <h3 class="modal-title">Cart Details</h3> Total Amount: {{cart.getTotalPrice() | currency:"Rs "}} - ({{cart.getTotalCount()}} items)
+</div>
+
+<div class="modal-body">
+    <div class="actions-continue">
+        <button class="btn btn-default pull-left" ng-click="cart.clearItems();" ng-disabled="cart.getTotalCount() <= 0">Clear Cart</button>
+
+        <input type="text" placeholder="Filter Cart" class="form-control col-md-4" style="width:250px;margin-left:20px;" ng-model="filterCart" autofocus/>
+
+        <button value="Proceed to Checkout →" name="proceed" class="btn btn-primary pull-right" onclick="window.location.href='#/checkout'" ng-disabled="cart.getTotalCount() <= 0" ng-click="cancel();">Proceed to Checkout →</button>
+
+        <div class="clearfix"></div>
+    </div><br/>
+
+    <table class="cart table table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th></th>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+                <th>Remove</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- empty cart message -->
+            <tr ng-hide="cart.getTotalCount() > 0" >
+                <td class="tdCenter" colspan="7">
+                    Your cart is empty. &nbsp;&nbsp;<a class="btn btn-primary" href="#/store" ng-click="cancel();">Shop Now</a>
+                </td>
+            </tr>
+
+            <tr ng-repeat="item in cart.items | filter: filterCart">
+                <td>{{$index+1}}</td>
+                <td class="product-thumbnail">
+                    <a>
+                        <img ng-src="img/{{item.category}}/{{item.image}}" alt="{{item.name}}" data-err-src="img/product.jpg" width="54px" height="54px" />
+                    </a>
+                </td>
+
+                <td class="product-name">
+                    <a>{{item.name}}&nbsp;({{item.variants[0].size}})</a>
+                </td>
+
+                <td>{{item.price | currency:'Rs '}}</td>
+
+                <td>
+                    <div class="input-group" style="width:105px;">
+                      <div class="input-group-addon btn" ng-disabled="item.quantity <= 1" ng-click="cart.addItem(item.sku, item.name, item.mrp, item.price, -1)">-</div>
+                      <input class="form-control" type="text" min="1" step="1" ng-model="item.quantity" ng-change="cart.saveItems()">
+                      <div class="input-group-addon btn" ng-disabled="item.quantity >= 1000" ng-click="cart.addItem(item.sku, item.name, item.mrp, item.price, +1)">+</div>
+                    </div>
+                </td>
+
+                <td><span><strong>{{item.price * item.quantity | currency:"Rs "}}</strong></span></td>
+
+                <td class="product-actions">
+                    <a title="Remove this item" class="remove" href="" ng-click="cart.addItem(item.sku, item.name,item.mrp, item.price, -10000000)">
+                        <i class="fa fa-times"></i>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -55,9 +55,12 @@
 
   <div class="col-sm-9">
   <!-- <div infinite-scroll='scroll()' infinite-scroll-disabled='products.busy' > -->
-  <div class="itemB" ng-repeat="product in products.items">
+  <div class="itemB" ng-repeat="product in products.items | limitTo:10">
       <div class="itemImage">
-          <a href="/p/{{product._id}}/{{product.slug}}"><img src="http://s.angularcode.com/img/{{product.variants[0].image}}" alt="{{product.name}}" width="140" height="140"></a>
+          <a href="/p/{{product._id}}/{{product.slug}}">
+            <img  alt="{{product.name}}" width="140" height="140">
+<!-- src="http://s.angularcode.com/img/{{product.variants[0].image}}" -->
+          </a>
       </div>
   <!-- /{{product.category}}/{{product.variants[0].image}} -->
       <div class="itemName">

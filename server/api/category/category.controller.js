@@ -11,6 +11,15 @@ exports.index = function(req, res) {
   });
 };
 
+// Get list of categorys
+exports.parents = function(req, res) {
+  console.log(req.params.id);
+  Category.find({'parentId' : parseInt(req.params.id)},function (err, categorys) {
+    if(err) { return handleError(res, err); }
+    return res.status(200).json(categorys);
+  });
+};
+
 // Get a single category
 exports.show = function(req, res) {
   Category.findById(req.params.id, function (err, category) {
