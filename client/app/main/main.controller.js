@@ -1,15 +1,27 @@
 'use strict';
 
 angular.module('shopnxApp')
-  .controller('ProductDetailsCtrl', function ($scope, Product, socket,$stateParams) {
+  .controller('ProductDetailsCtrl', function ($scope, $rootScope, Product, socket, $stateParams) {
     var id = $stateParams.id;
-    // console.log(Product);
-    var product = $scope.product =Product.query(id,function(data) {
+    var slug = $stateParams.slug;
+    // Storing the product id into localStorage because the _id of the selected product which was passed as a hidden parameter from products won't available on page refresh
+    if (localStorage != null && JSON != null && id !=null) {
+        localStorage["product_id"] = id;
+    }
+    var product_id = localStorage != null ? localStorage["product_id"] : null;
+    // var sl =
+    // console.log(id,slug,product_id);
+    var product = $scope.product = Product.get({id:product_id},function(data) {
       socket.syncUpdates('product', $scope.data);
     });
+
+    $scope.i=0;
+    $scope.changeIndex =function(i){
+        $scope.i=i;
+    }
   })
-  .controller('MainCtrl', function ($scope, $stateParams, $location, Product, Brand, Category, Cart, socket) {
-        $scope.cart = Cart.cart;
+  .controller('MainCtrl', function ($scope, $stateParams, $location, Product, Brand, Category, socket) {
+
         if ($stateParams.productSku != null) {
             $scope.product = $scope.store.getProduct($stateParams.productSku);
         }

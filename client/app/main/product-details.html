@@ -4,23 +4,23 @@
     <div class="col-sm-4">
     <ol class="breadcrumb" ng-if="breadcrumb.type=='brand'">
         <li><a ui-sref="store">All Brands</a></li>
-        <li ng-repeat="b in breadcrumb.items">{{b.description}}</li>
+        <li ng-repeat="b in breadcrumb.items">{{b.name}}</li>
     </ol>
     <ol class="breadcrumb" ng-if="breadcrumb.type=='category'">
         <li><a ui-sref="store">All Categories</a></li>
         <li ng-repeat="b in breadcrumb.items | reverse">
-            <a href="#/category/{{b.id}}/{{b.slug}}" ng-if="!$last">{{b.description}}</a>
-            <span ng-if="$last">{{b.description}}</span>
+            <a href="#/category/{{b.id}}/{{b.slug}}" ng-if="!$last">{{b.name}}</a>
+            <span ng-if="$last">{{b.name}}</span>
         </li>
     </ol>
     </div>
     <div class="col-sm-2" style="font-size:20px;">{{title}}</div>
-    Showing {{ filtered.count }} of {{products.count}} items
-    Brand: <select ng-model="products.brand" style="width:128px;" ng-change="search({brand:products.brand});" ng-options="o.brand as o.description for o in brands">
+    <!-- Showing {{ filtered.count }} of {{products.count}} items
+    Brand: <select ng-model="products.brand" style="width:128px;" ng-change="search({brand:products.brand});" ng-options="o.brand as o.name for o in brands">
         <option value="">All Brands</option>
     </select>
 
-    Sort: <select ng-model="products.sort" style="width:128px;" ng-change="search({sort:products.sort});" ng-options="o.val as o.name for o in sortOptions"></select>
+    Sort: <select ng-model="products.sort" style="width:128px;" ng-change="search({sort:products.sort});" ng-options="o.val as o.name for o in sortOptions"></select> -->
     <hr class="clearfix"/>
 </div>
 </div>
@@ -33,7 +33,7 @@
         <div class="row">
         <div class="col-md-12">
             <image ng-src="http://s.angularcode.com/img/{{product.variants[i].image}}" alt="{{product.slug}}" width="320" height="320" class="pull-left" style="margin-right:30px;"/>
-            Click on a variation to see details
+
 
             <table>
                 <tbody><tr>
@@ -44,7 +44,7 @@
                     <th>Brand</th>
                     <td><h4>
                             <span>{{product.brand}}</span>
-                            <a href="#/brand/{{product.brand}}/" style="font-size: 12px; font-weight: normal; padding-left: 10px; color: #069;">View All products</a>
+                            <a href="/brand/{{product.brand}}/" style="font-size: 12px; font-weight: normal; padding-left: 10px; color: #069;">View All products</a>
                         </h4></td>
                 </tr>
                 <tr> <th>MRP</th> <td>Rs {{product.variants[i].mrp}}</td> </tr>
