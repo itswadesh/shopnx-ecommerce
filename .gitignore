@@ -8,3 +8,4 @@ dist
 npm-debug.log
 mongo.sh
 mongodb_commands.txt
+sample_data
