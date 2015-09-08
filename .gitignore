@@ -6,3 +6,5 @@ client/bower_components
 dist
 /server/config/local.env.js
 npm-debug.log
+mongo.sh
+mongodb_commands.txt
