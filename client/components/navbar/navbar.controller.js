@@ -2,6 +2,7 @@
 
 angular.module('shopnxApp')
   .controller('NavbarCtrl', function ($scope, $location, Auth, $modal, Cart, Category) {
+    $scope.cart = Cart.cart;
     $scope.menu = [{
       'title': 'Home',
       'link': '/'
@@ -20,6 +21,7 @@ angular.module('shopnxApp')
     $scope.isActive = function(route) {
       return route === $location.path();
     };
+    
     $scope.onSelectProduct = function($item, $model, $label){
         // $label_clean = $label.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/ig,'');
         $location.path('product/'+$item.id+'/'+$item.slug);

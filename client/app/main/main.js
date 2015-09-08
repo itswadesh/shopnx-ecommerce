@@ -11,6 +11,7 @@ angular.module('shopnxApp')
       .state('productDetail', {
         params: {
           id: null,
+          slug: null
         },
         url: '/p/:slug',
         templateUrl: 'app/main/product-details.html',
