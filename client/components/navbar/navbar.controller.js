@@ -28,16 +28,19 @@ angular.module('shopnxApp')
     // var parent = Category.parent.query({id:'0'});
 
 // Category.get({parent: 1000},{id:1, description:1, slug:1, parent:1}, function(parents){
-  // console.log(parents);
-    Category.parent.get({id:0},function(parents){
-        angular.forEach(parents,function(parent){
-            parent.children = [];
-            Category.parent.query({id:parent.id},function(children){
-                    parent.children.push(children);
+    var p = [];
+    Category.parent.query({id:0},function(parents){
+        angular.forEach(parents,function(a){
+            a.children = [];
+            Category.parent.query({id:a.category},function(children){
+              a.children = children;
             });
+            p.push(a);
         });
-        $scope.categories = parents;
+            $scope.categories = p;
+            // console.log(p);
     });
+
     $scope.globalSearch = function(input){
           // console.log(input);
           var input = input.toLowerCase();
@@ -79,7 +82,7 @@ angular.module('shopnxApp')
 
         $scope.openCart = function (cart,size) {
             var cart = $scope.cart = cart;
-            console.log(cart);
+            // console.log(cart);
             var modalOptions = {
                 templateUrl: "/components/navbar/cart-edit.html",
                 controller: cartEditCtrl,

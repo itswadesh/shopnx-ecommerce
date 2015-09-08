@@ -57,7 +57,7 @@
   <!-- <div infinite-scroll='scroll()' infinite-scroll-disabled='products.busy' > -->
   <div class="itemB" ng-repeat="product in products.items | limitTo:10">
       <div class="itemImage">
-          <a ui-sref="product-detail{id:product._id}" href="/p/{{product._id}}/{{product.slug}}">
+          <a ui-sref="productDetail({id:product._id})/{{product.slug}}"">
             <img  alt="{{product.name}}" width="140" height="140">
 <!-- src="http://s.angularcode.com/img/{{product.variants[0].image}}" -->
           </a>

@@ -3,8 +3,8 @@
 angular.module('shopnxApp')
   .controller('ProductDetailsCtrl', function ($scope, Product, socket,$stateParams) {
     var id = $stateParams.id;
-    // console.log(Product);
-    var product = $scope.product =Product.query(id,function(data) {
+    console.log(id);
+    var product = $scope.product = Product.query(id,function(data) {
       socket.syncUpdates('product', $scope.data);
     });
   })

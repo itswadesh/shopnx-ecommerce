@@ -58,11 +58,11 @@
       </div>
       <div id="navbar-collapse-grid" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
-          <li ng-repeat= "p in categories" class="dropdown megamenu-fw"><a href="#" data-toggle="dropdown" class="dropdown-toggle">{{p.description}}<b class="caret"></b></a>
+          <li ng-repeat= "p in categories" class="dropdown megamenu-fw"><a href="#" data-toggle="dropdown" class="dropdown-toggle">{{p.name}}<b class="caret"></b></a>
             <ul class="dropdown-menu">
               <li class="grid-demo">
                 <div class="row">
-                  <div class="col-sm-3" ng-repeat="c in p.children[0]"><a href="/category/{{c.id}}/{{c.slug}}">{{c.description}}</a></div>
+                  <div class="col-sm-3" ng-repeat="c in p.children"><a href="/category/{{c.id}}/{{c.slug}}">{{c.name}}</a></div>
                 </div>
               </li>
             </ul>

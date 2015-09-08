@@ -1,14 +1,47 @@
-db.categories1.find().forEach(function(doc){
-   db.categories.insert({
-  "name" : doc.description,
-  "name_lower" : doc.description,
-  "info": doc.description,
-  "slug": doc.description,
-  "category" : doc.category,
-  "parent": doc.parent
-  }); // start to replace
-});
+db.categories.find().forEach(
+    function (elem) {print();
+        db.categories.update(
+            {
+                _id: elem._id
+            },
+            {
+                $set: {
+                    slug : elem.info.toString().toLowerCase()
+                          .replace(/\s+/g, '-')        // Replace spaces with -
+                          .replace(/[^\w\-]+/g, '')   // Remove all non-word chars
+                          .replace(/\-\-+/g, '-')      // Replace multiple - with single -
+                          .replace(/^-+/, '')          // Trim - from start of text
+                          .replace(/-+$/, '')        // Trim - from end of text
+                }
+            }
+        );
+    }
+);
 
+//db.categories.find({parentId:0}).forEach( function(doc) {
+//var c = doc.category;
+//    print(c);
+db.categories_conventional.find({parentId:1}).forEach( function(doc){
+        db.categories.update(
+            {
+                _id: elem._id
+            },
+            {
+                $set: {
+                subCat : doc.info.toString().toLowerCase()
+                          .replace(/\s+/g, '-')        // Replace spaces with -
+                          .replace(/[^\w\-]+/g, '')   // Remove all non-word chars
+                          .replace(/\-\-+/g, '-')      // Replace multiple - with single -
+                          .replace(/^-+/, '')          // Trim - from start of text
+                          .replace(/-+$/, '')        // Trim - from end of text
+                }
+            }
+        );
+    });
+//})
+    
+    
+    
 db.brands.find().forEach(function(doc){
    db.brands.remove({
    "brand" : "100"
