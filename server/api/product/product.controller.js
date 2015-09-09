@@ -7,9 +7,7 @@ var Product = require('./product.model');
 exports.index = function(req, res) {
 
   if(req.query){
-  var q = req.query.where;
-  console.log(q);
-
+  var q = JSON.parse(req.query.where);
     Product.find(q).limit(req.query.limit).skip(req.query.skip).sort('name').exec(function (err, products) {
       console.log(products.length);
       if(err) { return handleError(res, err); }

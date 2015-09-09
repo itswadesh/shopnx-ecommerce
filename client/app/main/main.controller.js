@@ -25,7 +25,7 @@ angular.module('shopnxApp')
         if ($stateParams.productSku != null) {
             $scope.product = $scope.store.getProduct($stateParams.productSku);
         }
-        Product.query({where:{sku:2120}});
+        Product.query({where:{sku:'2120'}});
     // console.log('StoreCtrl');
     // console.log($stateParams);
     if('brand' in $stateParams){

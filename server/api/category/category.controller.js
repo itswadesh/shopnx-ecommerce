@@ -20,6 +20,25 @@ exports.parents = function(req, res) {
   });
 };
 
+// Get list of categorys
+exports.all = function(req, res) {
+  // console.log(req.params.id);
+  Category.find({'parentId' : 0},function (err, parents) {
+    var p = [];
+    if(err) { return handleError(res, err); }
+    parents.forEach(function(a){
+      a.children = [];
+      Category.find({'parentId' : a.category},function (err, children) {
+        if(err) { return handleError(res, err); }
+        a.children = children;
+      });
+    console.log(a);
+        p.push(a);
+    });
+    return res.status(200).json(p);
+  });
+};
+
 // Get a single category
 exports.show = function(req, res) {
   Category.findById(req.params.id, function (err, category) {
