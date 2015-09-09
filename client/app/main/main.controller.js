@@ -25,13 +25,12 @@ angular.module('shopnxApp')
         if ($stateParams.productSku != null) {
             $scope.product = $scope.store.getProduct($stateParams.productSku);
         }
-
+        Product.query({where:{sku:2120}});
     // console.log('StoreCtrl');
-    console.log($stateParams);
+    // console.log($stateParams);
     if('brand' in $stateParams){
         var id = $stateParams._id;
         $scope.breadcrumb = {type: 'brand'};
-        console.log(id);
         if(id){
             $scope.breadcrumb.items = Brand.query();
         }
@@ -39,22 +38,21 @@ angular.module('shopnxApp')
 
     if('category' in $stateParams){
         var id = $stateParams._id;
-        console.log(id);
         $scope.breadcrumb = {type: 'category'};
         $scope.breadcrumb.items = [];
         if(id){
-            // findCategoryPath(id);
+            findCategoryPath(id);
         }
 
-        // function findCategoryPath(id){
-        //     Category.findOne().$promise.then(function(child){
-        //         $scope.breadcrumb.items.push(child);
-        //         var p = child.parent;
-        //         if(p != null){
-        //             findCategoryPath(1);
-        //         }
-        //     });
-        // }
+        function findCategoryPath(id){
+            Category.get({id:id}).$promise.then(function(child){
+                $scope.breadcrumb.items.push(child);
+                var p = child.parent;
+                if(p != null){
+                    findCategoryPath(1);
+                }
+            });
+        }
     }
 
     // STORE
@@ -94,10 +92,10 @@ angular.module('shopnxApp')
             q2.where = {category:parseInt($stateParams.cat_id)};
         }
 
-        Product.query({filter:q2},
-            function(data){
-                $scope.products.count = data.length;
-        });
+        // Product.query(q2,
+        //     function(data){
+        //         $scope.products.count = data.length;
+        // });
         // console.log('filter',q);
         return q;
     }
@@ -125,11 +123,11 @@ angular.module('shopnxApp')
 
 
 
-        $scope.products.items = Product.query({filter:q()}, function(data){
-            $scope.products.busy = false;
-            $scope.filtered.count = data.length;
-            if(data.length==5) { $scope.products.after = $scope.products.after + data.length; } else { $scope.products.end = true;}
-        }, function(){ $scope.products.busy = false; });
+        // $scope.products.items = Product.query(q(), function(data){
+        //     $scope.products.busy = false;
+        //     $scope.filtered.count = data.length;
+        //     if(data.length==5) { $scope.products.after = $scope.products.after + data.length; } else { $scope.products.end = true;}
+        // }, function(){ $scope.products.busy = false; });
         // console.log($scope.products.items)
     }
     $scope.search({});
@@ -138,13 +136,13 @@ angular.module('shopnxApp')
         if ($scope.products.busy || $scope.products.end) return;
         $scope.products.busy = true;
         console.log('ddddd');
-        Product.query({filter:q()}, function(data){
-            for (var i = 0; i < data.length; i++) {
-                $scope.products.items.push(data[i]);
-            }$scope.filtered.count = data.length + $scope.products.after;
-            if(data.length==5) { $scope.products.after = $scope.products.after + data.length; } else { $scope.products.end = true;}
-            $scope.products.busy = false;
-        }, function(){ $scope.products.busy = false; });
+        // Product.query(q(), function(data){
+        //     for (var i = 0; i < data.length; i++) {
+        //         $scope.products.items.push(data[i]);
+        //     }$scope.filtered.count = data.length + $scope.products.after;
+        //     if(data.length==5) { $scope.products.after = $scope.products.after + data.length; } else { $scope.products.end = true;}
+        //     $scope.products.busy = false;
+        // }, function(){ $scope.products.busy = false; });
         $scope.search();
     }
 

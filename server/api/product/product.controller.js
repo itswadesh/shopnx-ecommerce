@@ -5,11 +5,32 @@ var Product = require('./product.model');
 
 // Get list of products
 exports.index = function(req, res) {
-  Product.find(function (err, products) {
-    if(err) { return handleError(res, err); }
-    return res.status(200).json(products);
-  });
+
+  if(req.query){
+  var q = req.query.where;
+  console.log(q);
+
+    Product.find(q).limit(req.query.limit).skip(req.query.skip).sort('name').exec(function (err, products) {
+      console.log(products.length);
+      if(err) { return handleError(res, err); }
+      return res.status(200).json(products);
+    });
+  }else{
+    Product.find(function (err, products) {
+      if(err) { return handleError(res, err); }
+      return res.status(200).json(products);
+    });
+  }
 };
+
+// // Get list of products
+// exports.find = function(req, res) {
+//   console.log(req.params);
+//   Product.find(req.params, function (err, products) {
+//     if(err) { return handleError(res, err); }
+//     return res.status(200).json(products);
+//   });
+// };
 
 // Get a single product
 exports.show = function(req, res) {

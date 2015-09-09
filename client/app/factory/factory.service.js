@@ -14,8 +14,12 @@ angular.module('shopnxApp')
     };
   })
   .factory('Product', function($resource) {
-    return $resource('/api/products/:id', null, {'update': { method:'PUT' } });
+    var obj = {};
+    obj = $resource('/api/products/:id', null, {'update': { method:'PUT' } });
+    // obj.q = $resource('/products/limit/:limit/offset:offset');
+    return obj;
   })
+
   // .factory('Category', function($resource) {
     // return $resource('/api/category/:id', null, {'update': { method:'PUT' } });
   // });
