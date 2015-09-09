@@ -4,14 +4,14 @@ angular.module('shopnxApp')
 .factory('Modal', function ($rootScope, $modal) {
 
   var obj = {};
-  obj.selectModalInstanceCtrl = function ($scope,$modalInstance, $injector, product, options, toastr) {
+  obj.selectModalInstanceCtrl = function ($scope,$modalInstance, $injector, data, options, toastr) {
     var api = $injector.get(options.api);
-    $scope.product = angular.copy(product);
+    $scope.data = angular.copy(data);
     $scope.options = options;
 
     $scope.saveItem = function(item){
-        if($scope.product._id)
-          api.update({ id:$scope.product._id }, $scope.product).$promise.then(function(res) {
+        if($scope.data._id)
+          api.update({ id:$scope.data._id }, $scope.data).$promise.then(function(res) {
 
           }, function(error) { // error handler
             var err = error.data.errors;
@@ -19,7 +19,7 @@ angular.module('shopnxApp')
             toastr.error(err[Object.keys(err)].message,err[Object.keys(err)].name);
           });
         else
-          api.save($scope.product).$promise.then(function(res) {
+          api.save($scope.data).$promise.then(function(res) {
 
           }, function(error) { // error handler
               var err = error.data.errors;
@@ -70,7 +70,7 @@ angular.module('shopnxApp')
   //     });
   //   };
   // };
-  obj.show = function(product,options){
+  obj.show = function(data,options){
     // del = del || angular.noop;
       var modalOptions = {
           templateUrl: "components/modal/detail-modal.html",
@@ -78,7 +78,7 @@ angular.module('shopnxApp')
           controllerAs: "modal",
           windowClass: "ab-modal-window",
           resolve: {
-              product: function () { return product; },
+              data: function () { return data; },
               options :  function () { return options; }
           }
       };

@@ -245,3 +245,15 @@ angular.module('shopnxApp')
       this.merchantID = merchantID;
       this.options = options;
   }
+
+  // utility methods
+  shoppingCart.prototype.addFormFields = function (form, data) {
+      if (data != null) {
+          $.each(data, function (name, value) {
+              if (value != null) {
+                  var input = $("<input></input>").attr("type", "hidden").attr("name", name).val(value);
+                  form.append(input);
+              }
+          });
+      }
+  }

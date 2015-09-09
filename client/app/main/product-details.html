@@ -1,4 +1,3 @@
-<div ng-include="'components/navbar/navbar.html'"></div>
 <div class="container">
 <div class="row">
     <div class="col-sm-4">
@@ -44,7 +43,7 @@
                     <th>Brand</th>
                     <td><h4>
                             <span>{{product.brand}}</span>
-                            <a href="/brand/{{product.brand}}/" style="font-size: 12px; font-weight: normal; padding-left: 10px; color: #069;">View All products</a>
+                            <a href="/brand/{{product.brand}}/{{product._id}}" style="font-size: 12px; font-weight: normal; padding-left: 10px; color: #069;">View All products</a>
                         </h4></td>
                 </tr>
                 <tr> <th>MRP</th> <td>Rs {{product.variants[i].mrp}}</td> </tr>

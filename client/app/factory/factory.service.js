@@ -22,29 +22,9 @@ angular.module('shopnxApp')
 
   .factory('Category', function($resource) {
     var obj = {}
+    obj = $resource('/api/category/:id', null, {'update': { method:'PUT' }});
     obj.parent = $resource('/api/category/parent/:id', null, {'update': { method:'PUT' }});
-    obj.category = $resource('/api/category/:id', null, {'update': { method:'PUT' }});
     return obj;
-    // return $resource('category/parent/:id', {}, {
-    //   query: {method:'GET', params:{id:'@id'}, isArray:true}
-
-    // return $resource(
-    //     '/api/category/parent/:p:c', null, {
-    //         update: {
-    //             method: 'PUT'
-    //         },
-    //         parent: {
-    //             method: 'GET',
-    //             params: {parentId:'@p'},
-    //             isArray: true
-    //         }
-    //     }
-    // );
-
-    // 'where': {
-    //         method: "GET",
-    //         params: '@id'
-    //       }
   })
   .factory('Brand', function($resource) {
     return $resource('/api/brands/:id', null, {'update': { method:'PUT' } });

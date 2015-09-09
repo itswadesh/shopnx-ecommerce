@@ -27,8 +27,9 @@ angular.module('shopnxApp')
         }
 
     // console.log('StoreCtrl');
+    console.log($stateParams);
     if('brand' in $stateParams){
-        var id = $stateParams.brand;
+        var id = $stateParams._id;
         $scope.breadcrumb = {type: 'brand'};
         console.log(id);
         if(id){
@@ -36,23 +37,24 @@ angular.module('shopnxApp')
         }
     }
 
-    if('cat_id' in $stateParams){
-        var id = parseInt($stateParams.cat_id);
+    if('category' in $stateParams){
+        var id = $stateParams._id;
+        console.log(id);
         $scope.breadcrumb = {type: 'category'};
         $scope.breadcrumb.items = [];
         if(id){
-            findCategoryPath(id);
+            // findCategoryPath(id);
         }
 
-        function findCategoryPath(id){
-            Category.findOne().$promise.then(function(child){
-                $scope.breadcrumb.items.push(child);
-                var p = child.parent;
-                if(p != null){
-                    findCategoryPath(1);
-                }
-            });
-        }
+        // function findCategoryPath(id){
+        //     Category.findOne().$promise.then(function(child){
+        //         $scope.breadcrumb.items.push(child);
+        //         var p = child.parent;
+        //         if(p != null){
+        //             findCategoryPath(1);
+        //         }
+        //     });
+        // }
     }
 
     // STORE

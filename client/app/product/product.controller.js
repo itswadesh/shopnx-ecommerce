@@ -12,6 +12,7 @@ angular.module('shopnxApp')
       // console.log(data);
       socket.syncUpdates('product', $scope.data);
     });
+
     var categories = $scope.categories = Category.query(function(data) {
       socket.syncUpdates('category', $scope.data);
     });

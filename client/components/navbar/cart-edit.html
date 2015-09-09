@@ -16,7 +16,7 @@
 
         <input type="text" placeholder="Filter Cart" class="form-control col-md-4" style="width:250px;margin-left:20px;" ng-model="filterCart" autofocus/>
 
-        <button value="Proceed to Checkout →" name="proceed" class="btn btn-primary pull-right" onclick="window.location.href='#/checkout'" ng-disabled="cart.getTotalCount() <= 0" ng-click="cancel();">Proceed to Checkout →</button>
+        <button value="Proceed to Checkout →" name="proceed" class="btn btn-primary pull-right" onclick="window.location.href='/checkout'" ng-disabled="cart.getTotalCount() <= 0" ng-click="cancel();">Proceed to Checkout →</button>
 
         <div class="clearfix"></div>
     </div><br/>
