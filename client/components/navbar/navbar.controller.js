@@ -1,12 +1,14 @@
 'use strict';
 
 angular.module('shopnxApp')
-  .controller('NavbarCtrl', function ($scope, $location, Auth, $modal, Cart, Category) {
+  .controller('NavbarCtrl', function ($scope, $rootScope, $location, Auth, $modal, Cart, Category, Brand) {
     $scope.cart = Cart.cart;
     $scope.menu = [{
       'title': 'Home',
       'link': '/'
     }];
+
+        var brands = $rootScope.brands = Brand.query();
 
     $scope.isCollapsed = true;
     $scope.isLoggedIn = Auth.isLoggedIn;

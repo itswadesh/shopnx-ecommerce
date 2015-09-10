@@ -17,14 +17,14 @@ angular.module('shopnxApp')
         templateUrl: 'app/main/product-details.html',
         controller: 'ProductDetailsCtrl'
       })
-      .state('underCategory', {
-        url: '/:category/:slug/:_id',
+      .state('SubProduct', {
+        url: '/:page/:slug/:_id',
         templateUrl: 'app/main/main.html',
-        controller: 'MainCtrl'
-      })
-      .state('underBrand', {
-        url: '/:brand/:slug/:_id',
-        templateUrl: 'app/main/main.html',
-        controller: 'MainCtrl'
+        controller: 'MainCtrl'//'SubProductCtrl'
       });
+      // .state('ProductBrand', {
+      //   url: '/brand/:slug/:_id',
+      //   templateUrl: 'app/main/main.html',
+      //   controller: 'ProductBrandCtrl'
+      // });
   });

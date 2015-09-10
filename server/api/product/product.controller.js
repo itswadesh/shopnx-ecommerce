@@ -3,12 +3,24 @@
 var _ = require('lodash');
 var Product = require('./product.model');
 
+function isJson(str) {
+  try {
+      str = JSON.parse(str);
+  } catch (e) {
+      str = str;
+  }
+  return str
+}
+
 // Get list of products
 exports.index = function(req, res) {
 
   if(req.query){
-  var q = JSON.parse(req.query.where);
-  var sort = JSON.parse(req.query.sort);
+    // console.log(req.query);
+    var q = isJson(req.query.where);
+    var sort = isJson(req.query.sort);
+
+    // console.log(q,sort);
     Product.find(q).limit(req.query.limit).skip(req.query.skip).sort(sort).exec(function (err, products) {
       if(err) { return handleError(res, err); }
       return res.status(200).json(products);

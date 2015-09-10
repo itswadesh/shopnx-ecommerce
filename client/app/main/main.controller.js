@@ -20,21 +20,47 @@ angular.module('shopnxApp')
         $scope.i=i;
     }
   })
-  .controller('MainCtrl', function ($scope, $stateParams, $location, Product, Brand, Category, socket) {
+  .controller('SubProductCtrl', function ($scope, $rootScope, Product, socket, $stateParams, SortOptions) {
+    $scope.products = {};
+    var page = $stateParams.page;
+    var id = $stateParams._id;
+    var slug = $stateParams.slug;
+    var sortOptions = $scope.sortOptions = SortOptions.product;
+    var product = $scope.product = Product.query({where:{brand:id},sort:$scope.products.sort},function(data) {
+      // socket.syncUpdates('product', $scope.data);
+    });
 
+    function q(){
+        var q= { limit: 5, skip: $scope.products.after, sort: $scope.products.sort, where : {} };
+        var q2 = {};
+        if($scope.products.brand){
+            q.where = {brand:$scope.products.brand};
+            q2.where = {brand:$scope.products.brand};
+        }
+        if($stateParams.brand){
+            q.where = {brand:parseInt($stateParams.brand)};
+            q2.where = {brand:parseInt($stateParams.brand)};
+        }
+        if($stateParams.cat_id){
+            q.where = {category:parseInt($stateParams.cat_id)};
+            q2.where = {category:parseInt($stateParams.cat_id)};
+        }
+
+        // Product.query(q2,
+        //     function(data){
+        //         $scope.products.count = data.length;
+        // });
+        // console.log('filter',q);
+        return q;
+    }
+  })
+  .controller('MainCtrl', function ($scope, $stateParams, $location, Product, Brand, Category, socket,SortOptions) {
+    // console.log($stateParams);
     if ($stateParams.productSku != null) {
         $scope.product = $scope.store.getProduct($stateParams.productSku);
     }
 
-    var brands = $scope.brands = Brand.query();
-
-    var sortOptions = $scope.sortOptions = [
-       {name:"Price Asc", val:{'variants.price':1}},
-       {name:"Price Desc", val:{'variants.price':-1}},
-       {name:"Name Asc", val:{'name':1}},
-       {name:"Name Desc", val:{'name':-1}}
-    ];
-
+    var sortOptions = $scope.sortOptions = SortOptions.product;
     $scope.products = {};
     $scope.filtered = {};
     $scope.products.busy = false;
@@ -72,19 +98,51 @@ angular.module('shopnxApp')
         // }, function(){ $scope.products.busy = false; });
         // console.log($scope.products.items)
     }
-    // console.log('StoreCtrl');
+
+    var sortOptions = $scope.sortOptions = SortOptions.product;
     // console.log($stateParams);
-        console.log($stateParams);
-    if('brand' in $stateParams){
+    if('page' in $stateParams){
+      if($stateParams.page == 'brand'){
         var id = $stateParams._id;
-            console.log('{where:{brand:id}}');
         $scope.breadcrumb = {type: 'brand'};
         if(id){
-            $scope.breadcrumb.items = Brand.query();
-            $scope.search({where:{brand:id}});
+            $scope.products.brand = {_id : id};
+            // $scope.breadcrumb.items = Brand.query({where:{brand:id}});
+            // console.log('{where:{brand:id}}');
+            var product = $scope.products.items = Product.query({where:{brand:id},sort:$scope.products.sort},function(data) {
+              socket.syncUpdates('product', $scope.data);
+            });
         }
         return;
+      }
+      if($stateParams.page == 'category'){
+        var id = $stateParams._id;
+        $scope.breadcrumb = {type: 'category'};
+        if(id){
+            // $scope.products.category = {_id : id};
+            // $scope.breadcrumb.items = Brand.query({where:{brand:id}});
+            // var sortOptions = $scope.sortOptions = SortOptions.product;
+            // console.log('{where:{brand:id}}');
+            var product = $scope.products.items = Product.query({where:{category:id},sort:$scope.products.sort},function(data) {
+              socket.syncUpdates('product', $scope.data);
+            });
+            findCategoryPath(id);
+            function findCategoryPath(id){
+                Category.get({id:id}).$promise.then(function(child){
+                    $scope.breadcrumb.items.push(child);
+                    var p = child.parent;
+                    if(p != null){
+                        findCategoryPath(1);
+                    }
+                });
+            }
+        }
+        return;
+      }
     }
+    // console.log('StoreCtrl');
+    // console.log($stateParams);
+
 
 // // get category breadcrumb
 //     if('category' in $stateParams){
@@ -132,7 +190,7 @@ angular.module('shopnxApp')
     //     return q;
     // }
 
-    $scope.search({});
+    // $scope.search({});
 
     $scope.scroll = function() {
         if ($scope.products.busy || $scope.products.end) return;
@@ -149,7 +207,6 @@ angular.module('shopnxApp')
     }
 
     // $scope.fl = { brands: [] };
-
 
     $scope.priceRange = function(item) {
         return (parseInt(item['price']) >= $scope.lower_price_bound && parseInt(item['price']) <= $scope.upper_price_bound);

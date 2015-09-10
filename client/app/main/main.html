@@ -21,7 +21,6 @@
           </li>
       </ol>
       </div>
-      {{products.brand}}
       <div class="col-sm-2" style="font-size:20px;">{{title}}</div>
       Showing {{ filtered.count }} of {{products.count}} items
       Brand: <select ng-model="products.brand" style="width:128px;" ng-change="navigateToBrandPage(products.brand);" ng-options="b.name for b in brands track by b._id">

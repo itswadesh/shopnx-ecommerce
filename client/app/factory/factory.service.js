@@ -20,9 +20,16 @@ angular.module('shopnxApp')
     return obj;
   })
 
-  // .factory('Category', function($resource) {
-    // return $resource('/api/category/:id', null, {'update': { method:'PUT' } });
-  // });
+  .factory('SortOptions', function() {
+    var obj = {};
+    obj.product = [
+       {name:"Price Asc", val:{'variants.price':1}},
+       {name:"Price Desc", val:{'variants.price':-1}},
+       {name:"Name Asc", val:{'name':1}},
+       {name:"Name Desc", val:{'name':-1}}
+    ];
+    return obj;
+  })
 
   .factory('Category', function($resource) {
     var obj = {}
