@@ -21,27 +21,28 @@ angular.module('shopnxApp')
     $scope.isActive = function(route) {
       return route === $location.path();
     };
-    
+
     $scope.onSelectProduct = function($item, $model, $label){
         // $label_clean = $label.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/ig,'');
         $location.path('product/'+$item.id+'/'+$item.slug);
     }
-    // var category = Category.category.query( {id: '1000'} );
+    $scope.categories = Category.all.query();
     // var parent = Category.parent.query({id:'0'});
 
-// Category.get({parent: 1000},{id:1, description:1, slug:1, parent:1}, function(parents){
-    var p = [];
-    Category.parent.query({id:0},function(parents){
-        angular.forEach(parents,function(a){
-            a.children = [];
-            Category.parent.query({id:a.category},function(children){
-              a.children = children;
-            });
-            p.push(a);
-        });
-            $scope.categories = p;
-            // console.log(p);
-    });
+// // Script which calls all category from parent 0 and constructs the category hierarchy
+// // This was moved to the server and now 1 call does it all instead 1 for each parent category + 1 for parent category itself
+// var p = [];
+// Category.parent.query({id:0},function(parents){
+//     angular.forEach(parents,function(a){
+//         a.children = [];
+//         Category.parent.query({id:a.category},function(children){
+//           a.children = children;
+//         });
+//         p.push(a);
+//     });
+//         $scope.categories = p;
+//         // console.log(p);
+// });
 
     $scope.globalSearch = function(input){
           // console.log(input);

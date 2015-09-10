@@ -21,9 +21,10 @@
           </li>
       </ol>
       </div>
+      {{products.brand}}
       <div class="col-sm-2" style="font-size:20px;">{{title}}</div>
       Showing {{ filtered.count }} of {{products.count}} items
-      Brand: <select ng-model="products.brand" style="width:128px;" ng-change="search({brand:products.brand});" ng-options="o.name as o.name for o in brands">
+      Brand: <select ng-model="products.brand" style="width:128px;" ng-change="navigateToBrandPage(products.brand);" ng-options="b.name for b in brands track by b._id">
           <option value="">All Brands</option>
       </select>
 
@@ -89,7 +90,9 @@
 
 <footer class="footer">
   <div class="container">
-      <p>Shopping Website created with AngularJS| ShopNx
-        <a href="https://twitter.com/itswadesh">@itswadesh</a> |
+      <p>ShopNx | Shopping Website created with MongoDB, Express, AngularJS, NodeJS (MEAN Stack)<br/>
+        Using yeoman for scaffolding and grunt to automate javascript tasks
+        <a href="https://twitter.com/itswadesh">@itswadesh</a>
+      </p>
   </div>
 </footer>

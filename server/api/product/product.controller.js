@@ -8,8 +8,8 @@ exports.index = function(req, res) {
 
   if(req.query){
   var q = JSON.parse(req.query.where);
-    Product.find(q).limit(req.query.limit).skip(req.query.skip).sort('name').exec(function (err, products) {
-      console.log(products.length);
+  var sort = JSON.parse(req.query.sort);
+    Product.find(q).limit(req.query.limit).skip(req.query.skip).sort(sort).exec(function (err, products) {
       if(err) { return handleError(res, err); }
       return res.status(200).json(products);
     });

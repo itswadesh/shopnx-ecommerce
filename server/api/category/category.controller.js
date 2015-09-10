@@ -20,24 +20,62 @@ exports.parents = function(req, res) {
   });
 };
 
-// Get list of categorys
+// Get all categories with corresponding sub_categories
+
 exports.all = function(req, res) {
-  // console.log(req.params.id);
-  Category.find({'parentId' : 0},function (err, parents) {
-    var p = [];
-    if(err) { return handleError(res, err); }
-    parents.forEach(function(a){
-      a.children = [];
-      Category.find({'parentId' : a.category},function (err, children) {
-        if(err) { return handleError(res, err); }
-        a.children = children;
-      });
-    console.log(a);
+  var async = require("async");
+  var p = [];
+  Category.find({parentCategory:0}).select({name:1,category:1,parentCategory:1,slug:1}).exec(function(err,parents){
+  // Using async library which will enable us to wait until data received from database
+  async.each(parents, function(a, callback){
+      var a = a.toObject();
+      Category.find({parentCategory:parseInt(a.category)}).select({name:1,category:1,parentCategory:1,slug:1}).exec(function(err,c){
+        a.sub_categories = c;
         p.push(a);
-    });
-    return res.status(200).json(p);
-  });
+        callback();
+      });
+    },
+    // 3rd param is the function to call when everything's done
+    function(err){
+      if( err ) { return res.status(404).send('Not Found'); } else { return res.status(200).json(p); }
+    }
+  );
+});
+
+// var p = [];
+// Category.find({parentId:0},{name:1,category:1,parentId:1},function(err,parents){
+//     parents.forEach(function(a){
+//       // a = JSON.parse(a);
+//       // console.log('ach',a);
+//         var x = {};
+//         Category.find({parentId:a.category}).select({name:1,category:1,parentId:1}).limit(2).exec(function(err,children){
+//           x.sub_categories = children;
+//         });
+//         p.push(x);
+//           console.log('chhhhhhhhhhhh',x);
+//     });
+//         // console.log(p);
+// });
 };
+
+// Get list of categorys
+// exports.all = function(req, res) {
+//   // console.log(req.params.id);
+//   Category.find({'parentId' : 0},function (err, parents) {
+//     var p = [];
+//     if(err) { return handleError(res, err); }
+//     parents.forEach(function(a){
+//       a.children = [];
+//       Category.find({'parentId' : a.category},function (err, children) {
+//         if(err) { return handleError(res, err); }
+//         a.children = children;
+//       });
+//     console.log(a);
+//         p.push(a);
+//     });
+//     return res.status(200).json(p);
+//   });
+// };
 
 // Get a single category
 exports.show = function(req, res) {
