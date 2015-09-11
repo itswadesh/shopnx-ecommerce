@@ -11,6 +11,7 @@ angular.module('shopnxApp')
         var brands = $rootScope.brands = Brand.query();
 
     $scope.isCollapsed = true;
+    $scope.isCollapsed1 = true;
     $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.isAdmin = Auth.isAdmin;
     $scope.getCurrentUser = Auth.getCurrentUser;
