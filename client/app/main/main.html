@@ -23,11 +23,12 @@
       </div>
       <div class="col-sm-2" style="font-size:20px;">{{title}}</div>
       Showing {{ filtered.count }} of {{products.count}} items
-      Brand: <select ng-model="products.brand" style="width:128px;" ng-change="navigateToBrandPage(products.brand);" ng-options="b.name for b in brands track by b._id">
+      Brand: <select ng-model="products.brand" style="width:128px;" ng-change="navigate('brand',products.brand);" ng-options="b.name for b in brands track by b._id">
           <option value="">All Brands</option>
       </select>
-
-      Sort: <select ng-model="products.sort" style="width:128px;" ng-change="search({sort:products.sort});" ng-options="o.val as o.name for o in sortOptions"></select>
+{{products.sort}}
+      Sort: <select ng-model="products.sort" style="width:128px;" ng-options="o.val as o.name for o in sortOptions"
+      ng-change="navigate('sort',products.sort);"></select>
       <hr class="clearfix"/>
 
   </span>

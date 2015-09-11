@@ -26,9 +26,9 @@ angular.module('shopnxApp')
     var id = $stateParams._id;
     var slug = $stateParams.slug;
     var sortOptions = $scope.sortOptions = SortOptions.product;
-    var product = $scope.product = Product.query({where:{brand:id},sort:$scope.products.sort},function(data) {
-      // socket.syncUpdates('product', $scope.data);
-    });
+    /*var product = $scope.product = Product.query({where:{brand:id},sort:$scope.products.sort},function(data) {
+       socket.syncUpdates('product', $scope.data);
+    });*/
 
     function q(){
         var q= { limit: 5, skip: $scope.products.after, sort: $scope.products.sort, where : {} };
@@ -60,20 +60,35 @@ angular.module('shopnxApp')
         $scope.product = $scope.store.getProduct($stateParams.productSku);
     }
 
-    var sortOptions = $scope.sortOptions = SortOptions.product;
     $scope.products = {};
     $scope.filtered = {};
     $scope.products.busy = false;
     $scope.products.end = false;
     $scope.products.after = 0;
     $scope.products.items = [];
-    $scope.products.sort = sortOptions[0].val;
+    //$scope.products.sort = sortOptions[0].val;
     $scope.lower_price_bound = 0;
     $scope.upper_price_bound = 1500;
 
-    $scope.navigateToBrandPage = function(param){
-      $location.replace().path('brand/'+param.slug+'/'+param._id);
+    $scope.navigate = function(page,param){
+      $location.replace().path(page+'/'+param.slug+'/'+param._id);
     }
+    function findCategoryPath(id){
+        Category.get({id:id}).$promise.then(function(child){
+            $scope.breadcrumb.items.push(child);
+            var p = child.parent;
+            if(p != null){
+                findCategoryPath(1);
+            }
+        });
+    }
+
+    var displayProducts = function(q){
+      var product = $scope.products.items = Product.query(q,function(data) {
+        socket.syncUpdates('product', $scope.data);
+      });
+    }
+
     $scope.search = function(param) {
         // if('brand' in param){ /* && $state.current.url!='/brand/:brand/:description'*/
         //     $location.replace().path('brand/'+param.brand.slug+'/'+param.brand._id);
@@ -90,56 +105,33 @@ angular.module('shopnxApp')
         if ($scope.products.busy) return;
         $scope.products.busy = true;
 
-
-        // $scope.products.items = Product.query(q(param), function(data){
-        //     $scope.products.busy = false;
-        //     $scope.filtered.count = data.length;
-        //     if(data.length==5) { $scope.products.after = $scope.products.after + data.length; } else { $scope.products.end = true;}
-        // }, function(){ $scope.products.busy = false; });
-        // console.log($scope.products.items)
     }
 
-    var sortOptions = $scope.sortOptions = SortOptions.product;
+    var sortOptions = $scope.sortOptions = SortOptions.server;
     // console.log($stateParams);
+
     if('page' in $stateParams){
-      if($stateParams.page == 'brand'){
-        var id = $stateParams._id;
+      var sort = {name:1};
+      var brandId,categoryId;
+      if($stateParams.page == 'brand' && $stateParams._id){
+        brandId = $stateParams._id;
+        sort = $stateParams.sort;
+        $scope.products.brand = {_id : brandId};
         $scope.breadcrumb = {type: 'brand'};
-        if(id){
-            $scope.products.brand = {_id : id};
-            // $scope.breadcrumb.items = Brand.query({where:{brand:id}});
-            // console.log('{where:{brand:id}}');
-            var product = $scope.products.items = Product.query({where:{brand:id},sort:$scope.products.sort},function(data) {
-              socket.syncUpdates('product', $scope.data);
-            });
-        }
-        return;
-      }
-      if($stateParams.page == 'category'){
-        var id = $stateParams._id;
+      }else if ($stateParams.page == 'category' && $stateParams._id) {
+        categoryId = $stateParams._id;
+        sort = $stateParams.sort;
+        $scope.products.category = {_id : categoryId};
         $scope.breadcrumb = {type: 'category'};
-        if(id){
-            // $scope.products.category = {_id : id};
-            // $scope.breadcrumb.items = Brand.query({where:{brand:id}});
-            // var sortOptions = $scope.sortOptions = SortOptions.product;
-            // console.log('{where:{brand:id}}');
-            var product = $scope.products.items = Product.query({where:{category:id},sort:$scope.products.sort},function(data) {
-              socket.syncUpdates('product', $scope.data);
-            });
-            findCategoryPath(id);
-            function findCategoryPath(id){
-                Category.get({id:id}).$promise.then(function(child){
-                    $scope.breadcrumb.items.push(child);
-                    var p = child.parent;
-                    if(p != null){
-                        findCategoryPath(1);
-                    }
-                });
-            }
-        }
-        return;
+        findCategoryPath(categoryId);
       }
-    }
+      console.log(sort);
+      displayProducts({where:{brand:brandId, category:categoryId},sort:sort,limit:10});
+      return;
+      }
+
+
+
     // console.log('StoreCtrl');
     // console.log($stateParams);
 

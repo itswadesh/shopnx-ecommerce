@@ -22,11 +22,17 @@ angular.module('shopnxApp')
 
   .factory('SortOptions', function() {
     var obj = {};
-    obj.product = [
+    obj.server= [
        {name:"Price Asc", val:{'variants.price':1}},
        {name:"Price Desc", val:{'variants.price':-1}},
        {name:"Name Asc", val:{'name':1}},
        {name:"Name Desc", val:{'name':-1}}
+    ];
+    obj.client= [
+       {name:"Price Asc", val:'variants[0].price'},
+       {name:"Price Desc", val:'-variants[0].price'},
+       {name:"Name Asc", val:'name'},
+       {name:"Name Desc", val:'-name'}
     ];
     return obj;
   })
