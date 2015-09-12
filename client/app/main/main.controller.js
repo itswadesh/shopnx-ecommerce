@@ -54,7 +54,7 @@ angular.module('shopnxApp')
         return q;
     }
   })
-  .controller('MainCtrl', function ($scope, $stateParams, $location, Product, Brand, Category, socket,SortOptions) {
+  .controller('MainCtrl', function ($scope, $state, $stateParams, $location, Product, Brand, Category, socket,SortOptions) {
     // console.log($stateParams);
     if ($stateParams.productSku != null) {
         $scope.product = $scope.store.getProduct($stateParams.productSku);
@@ -70,8 +70,20 @@ angular.module('shopnxApp')
     $scope.lower_price_bound = 0;
     $scope.upper_price_bound = 1500;
 
-    $scope.navigate = function(page,param){
-      $location.replace().path(page+'/'+param.slug+'/'+param._id);
+    $scope.navigate = function(page,params){
+      // var params = params.delete('$$hashKey');
+      if(page=='sort'){
+        delete params.$$hashKey;
+        var paramString = JSON.stringify(params);
+        // var p = Object.keys(params);
+        // displayProducts({where:{brand:brandId, category:categoryId},sort:sort,limit:10});
+        // $location.search({sort: paramString});
+        // $state.go('MyState', {error: null})
+        $state.go($state.current, $stateParams, { reload: true });
+        // $state.go($state.current, {param: 0}, {reload: true});
+      }
+      else
+      $location.replace().path(page+'/'+params.slug+'/'+params._id);
     }
     function findCategoryPath(id){
         Category.get({id:id}).$promise.then(function(child){
@@ -109,13 +121,17 @@ angular.module('shopnxApp')
 
     var sortOptions = $scope.sortOptions = SortOptions.server;
     // console.log($stateParams);
+    console.log('params');
 
     if('page' in $stateParams){
+      console.log('params2');
+
       var sort = {name:1};
       var brandId,categoryId;
       if($stateParams.page == 'brand' && $stateParams._id){
         brandId = $stateParams._id;
         sort = $stateParams.sort;
+        console.log(sort);
         $scope.products.brand = {_id : brandId};
         $scope.breadcrumb = {type: 'brand'};
       }else if ($stateParams.page == 'category' && $stateParams._id) {
