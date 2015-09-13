@@ -48,15 +48,14 @@
                   </div>
                 </div>
                 <div class="form-group row">
-                  <!-- <label for="category" class="col-md-1 control-label">Category</label> -->
                   <div class="col-md-6">
-                    <select ng-model="product.category" ng-options="i._id as i.name for i in categories | orderBy:'name'" class="form-control">
+                    <select ng-model="product.category" ng-options="option.name for option in categories | orderBy:'name' track by option._id" class="form-control">
                         <option value="">Select Category</option>
                     </select>
                   </div>
                   <!-- <label for="brand" class="col-md-1 control-label">Brand</label> -->
                   <div class="col-md-6">
-                    <select ng-model="product.brand" ng-options="i._id as i.name for i in brands | orderBy:'description'" class="form-control">
+                    <select ng-model="product.brand" ng-options="i.name for i in brands | orderBy:'name' track by i._id" class="form-control">
                         <option value="">Select Brand</option>
                     </select>
                   </div>
@@ -144,7 +143,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr ng-repeat="p in products | filter:filter | limitTo:10" id="{{p._id}}" animate-on-change='p.price+p.quantity+p.packing+p.description' ng-animate="'animate'" ts-repeat>
+        <tr ng-repeat="p in products | filter:filter | limitTo:10" id="{{p._id}}" animate-on-change='p.price+p.quantity+p.packing+p.name' ng-animate="'animate'" ts-repeat>
             <!-- <td><img src="img/{{p.category}}/{{p.image}}"/> </td>--><td>{{$index+1}}</td><td><a href=""  ng-click="productDetail(p);">{{p.name}}</a></td>
             <td>
                 <button class="btn" ng-class="{true:'btn-success', false:''}[p.active]" ng-click="changeActive(p);">{{p.active | active}}</button>

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('shopnxApp')
-  .controller('ProductDetailsCtrl', function ($scope, $rootScope, Product, socket, $stateParams) {
+  .controller('ProductDetailsCtrl', function ($scope, $rootScope, Product, socket, $stateParams, $location, $state, $injector) {
     var id = $stateParams.id;
     var slug = $stateParams.slug;
     // Storing the product id into localStorage because the _id of the selected product which was passed as a hidden parameter from products won't available on page refresh
@@ -13,19 +13,44 @@ angular.module('shopnxApp')
     // console.log(id,slug,product_id);
     var product = $scope.product = Product.get({id:product_id},function(data) {
       socket.syncUpdates('product', $scope.data);
+      generateBreadCrumb('Category',data.category._id);
     });
 
     $scope.i=0;
     $scope.changeIndex =function(i){
         $scope.i=i;
     }
+
+    $scope.navigate = function(page,params){
+      if(params){
+        $location.replace().path(page+'/'+params.slug+'/'+params._id);
+      }else{
+        $location.replace().path('/');
+      }
+    }
+
+    var generateBreadCrumb = function(page, id){
+      $scope.breadcrumb = {};
+      $scope.breadcrumb.items = [];
+      var api = $injector.get(page);
+      api.get({id:id}).$promise.then(function(child){
+        $scope.breadcrumb.items.push(child);
+        var p = child.parent;
+        if(p != null) findBrandPath(1);
+        if(page=='Category')
+          $scope.breadcrumb.items.push({name:"All Categories"});
+        else if(page=='Brand')
+          $scope.breadcrumb.items.push({name:"All Brands"});
+      });
+    }
+
   })
   .controller('SubProductCtrl', function ($scope, $rootScope, Product, socket, $stateParams, SortOptions) {
     $scope.products = {};
     var page = $stateParams.page;
     var id = $stateParams._id;
     var slug = $stateParams.slug;
-    var sortOptions = $scope.sortOptions = SortOptions.product;
+    // var sortOptions = $scope.sortOptions = SortOptions.product;
     /*var product = $scope.product = Product.query({where:{brand:id},sort:$scope.products.sort},function(data) {
        socket.syncUpdates('product', $scope.data);
     });*/
@@ -54,21 +79,30 @@ angular.module('shopnxApp')
         return q;
     }
   })
-  .controller('MainCtrl', function ($scope, $state, $stateParams, $location, Product, Brand, Category, socket,SortOptions) {
+  .controller('MainCtrl', function ($scope, $state, $stateParams, $location, Product, Brand, Category, socket, $rootScope, $injector) {
     // console.log($stateParams);
+    // For product details page
+
     if ($stateParams.productSku != null) {
         $scope.product = $scope.store.getProduct($stateParams.productSku);
     }
 
+    $scope.priceSlider = {
+        min: 0,
+        max: 2500,
+        ceil: 2500,
+        floor: 0
+    };
+
+    $scope.currencyFormatting = function(value) { return  "$ " + value.toString() }
     $scope.products = {};
     $scope.filtered = {};
     $scope.products.busy = false;
     $scope.products.end = false;
     $scope.products.after = 0;
     $scope.products.items = [];
-    //$scope.products.sort = sortOptions[0].val;
-    $scope.lower_price_bound = 0;
-    $scope.upper_price_bound = 1500;
+    // $scope.products.sort = sortOptions[0].val;
+    $scope.fl = {};
 
     $scope.navigate = function(page,params){
       // var params = params.delete('$$hashKey');
@@ -76,151 +110,117 @@ angular.module('shopnxApp')
         delete params.$$hashKey;
         var paramString = JSON.stringify(params);
         // var p = Object.keys(params);
-        // displayProducts({where:{brand:brandId, category:categoryId},sort:sort,limit:10});
-        // $location.search({sort: paramString});
-        // $state.go('MyState', {error: null})
-        $state.go($state.current, $stateParams, { reload: true });
-        // $state.go($state.current, {param: 0}, {reload: true});
+        console.log(paramString);
+        // $location.path($stateParams.page+'/'+$stateParams.slug+'/'+$stateParams._id).search({sort: paramString});
+        $state.go($state.current, {sort: paramString}, {reload: true});
       }
-      else
-      $location.replace().path(page+'/'+params.slug+'/'+params._id);
+      else if(params){
+        $location.replace().path(page+'/'+params.slug+'/'+params._id);
+      }else{
+        $location.replace().path('/');
+        // $state.go('main', {sort: paramString}, {reload: true});
+      }
     }
-    function findCategoryPath(id){
-        Category.get({id:id}).$promise.then(function(child){
-            $scope.breadcrumb.items.push(child);
-            var p = child.parent;
-            if(p != null){
-                findCategoryPath(1);
-            }
-        });
+    var generateBreadCrumb = function(page, id){
+      $scope.breadcrumb.items = [];
+      var api = $injector.get(page);
+      api.get({id:id}).$promise.then(function(child){
+        $scope.breadcrumb.items.push(child);
+        var p = child.parent;
+        if(p != null) findBrandPath(1);
+        if(page=='Category')
+          $scope.breadcrumb.items.push({name:"All Categories"});
+        else if(page=='Brand')
+          $scope.breadcrumb.items.push({name:"All Brands"});
+      });
     }
-
     var displayProducts = function(q){
       var product = $scope.products.items = Product.query(q,function(data) {
-        socket.syncUpdates('product', $scope.data);
+        // socket.syncUpdates('product', $scope.data);
       });
     }
 
-    $scope.search = function(param) {
-        // if('brand' in param){ /* && $state.current.url!='/brand/:brand/:description'*/
-        //     $location.replace().path('brand/'+param.brand.slug+'/'+param.brand._id);
-        //     // $scope.products.brand = param.brand;
-        // }
-        // console.log($scope.products.brand);
-        // var sort = $scope.products.sort = ('sort' in param) ? param.sort : undefined;
-
-        $scope.products.busy = false;
-        $scope.products.end = false;
-        $scope.products.after = 0;
-        $scope.products.items = [];
-
-        if ($scope.products.busy) return;
-        $scope.products.busy = true;
-
-    }
-
-    var sortOptions = $scope.sortOptions = SortOptions.server;
-    // console.log($stateParams);
-    console.log('params');
+    var sort = $scope.products.sort = $stateParams.sort;
+    var q = {where:{},limit:10};
 
     if('page' in $stateParams){
-      console.log('params2');
-
-      var sort = {name:1};
-      var brandId,categoryId;
-      if($stateParams.page == 'brand' && $stateParams._id){
-        brandId = $stateParams._id;
-        sort = $stateParams.sort;
-        console.log(sort);
-        $scope.products.brand = {_id : brandId};
-        $scope.breadcrumb = {type: 'brand'};
-      }else if ($stateParams.page == 'category' && $stateParams._id) {
-        categoryId = $stateParams._id;
-        sort = $stateParams.sort;
-        $scope.products.category = {_id : categoryId};
-        $scope.breadcrumb = {type: 'category'};
-        findCategoryPath(categoryId);
+      // console.log('params2');
+      var brandId, categoryId, q;
+      if($stateParams.page && $stateParams._id){
+        $scope.products.brand = {_id : $stateParams._id};
+        $scope.breadcrumb = {type: $stateParams.page};
+        generateBreadCrumb($stateParams.page,$stateParams._id);
+        if($stateParams.page=='Category') categoryId = $stateParams._id;
+        if($stateParams.page=='Brand') brandId = $stateParams._id;
+        q.where['brand._id'] = brandId;
+        q.where['category._id'] = categoryId;
+        // q.limit = 10;
+        // return;
+      }else{
+        q = {sort:sort,limit:10};
+        // return;
       }
-      console.log(sort);
-      displayProducts({where:{brand:brandId, category:categoryId},sort:sort,limit:10});
-      return;
+    }
+    displayProducts(q);
+
+    $scope.filterBrands = function(id) {
+      // This function required to query from database in place of filtering items from angular $scope,
+      // In some cases we load only 20 products for pagination in that case we won't be able to filter properly
+      // $scope.fl.brands = [];
+      // console.log($scope.fl.brands);
+      $scope.products.busy = false;
+      $scope.products.end = false;
+      $scope.products.after = 0;
+      $scope.products.items = [];
+
+      if ($scope.products.busy) return;
+      $scope.products.busy = true;
+      if($scope.fl.brands){
+        if($scope.fl.brands.length>0){
+          q.where['brand._id'] = { $in: $scope.fl.brands };
+        }else{
+          q.where.brand = undefined;
+        }
+      }else {
+        q.where.brand = undefined;
       }
-
-
-
-    // console.log('StoreCtrl');
-    // console.log($stateParams);
-
-
-// // get category breadcrumb
-//     if('category' in $stateParams){
-//         var id = $stateParams._id;
-//         $scope.breadcrumb = {type: 'category'};
-//         $scope.breadcrumb.items = [];
-//         if(id){
-//             findCategoryPath(id);
-//         }
-//         return;
-//         function findCategoryPath(id){
-//             Category.get({id:id}).$promise.then(function(child){
-//                 $scope.breadcrumb.items.push(child);
-//                 var p = child.parent;
-//                 if(p != null){
-//                     findCategoryPath(1);
-//                 }
-//             });
-//         }
-//     }
-
-
-
-    // function q(){
-    //     var q= { limit: 5, skip: $scope.products.after, sort: $scope.products.sort, where : {} };
-    //     var q2 = {};
-    //     if($scope.products.brand){
-    //         q.where = {brand:$scope.products.brand};
-    //         q2.where = {brand:$scope.products.brand};
-    //     }
-    //     if($stateParams.brand){
-    //         q.where = {brand:parseInt($stateParams.brand)};
-    //         q2.where = {brand:parseInt($stateParams.brand)};
-    //     }
-    //     if($stateParams.cat_id){
-    //         q.where = {category:parseInt($stateParams.cat_id)};
-    //         q2.where = {category:parseInt($stateParams.cat_id)};
-    //     }
-    //
-    //     // Product.query(q2,
-    //     //     function(data){
-    //     //         $scope.products.count = data.length;
-    //     // });
-    //     // console.log('filter',q);
-    //     return q;
-    // }
-
-    // $scope.search({});
-
-    $scope.scroll = function() {
-        if ($scope.products.busy || $scope.products.end) return;
-        $scope.products.busy = true;
-        console.log('scroll');
-        // Product.query(q(), function(data){
-        //     for (var i = 0; i < data.length; i++) {
-        //         $scope.products.items.push(data[i]);
-        //     }$scope.filtered.count = data.length + $scope.products.after;
-        //     if(data.length==5) { $scope.products.after = $scope.products.after + data.length; } else { $scope.products.end = true;}
-        //     $scope.products.busy = false;
-        // }, function(){ $scope.products.busy = false; });
-        $scope.search();
+      displayProducts(q);
     }
 
-    // $scope.fl = { brands: [] };
+    $scope.filterPrice = function(price) {
+      // This function required to query from database in place of filtering items from angular $scope,
+      // In some cases we load only 20 products for pagination in that case we won't be able to filter properly
+      // console.log(price);
+      $scope.products.busy = false;
+      $scope.products.end = false;
+      $scope.products.after = 0;
+      $scope.products.items = [];
 
-    $scope.priceRange = function(item) {
-        return (parseInt(item['price']) >= $scope.lower_price_bound && parseInt(item['price']) <= $scope.upper_price_bound);
-    };
+      // q.where.variants = {};
+      if ($scope.products.busy) return;
+      $scope.products.busy = true;
+      q.where['variants.price'] = { $gt: price.min, $lt:price.max };
+      displayProducts(q);
+    }
 
-    $scope.loadMore = function() {
-        $scope.l += 12;
-    };
-  });
+    $scope.sortNow = function(sort){
+        q.sort = sort;
+        displayProducts(q);
+    }
+
+    $scope.scroll = function() {
+        // console.log($scope.products.busy,$scope.products.end,$scope.products.after);
+        if ($scope.products.busy || $scope.products.end) return;
+        $scope.products.busy = false;
+        q.skip = $scope.products.after+10;
+        Product.query(q, function(data){
+          console.log(data);
+            for (var i = 0; i < data.length; i++) {
+                $scope.products.items.push(data[i]);
+            }
+            $scope.filtered.count = data.length + $scope.products.after;
+            if(data.length>=5) { $scope.products.after = $scope.products.after + data.length; } else { $scope.products.end = true;}
+            $scope.products.busy = false;
+        }, function(){ $scope.products.busy = false; });
+    }
+});

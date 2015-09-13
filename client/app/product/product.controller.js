@@ -64,10 +64,8 @@ angular.module('shopnxApp')
     };
 
     $scope.productDetail = function(product){
-        if(product)
-          $scope.product = product;
-        else
-          $scope.product = {};
+        if(product)  $scope.product = product;
+        else $scope.product = {};
     }
 
   });

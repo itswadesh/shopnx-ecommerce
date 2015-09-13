@@ -113,7 +113,7 @@ angular.module('shopnxApp')
     };
 });*/
 
-.directive('checklistModel', ['$parse', '$compile', function($parse, $compile) {
+/* .directive('checklistModel', ['$parse', '$compile', function($parse, $compile) {
   // contains
   function contains(arr, item) {
     if (angular.isArray(arr)) {
@@ -161,7 +161,6 @@ angular.module('shopnxApp')
 
     // value added to list
     var value = $parse(attrs.checklistValue)(scope.$parent);
-
     // watch UI checked change
     scope.$watch('checked', function(newValue, oldValue) {
       if (newValue === oldValue) {
@@ -170,6 +169,7 @@ angular.module('shopnxApp')
       var current = getter(scope.$parent);
       if (newValue === true) {
         setter(scope.$parent, add(current, value));
+console.log(scope.$parent, value,current);
       } else {
         setter(scope.$parent, remove(current, value));
       }
@@ -205,7 +205,7 @@ angular.module('shopnxApp')
     }
   };
 }])
-
+*/
 
 .directive('autoFillCustomer',function(Customer) {
     return {

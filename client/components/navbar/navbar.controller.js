@@ -1,14 +1,15 @@
 'use strict';
 
 angular.module('shopnxApp')
-  .controller('NavbarCtrl', function ($scope, $rootScope, $location, Auth, $modal, Cart, Category, Brand) {
+  .controller('NavbarCtrl', function ($scope, $rootScope, $location, Auth, $modal, Cart, Category, Brand,SortOptions) {
     $scope.cart = Cart.cart;
     $scope.menu = [{
       'title': 'Home',
       'link': '/'
     }];
 
-        var brands = $rootScope.brands = Brand.query();
+    var brands = $rootScope.brands = Brand.query();
+    var sortOptions = $rootScope.sortOptions = SortOptions.server;
 
     $scope.isCollapsed = true;
     $scope.isCollapsed1 = true;

@@ -9,7 +9,10 @@ angular.module('shopnxApp', [
   'btford.socket-io',
   'ui.router',
   'ui.bootstrap',
-  'tableSort'
+  'tableSort',
+  'checklist-model',
+  'rzModule',
+  'infinite-scroll'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider

@@ -20,7 +20,6 @@ exports.index = function(req, res) {
     var q = isJson(req.query.where);
     var sort = isJson(req.query.sort);
 
-    console.log(q,sort);
     Product.find(q).limit(req.query.limit).skip(req.query.skip).sort(sort).exec(function (err, products) {
       if(err) { return handleError(res, err); }
       return res.status(200).json(products);

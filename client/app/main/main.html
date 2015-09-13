@@ -1,60 +1,79 @@
-<!-- <header class="hero-unit" id="banner">
-  <div class="container">
-    <h1>'Hello, 'Hello!</h1>
-    <p class="lead">Kick-start your next web app with Angular Fullstack</p>
-    <img src="assets/images/yeoman.png" alt="I'm Yeoman">
-  </div>
-</header> -->
-
 <div class="container">
-  <span class="row">
-      <div class="col-sm-4">
-      <ol class="breadcrumb" ng-if="breadcrumb.type=='brand'">
-          <li><a ui-sref="store">All Brands</a></li>
-          <li ng-repeat="b in breadcrumb.items">{{b.name}}</li>
-      </ol>
-      <ol class="breadcrumb" ng-if="breadcrumb.type=='category'">
-          <li><a ui-sref="store">All Categories</a></li>
+  <div infinite-scroll='scroll()' infinite-scroll-disabled='products.busy' infinite-scroll-distance='1'>
+
+  <div class="row">
+    <div class="col-sm-5">
+      <ol class="breadcrumb">
+          <li><a ui-sref="main" href="">Home</a></li>
           <li ng-repeat="b in breadcrumb.items | reverse">
-              <a href="/c/{{b.id}}/{{b.slug}}" ng-if="!$last">{{b.name}}</a>
+              <a href="/" ng-if="!$last">{{b.name}}</a>
               <span ng-if="$last">{{b.name}}</span>
           </li>
       </ol>
-      </div>
-      <div class="col-sm-2" style="font-size:20px;">{{title}}</div>
-      Showing {{ filtered.count }} of {{products.count}} items
-      Brand: <select ng-model="products.brand" style="width:128px;" ng-change="navigate('brand',products.brand);" ng-options="b.name for b in brands track by b._id">
-          <option value="">All Brands</option>
-      </select>
+    </div>
 
-      Sort: <select ng-model="products.sort" style="width:128px;" ng-options="o.val as o.name for o in sortOptions"
-      ng-change="navigate('sort',products.sort);"></select>
-      <hr class="clearfix"/>
+    <div class="col-sm-2 text-center" style="font-size:20px;">Products ({{products.items.length}})</div>
 
-  </span>
+    <div class="col-sm-5 text-right">
+      <ol class="breadcrumb">
+        <li>Sort: </li>
+        <li ng-repeat="o in sortOptions" ng-class="{active : o.val==products.sort}">
+          <a href="" ng-click="sortNow(o.val);">{{o.name}}</a>
+        </li>
+      </ol>
+    </div>
+  </div>
+<!-- <div class="clearfix"></div> -->
+<div class="row">
+  <div class="col-sm-12">
+  <ul class="list-inline text-center">
+    <li>Showing {{products.items.length}} products in:</li>
+    <li>Rs: <strong>{{priceSlider.min}}</strong> &nbsp;-&nbsp; Rs: <strong>{{priceSlider.max}}</strong></li>
+    <li>
+      <a>
+        <select ng-model="products.brand"  ng-change="navigate('Brand',products.brand);" ng-options="b.name for b in brands track by b._id" class="form-control">
+            <option value="">All Brands</option>
+        </select>
+      </a>
+    </li>
+  </ul>
+  </div>
+</div>
+<hr class="clearfix"/>
 
   <div class="row">
 
   <div class="col-sm-3">
-  Display categories
-  <!-- Price Range: Rs: <strong>{{lower_price_bound}}</strong> &nbsp;-&nbsp; Rs: <strong>{{upper_price_bound}}</strong>
-      <slider floor="0" ceiling="1500" ng-model-low="lower_price_bound" ng-model-high="upper_price_bound"></slider>
+    <div class="well">
+  Price Range:
+  <rzslider
+    rz-slider-floor="priceSlider.floor"
+    rz-slider-ceil="priceSlider.ceil"
+    rz-slider-model="priceSlider.min"
+    rz-slider-high="priceSlider.max"
+    rz-slider-translate="currencyFormatting"
+    rz-slider-on-end="filterPrice(priceSlider)"></rzslider>
 
-  {{fl.brands}}
-      <h4>Brand</h4><hr/>
-      <div class="checkbox" ng-repeat="b in brands | limitTo:10">
-          <label class="checkbox">
-          <input type="checkbox" value="{{b.name}}" checklist-model="fl.brands" checklist-value="b.brand" />
-          {{b.name}}<span>&nbsp;({{b.brand}})</span>
+   Rs: <strong>{{priceSlider.min}}</strong> &nbsp;-&nbsp; Rs: <strong>{{priceSlider.max}}</strong>
+</div>
+
+<br/>
+<div class="well">
+      <h4>Select Brands</h4><hr/>
+      <div class="checkbox" ng-repeat="b in brands">
+          <label class="checkbox" ng-click="filterBrands(b._id);">
+          <input type="checkbox" value="{{b.name}}" checklist-model="fl.brands" checklist-value="b._id" />
+          {{b.name}}<span>&nbsp;</span>
           </label>
       </div>
-   -->
+</div>
 
   </div>
 
   <div class="col-sm-9">
-  <!-- <div infinite-scroll='scroll()' infinite-scroll-disabled='products.busy' > -->
-  <div class="itemB" ng-repeat="product in products.items | limitTo:10">
+
+
+  <div class="itemB" ng-repeat="product in products.items">
       <div class="itemImage">
           <a ui-sref="productDetail({id:product._id, slug:product.slug})">
             <img  alt="{{product.name}}" width="140" height="140">
@@ -83,7 +102,9 @@
       </div>
   </div>
   <div ng-show='products.busy'>Loading data...</div>
-  <!-- </div> -->
+</div> <!-- infinite-scroll -->
+
+
   </div>
   </div>
 </div>
