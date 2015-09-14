@@ -12,12 +12,12 @@ angular.module('shopnxApp', [
   'tableSort',
   'checklist-model',
   'rzModule',
-  'infinite-scroll'
+  'infinite-scroll',
+  'darthwade.dwLoading'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider
       .otherwise('/');
-
     $locationProvider.html5Mode(true);
     $httpProvider.interceptors.push('authInterceptor');
   })
@@ -58,4 +58,16 @@ angular.module('shopnxApp', [
         }
       });
     });
-  });
+  }).run(run);
+  run.$inject = ['$rootScope'];
+  function run ($rootScope) {
+    $rootScope.spinner = {
+        active: false,
+        on: function () {
+          this.active = true;
+        },
+        off: function () {
+          this.active = false;
+        }
+      };
+  }

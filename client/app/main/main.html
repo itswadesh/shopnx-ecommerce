@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="bower_components/angular-loading/angular-loading.css"/>
 <div class="container">
   <div infinite-scroll='scroll()' infinite-scroll-disabled='products.busy' infinite-scroll-distance='1'>
 
@@ -59,10 +60,17 @@
 
 <br/>
 <div class="well">
-      <h4>Select Brands</h4><hr/>
-      <div class="checkbox" ng-repeat="b in brands">
-          <label class="checkbox" ng-click="filterBrands(b._id);">
-          <input type="checkbox" value="{{b.name}}" checklist-model="fl.brands" checklist-value="b._id" />
+      <h4>Select Brands</h4>
+      <div class="nav-search" id="nav-search">
+              <span class="input-icon">
+                  <input placeholder="Filter Brands ..." class="nav-search-input" ng-model="filterBrand" autocomplete="off" type="text" autofocus>
+                  <i class="search-icon fa fa-search nav-search-icon"></i>
+              </span>
+      </div>
+      <hr/>
+      <div class="checkbox" ng-repeat="b in brands | filter:filterBrand">
+          <label class="checkbox">
+          <input type="checkbox" value="{{b.name}}" checklist-model="fl.brands" checklist-value="b._id" ng-click="filterBrands(b._id);" />
           {{b.name}}<span>&nbsp;</span>
           </label>
       </div>
@@ -72,6 +80,7 @@
 
   <div class="col-sm-9">
 
+<div class="box" dw-loading="products">
 
   <div class="itemB" ng-repeat="product in products.items">
       <div class="itemImage">
@@ -82,7 +91,7 @@
       </div>
   <!-- /{{product.category}}/{{product.variants[0].image}} -->
       <div class="itemName">
-          <a href="/p/{{product._id}}/{{product.slug}}">
+          <a ui-sref="productDetail({id:product._id, slug:product.slug})">
               <span>{{product.name}}  </span>
           </a><span class="packing">{{product.variants[0].size}}</span>
       </div>
@@ -101,7 +110,9 @@
           <img src="/assets/images/addedred.png" class="increase" alt="Remove" ng-click="cart.addItem(product._id, product.name, product.variants[0].mrp, product.variants[0].price, +1)" ng-hide="checkCart(product._id)">
       </div>
   </div>
-  <div ng-show='products.busy'>Loading data...</div>
+</div>
+  <!-- <div ng-show='products.busy'>Loading data...</div> -->
+
 </div> <!-- infinite-scroll -->
 
 

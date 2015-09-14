@@ -1,12 +1,19 @@
 .thing-form {
     margin: 20px 0;
 }
-
+.box{
+  min-height: 500px;
+}
+.nav-search .input-icon>input {
+    width: 120%;
+}
 #banner {
     border-bottom: none;
     margin-top: -20px;
 }
-
+.navbar {
+  margin-bottom: 0;
+}
 #banner h1 {
     font-size: 60px;
     line-height: 1;

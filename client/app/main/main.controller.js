@@ -55,37 +55,47 @@ angular.module('shopnxApp')
        socket.syncUpdates('product', $scope.data);
     });*/
 
-    function q(){
-        var q= { limit: 5, skip: $scope.products.after, sort: $scope.products.sort, where : {} };
-        var q2 = {};
-        if($scope.products.brand){
-            q.where = {brand:$scope.products.brand};
-            q2.where = {brand:$scope.products.brand};
-        }
-        if($stateParams.brand){
-            q.where = {brand:parseInt($stateParams.brand)};
-            q2.where = {brand:parseInt($stateParams.brand)};
-        }
-        if($stateParams.cat_id){
-            q.where = {category:parseInt($stateParams.cat_id)};
-            q2.where = {category:parseInt($stateParams.cat_id)};
-        }
-
-        // Product.query(q2,
-        //     function(data){
-        //         $scope.products.count = data.length;
-        // });
-        // console.log('filter',q);
-        return q;
-    }
+    // function q(){
+    //     var q= { limit: 5, skip: $scope.products.after, sort: $scope.products.sort, where : {} };
+    //     var q2 = {};
+    //     if($scope.products.brand){
+    //         q.where = {brand:$scope.products.brand};
+    //         q2.where = {brand:$scope.products.brand};
+    //     }
+    //     if($stateParams.brand){
+    //         q.where = {brand:parseInt($stateParams.brand)};
+    //         q2.where = {brand:parseInt($stateParams.brand)};
+    //     }
+    //     if($stateParams.cat_id){
+    //         q.where = {category:parseInt($stateParams.cat_id)};
+    //         q2.where = {category:parseInt($stateParams.cat_id)};
+    //     }
+    //
+    //     // Product.query(q2,
+    //     //     function(data){
+    //     //         $scope.products.count = data.length;
+    //     // });
+    //     // console.log('filter',q);
+    //     return q;
+    // }
   })
-  .controller('MainCtrl', function ($scope, $state, $stateParams, $location, Product, Brand, Category, socket, $rootScope, $injector) {
+  .controller('MainCtrl', function ($scope, $state, $stateParams, $location, Product, Brand, Category, socket, $rootScope, $injector, $loading) {
     // console.log($stateParams);
     // For product details page
 
     if ($stateParams.productSku != null) {
         $scope.product = $scope.store.getProduct($stateParams.productSku);
     }
+
+    // $scope.startLoading = function (name) {
+    //   $loading.start(name);
+    // };
+    //
+    // $scope.finishLoading = function (name) {
+    //   $loading.finish(name);
+    // };
+
+
 
     $scope.priceSlider = {
         min: 0,
@@ -134,11 +144,7 @@ angular.module('shopnxApp')
           $scope.breadcrumb.items.push({name:"All Brands"});
       });
     }
-    var displayProducts = function(q){
-      var product = $scope.products.items = Product.query(q,function(data) {
-        // socket.syncUpdates('product', $scope.data);
-      });
-    }
+
 
     var sort = $scope.products.sort = $stateParams.sort;
     var q = {where:{},limit:10};
@@ -161,17 +167,12 @@ angular.module('shopnxApp')
         // return;
       }
     }
-    displayProducts(q);
-
+    // displayProducts(q);
     $scope.filterBrands = function(id) {
       // This function required to query from database in place of filtering items from angular $scope,
       // In some cases we load only 20 products for pagination in that case we won't be able to filter properly
       // $scope.fl.brands = [];
       // console.log($scope.fl.brands);
-      $scope.products.busy = false;
-      $scope.products.end = false;
-      $scope.products.after = 0;
-      $scope.products.items = [];
 
       if ($scope.products.busy) return;
       $scope.products.busy = true;
@@ -180,11 +181,13 @@ angular.module('shopnxApp')
           q.where['brand._id'] = { $in: $scope.fl.brands };
         }else{
           q.where.brand = undefined;
+          q.where['brand._id'] = undefined;
         }
       }else {
         q.where.brand = undefined;
+        q.where['brand._id'] = undefined;
       }
-      displayProducts(q);
+      displayProducts(q,true);
     }
 
     $scope.filterPrice = function(price) {
@@ -200,27 +203,43 @@ angular.module('shopnxApp')
       if ($scope.products.busy) return;
       $scope.products.busy = true;
       q.where['variants.price'] = { $gt: price.min, $lt:price.max };
-      displayProducts(q);
+      displayProducts(q,true);
     }
 
     $scope.sortNow = function(sort){
         q.sort = sort;
-        displayProducts(q);
+        displayProducts(q,true);
     }
 
+    var displayProducts = function(q,flush){
+      // console.log(q,flush);
+      if(flush){
+        q.skip = 0;
+        $scope.products.items = [];
+        $scope.products.busy = false;
+        $scope.products.end = false;
+        $scope.products.after = 0;
+      }
+      $loading.start('products');
+      Product.query(q, function(data){
+          for (var i = 0; i < data.length; i++) {
+              $scope.products.items.push(data[i]);
+          }
+          $scope.filtered.count = data.length + $scope.products.after;
+          if(data.length>=5) { $scope.products.after = $scope.products.after + data.length; } else { $scope.products.end = true;}
+          $scope.products.busy = false;
+          $loading.finish('products');
+      }, function(){ $scope.products.busy = false; $loading.finish('products');});
+    }
+
+    displayProducts(q);
     $scope.scroll = function() {
         // console.log($scope.products.busy,$scope.products.end,$scope.products.after);
         if ($scope.products.busy || $scope.products.end) return;
         $scope.products.busy = false;
-        q.skip = $scope.products.after+10;
-        Product.query(q, function(data){
-          console.log(data);
-            for (var i = 0; i < data.length; i++) {
-                $scope.products.items.push(data[i]);
-            }
-            $scope.filtered.count = data.length + $scope.products.after;
-            if(data.length>=5) { $scope.products.after = $scope.products.after + data.length; } else { $scope.products.end = true;}
-            $scope.products.busy = false;
-        }, function(){ $scope.products.busy = false; });
+        q.skip = $scope.products.after;
+        displayProducts(q);
     }
+
+
 });

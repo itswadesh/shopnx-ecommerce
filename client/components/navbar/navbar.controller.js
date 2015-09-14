@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('shopnxApp')
-  .controller('NavbarCtrl', function ($scope, $rootScope, $location, Auth, $modal, Cart, Category, Brand,SortOptions) {
-    $scope.cart = Cart.cart;
+  .controller('NavbarCtrl', function ($scope, $rootScope, $location, Auth, $modal, Cart, Category, Brand,SortOptions,$q, Product, $state) {
+    $rootScope.cart = Cart.cart;
     $scope.menu = [{
       'title': 'Home',
       'link': '/'
@@ -17,6 +17,21 @@ angular.module('shopnxApp')
     $scope.isAdmin = Auth.isAdmin;
     $scope.getCurrentUser = Auth.getCurrentUser;
 
+    $rootScope.checkCart = function(id){
+        if(!_.contains($scope.cart.skuArray, id)){
+            return true;
+        }else{
+            return false;
+        }
+    };
+
+    $rootScope.getQuantity = function(sku){
+        for(var i = 0;i<$scope.cart.items.length;i++){
+            if($scope.cart.items[i].sku == sku)
+            return $scope.cart.items[i].quantity;
+        }
+    };
+
     $scope.logout = function() {
       Auth.logout();
       $location.path('/login');
@@ -27,11 +42,10 @@ angular.module('shopnxApp')
     };
 
     $scope.onSelectProduct = function($item, $model, $label){
-        // $label_clean = $label.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/ig,'');
-        $location.path('product/'+$item.id+'/'+$item.slug);
+        $state.go('productDetail', {id:$item._id, slug:$item.slug}, {reload: false});
+        $scope.search = "";
     }
     $scope.categories = Category.all.query();
-    // var parent = Category.parent.query({id:'0'});
 
 // // Script which calls all category from parent 0 and constructs the category hierarchy
 // // This was moved to the server and now 1 call does it all instead 1 for each parent category + 1 for parent category itself
@@ -53,7 +67,7 @@ angular.module('shopnxApp')
           var input = input.toLowerCase();
             var defer = $q.defer();
             if (input){
-                Product.find({filter:{where:{name_lower:{like:input}}, limit:10, fields: {id: true, name:true, slug: true}}},
+                Product.query({where:{nameLower: {'$regex': input}}, limit:10, select: {id: 1, name:1, slug: 1}},
                     function(data,headers){
                           console.log(data);
                         if (!$scope.$$phase){ //check if digest is not in progress

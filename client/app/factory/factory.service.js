@@ -1,15 +1,12 @@
 'use strict';
 
 angular.module('shopnxApp')
-
+// Sample factory (dummy)
   .factory('factory', function () {
-
-    var meaningOfLife = 42;
-
-    // Public API here
+    var somValue = 42;
     return {
       someMethod: function () {
-        return meaningOfLife;
+        return somValue;
       }
     };
   })

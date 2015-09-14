@@ -14,13 +14,13 @@ function isJson(str) {
 
 // Get list of products
 exports.index = function(req, res) {
-
   if(req.query){
-    // console.log(req.query);
+    // console.log(req.query,req.query.skip,req.query.limit,req.query.sort);
     var q = isJson(req.query.where);
     var sort = isJson(req.query.sort);
+    var select = isJson(req.query.select);
 
-    Product.find(q).limit(req.query.limit).skip(req.query.skip).sort(sort).exec(function (err, products) {
+    Product.find(q).limit(req.query.limit).skip(req.query.skip).sort(sort).select(select).exec(function (err, products) {
       if(err) { return handleError(res, err); }
       return res.status(200).json(products);
     });
@@ -31,15 +31,6 @@ exports.index = function(req, res) {
     });
   }
 };
-
-// // Get list of products
-// exports.find = function(req, res) {
-//   console.log(req.params);
-//   Product.find(req.params, function (err, products) {
-//     if(err) { return handleError(res, err); }
-//     return res.status(200).json(products);
-//   });
-// };
 
 // Get a single product
 exports.show = function(req, res) {

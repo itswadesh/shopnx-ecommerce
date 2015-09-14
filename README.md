@@ -19,6 +19,7 @@ Run the following commands and the application will start automatically
 
 # Features
 * Store Front features
+  Fastest shop ever experienced
   Product Search
   Product Filter
   Add to Cart
