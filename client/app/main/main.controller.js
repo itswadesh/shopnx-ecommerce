@@ -15,11 +15,13 @@ angular.module('shopnxApp')
       generateBreadCrumb('Category',data.category._id);
     });
 
+    // To shuffle throught different product variants
     $scope.i=0;
     $scope.changeIndex =function(i){
         $scope.i=i;
     }
 
+    // The main function to navigate to a page with some hidden parameters
     $scope.navigate = function(page,params){
       if(params){
         $location.replace().path(page+'/'+params.slug+'/'+params._id);
@@ -28,6 +30,8 @@ angular.module('shopnxApp')
       }
     }
 
+    // Function to generate breadcrumb for category and brand
+    // Future: Put it inside a directive
     var generateBreadCrumb = function(page, id){
       $scope.breadcrumb = {};
       $scope.breadcrumb.items = [];
@@ -58,7 +62,7 @@ angular.module('shopnxApp')
         floor: 0
     };
 
-    $scope.currencyFormatting = function(value) { return  "$ " + value.toString() }
+    $scope.currencyFormatting = function(value) { return  "$ " + value.toString() } // For Price slider
     $scope.products = {};
     $scope.filtered = {};
     $scope.products.busy = false;
@@ -115,7 +119,7 @@ angular.module('shopnxApp')
       }
     }
     // displayProducts(q);
-    $scope.filterBrands = function(id) {
+    $scope.filterBrands = function() {
       // This function required to query from database in place of filtering items from angular $scope,
       // In some cases we load only 20 products for pagination in that case we won't be able to filter properly
 
@@ -123,7 +127,14 @@ angular.module('shopnxApp')
       $scope.products.busy = true;
       if($scope.fl.brands){
         if($scope.fl.brands.length>0){
-          q.where['brand._id'] = { $in: $scope.fl.brands };
+          var brandIds = [];
+          var brandNames = [];
+          angular.forEach($scope.fl.brands,function(brand){
+            brandIds.push(brand._id);
+            brandNames.push(brand.name);
+          });
+          $scope.filteredBrands = brandNames;
+          q.where['brand._id'] = { $in: brandIds };
         }else{
           q.where.brand = undefined;
           q.where['brand._id'] = undefined;

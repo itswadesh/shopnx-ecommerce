@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('shopnxApp')
-  .factory('Auth', function Auth($location, $rootScope, $http, User, $cookieStore, $q) {
+.value('redirectToUrlAfterLogin', { url: '/' })
+  .factory('Auth', function Auth($location, $rootScope, $http, User, $cookieStore, $q, redirectToUrlAfterLogin) {
     var currentUser = {};
     if($cookieStore.get('token')) {
       currentUser = User.get();
@@ -48,7 +49,17 @@ angular.module('shopnxApp')
         $cookieStore.remove('token');
         currentUser = {};
       },
-
+      saveAttemptUrl: function() {
+        if($location.path().toLowerCase() != '/login' || $location.path().toLowerCase() != '/signup') {
+          redirectToUrlAfterLogin.url = $location.path();
+        }
+        else {
+          redirectToUrlAfterLogin.url = '/';
+        }
+      },
+      redirectToAttemptedUrl: function() {
+        $location.path(redirectToUrlAfterLogin.url);
+      },
       /**
        * Create a new user
        *

@@ -55,15 +55,14 @@ angular.module('shopnxApp', [
       Auth.isLoggedInAsync(function(loggedIn) {
         if (next.authenticate && !loggedIn) {
           event.preventDefault();
-          // $location.path('/login');
+          Auth.saveAttemptUrl();
           $state.go('login');
-          console.log(loggedIn);
         }
       });
     });
   }).run(run);
   run.$inject = ['$rootScope'];
-  function run ($rootScope) {
+  function run ($rootScope) { // The function to display a loading spinner on ajax request
     $rootScope.spinner = {
         active: false,
         on: function () {

@@ -15,8 +15,8 @@ angular.module('shopnxApp')
           password: $scope.user.password
         })
         .then( function() {
-          // Account created, redirect to home
-          $location.path('/');
+          // Account created, redirect to the page with requested a signup
+          Auth.redirectToAttemptedUrl();
         })
         .catch( function(err) {
           err = err.data;
