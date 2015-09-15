@@ -128,12 +128,12 @@ angular.module('shopnxApp')
       if($scope.fl.brands){
         if($scope.fl.brands.length>0){
           var brandIds = [];
-          var brandNames = [];
+          // var brandNames = [];
           angular.forEach($scope.fl.brands,function(brand){
             brandIds.push(brand._id);
-            brandNames.push(brand.name);
+            // brandNames.push(brand.name);
           });
-          $scope.filteredBrands = brandNames;
+          // $scope.filteredBrands = brandNames;
           q.where['brand._id'] = { $in: brandIds };
         }else{
           q.where.brand = undefined;

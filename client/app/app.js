@@ -50,6 +50,7 @@ angular.module('shopnxApp', [
   })
 
   .run(function ($rootScope, Auth, $state) {
+
     // Redirect to login if route requires auth and you're not logged in
     $rootScope.$on('$stateChangeStart', function (event, next) {
       Auth.isLoggedInAsync(function(loggedIn) {
@@ -60,16 +61,19 @@ angular.module('shopnxApp', [
         }
       });
     });
-  }).run(run);
-  run.$inject = ['$rootScope'];
-  function run ($rootScope) { // The function to display a loading spinner on ajax request
     $rootScope.spinner = {
-        active: false,
-        on: function () {
-          this.active = true;
-        },
-        off: function () {
-          this.active = false;
-        }
-      };
-  }
+      active: false,
+      on: function () {
+        this.active = true;
+      },
+      off: function () {
+        this.active = false;
+      }
+    };
+  });
+
+  // .run(run);
+  // run.$inject = ['$rootScope'];
+  // function run ($rootScope) { // The function to display a loading spinner on ajax request
+  //
+  // }

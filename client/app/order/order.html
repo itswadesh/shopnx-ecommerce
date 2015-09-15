@@ -1,35 +1,36 @@
-<pre>{{orders[0] | json}}</pre>
+
+<div class="container">
+  <div class="row">
 <div class="col-md-12">
-  <h1>Total Spent: {{orders.total | currency}}</h1>
-<div class="panel panel-default" ng-repeat="o in orders | orderBy : 'id' : 'reverse'">
-  <select ng-options="o.name for o in orderStatusLov" ng-model="o.status" class="form-control"></select>
+  <h3  class="bg-info well text-center">Total Spent: {{orders.total | currency}}</h3>
+<div class="panel panel-primary" ng-repeat="o in orders | orderBy : 'orderDate' : 'reverse'">
+
       <div class="panel-heading">
-            <h3 class="panel-title"><button>{{o.orderNo}}</button>&nbsp;{{o.orderDate | amCalendar}}</h3>
+            <div class="panel-title"><button class="btn btn-warning">{{o.orderNo}}</button>&nbsp;{{o.orderDate | amCalendar}}
+            <select ng-options="o.name for o in orderStatusLov" ng-model="o.status" class="pull-right"></select>
+          </div>
       </div>
       <div class="panel-body">
           <table class="table">
               <tbody>
                 <tr ng-repeat="i in o.items" >
-                    <td>{{$index+1}}</td>
-                    <td>{{i.name}}</td>
-                    <td>{{i.price | currency}}</td>
-                    <td>{{i.quantity}}</td>
-                    <td>{{i.packing}}</td>
-                    <td>{{i.quantity * i.price | currency}}</td>
-                    <td>
-
+                    <td><img ng-src="/assets/img/{{i.image}}" err-src="/assets/img/photo.png" width="100px" height="100px"/>
                     </td>
+                    <td>{{i.name}}<br/><span class="text-muted">Qty: {{i.quantity}}</span><br/><span class="text-muted">Packing: {{i.packing}}</span><br/><span class="text-muted">Unit Price: {{i.price | currency}}</span></td>
+                    <td><span class="text-muted">= {{i.quantity * i.price | currency}}</span></td>
+
                 </tr>
                 <tr class="well">
-                <td colspan="3"></td>
-                <td colspan="2">Order Total:</td>
-                <td colspan="2">{{o.subTotal | currency}}</td>
+                <td colspan="1"></td>
+                <td class="text-right">Order Total:</td>
+                <td colspan="1">{{o.subTotal | currency}}</td>
                 </tr>
             </tbody>
           </table>
       </div>
 </div>
 </div>
-
-
-<crud-table api='Order' cols='[{"orderNo":"text"},{"orderDate":"date"},{"name":"text"},{"uid":"text"},{"address":"text"},{"city":"text"},{"phone":"text"},{"active":"boolean"}]'></crud-table>
+</div>
+</div>
+<!--
+<crud-table api='Order' cols='[{"orderNo":"text"},{"orderDate":"date"},{"name":"text"},{"uid":"text"},{"address":"text"},{"city":"text"},{"phone":"text"},{"active":"boolean"}]'></crud-table> -->

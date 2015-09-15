@@ -27,18 +27,13 @@
 <!-- <div class="clearfix"></div> -->
 <div class="row">
   <div class="col-sm-12">
-  <ul class="list-inline text-center">
-    <li>Showing {{products.items.length}} products in:</li>
-    <li>$<strong>{{priceSlider.min}}</strong> &nbsp;-&nbsp; $<strong>{{priceSlider.max}}</strong></li>
-    <li>Brands: {{filteredBrands}}</li>
-    <li>
-      <a>
-        <select ng-model="products.brand"  ng-change="navigate('Brand',products.brand);" ng-options="b.name for b in brands track by b._id" class="form-control">
+    Showing {{products.items.length}} products in: $<strong>{{priceSlider.min}}</strong> &nbsp;-&nbsp; $<strong>{{priceSlider.max}}</strong>
+
+    <span ng-if="fl.brands">Brands:</span> <span class="tag label label-info" ng-repeat="b in fl.brands"><span>{{b.name}}</span>
+  <a ng-click="removeBrand();"><i class="remove glyphicon glyphicon-remove-sign glyphicon-white"></i></a></span>
+        <select ng-model="products.brand"  ng-change="navigate('Brand',products.brand);" ng-options="b.name for b in brands track by b._id" class="pull-right">
             <option value="">All Brands</option>
         </select>
-      </a>
-    </li>
-  </ul>
   </div>
 </div>
 <hr class="clearfix"/>

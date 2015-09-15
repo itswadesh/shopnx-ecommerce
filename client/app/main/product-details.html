@@ -15,7 +15,8 @@
 <div class="container">
     <div class="row">
     <div class="col-md-12">
-        <img ng-src="/assets/img/{{product.variants[i].image}}" alt="{{product.slug}}" width="320" height="320" class="pull-left" style="margin-right:30px;"/>
+        <img ng-src="/assets/img/{{product.variants[i].image}}"
+        err-src="/assets/img/photo.png" alt="{{product.slug}}" width="320" height="320" class="pull-left" style="margin-right:30px;"/>
 
         <table>
             <tbody><tr>
@@ -89,7 +90,8 @@
         <div infinite-scroll='scroll()' infinite-scroll-disabled='products.busy' >
         <div class="itemB" ng-repeat="product in products.items">
             <div class="itemImage">
-                <a href=""><img src="/assets/img/{{product.variants[0].image}}" alt="{{product.name}}" width="140" height="140"></a>
+                <a href=""><img ng-src="/assets/img/{{product.variants[0].image}}"
+                  err-src="/assets/img/photo.png" alt="{{product.name}}" width="140" height="140"></a>
             </div>
 
             <div class="itemName">
