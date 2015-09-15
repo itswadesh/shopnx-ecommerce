@@ -3,6 +3,14 @@
 var _ = require('lodash');
 var Order = require('./order.model');
 
+// Get all orders by a user
+exports.myOrders = function(req, res) {
+  Order.find({'uid' : req.user.email},function (err, orders) {
+    if(err) { return handleError(res, err); }
+    return res.status(200).json(orders);
+  });
+};
+
 // Get list of orders
 exports.index = function(req, res) {
   Order.find(function (err, orders) {
@@ -23,7 +31,8 @@ exports.show = function(req, res) {
 // Creates a new order in the DB.
 exports.create = function(req, res) {
   req.body.uid = req.user.email; // id change on every login hence email is used
-  req.body.updated = Date.now();
+  var shortId = require('shortid');
+  req.body.orderNo = shortId.generate();
   if(!req.body.slug && req.body.info)
   req.body.slug = req.body.info.toString().toLowerCase()
                       .replace(/\s+/g, '-')        // Replace spaces with -

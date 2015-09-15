@@ -13,7 +13,8 @@ angular.module('shopnxApp', [
   'checklist-model',
   'rzModule',
   'infinite-scroll',
-  'darthwade.dwLoading'
+  'darthwade.dwLoading',
+  'angularMoment'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider
@@ -48,13 +49,15 @@ angular.module('shopnxApp', [
     };
   })
 
-  .run(function ($rootScope, $location, Auth) {
+  .run(function ($rootScope, Auth, $state) {
     // Redirect to login if route requires auth and you're not logged in
     $rootScope.$on('$stateChangeStart', function (event, next) {
       Auth.isLoggedInAsync(function(loggedIn) {
         if (next.authenticate && !loggedIn) {
           event.preventDefault();
-          $location.path('/login');
+          // $location.path('/login');
+          $state.go('login');
+          console.log(loggedIn);
         }
       });
     });

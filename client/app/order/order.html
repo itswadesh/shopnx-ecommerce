@@ -1,1 +1,35 @@
-<crud-table api='Order' cols='["orderNo","name","slug","info","uid","email","address","city","phone","active"]'></crud-table>
+<pre>{{orders[0] | json}}</pre>
+<div class="col-md-12">
+  <h1>Total Spent: {{orders.total | currency}}</h1>
+<div class="panel panel-default" ng-repeat="o in orders | orderBy : 'id' : 'reverse'">
+  <select ng-options="o.name for o in orderStatusLov" ng-model="o.status" class="form-control"></select>
+      <div class="panel-heading">
+            <h3 class="panel-title"><button>{{o.orderNo}}</button>&nbsp;{{o.orderDate | amCalendar}}</h3>
+      </div>
+      <div class="panel-body">
+          <table class="table">
+              <tbody>
+                <tr ng-repeat="i in o.items" >
+                    <td>{{$index+1}}</td>
+                    <td>{{i.name}}</td>
+                    <td>{{i.price | currency}}</td>
+                    <td>{{i.quantity}}</td>
+                    <td>{{i.packing}}</td>
+                    <td>{{i.quantity * i.price | currency}}</td>
+                    <td>
+
+                    </td>
+                </tr>
+                <tr class="well">
+                <td colspan="3"></td>
+                <td colspan="2">Order Total:</td>
+                <td colspan="2">{{o.subTotal | currency}}</td>
+                </tr>
+            </tbody>
+          </table>
+      </div>
+</div>
+</div>
+
+
+<crud-table api='Order' cols='[{"orderNo":"text"},{"orderDate":"date"},{"name":"text"},{"uid":"text"},{"address":"text"},{"city":"text"},{"phone":"text"},{"active":"boolean"}]'></crud-table>

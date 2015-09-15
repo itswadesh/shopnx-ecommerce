@@ -6,6 +6,7 @@ angular.module('shopnxApp')
       .state('invoice', {
         url: '/invoice',
         templateUrl: 'app/invoice/invoice.html',
-        controller: 'InvoiceCtrl'
+        controller: 'InvoiceCtrl',
+        authenticate: true
       });
   });

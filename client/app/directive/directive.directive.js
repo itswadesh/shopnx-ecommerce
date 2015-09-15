@@ -10,16 +10,32 @@ angular.module('shopnxApp')
       link: function (scope, element, attrs) {
         // var cols = ['name','info','parent','image'];
         scope.title = attrs.api+'s';
-        var cols = scope.cols = JSON.parse(attrs.cols);
+        var cols = JSON.parse(attrs.cols);
+        var obj = [];
+        angular.forEach(cols, function(o, index) {
+          var k,v;
+          angular.forEach(o, function(v, k) {
+            var v1;
+            if(v=='number' || v=='float' || v=='integer') v1 = 'parseFloat';
+            else v1 = 'lowercase';
+            obj.push({heading:k,dataType:v, sortType:v1});
+          });
+        });
+        scope.cols = obj;
+        // scope.Utils = {
+        //    keys : Object.keys,
+        //    values : Object.values
+        // }
         var api = $injector.get(attrs.api);
-        // console.log(cols);
         scope.data = [];
+        scope.loadingTable = true;
         var data = scope.data =api.query(function(data) {
+          scope.loadingTable = false;
           socket.syncUpdates(attrs.api.toLowerCase(), scope.data);
         });
         scope.edit = function(item) {
           var title; if(item.name) title = 'Editing ' + item.name; else title = 'Add New';
-          var modalInstance = Modal.show(item,{title:title, api:attrs.api, columns: cols});
+          var modalInstance = Modal.show(item,{title:title, api:attrs.api, columns: obj});
         };
         scope.changeActive = function(b){ // success handler
           b.active = !b.active;
@@ -36,50 +52,11 @@ angular.module('shopnxApp')
           api.delete({id:item._id});
         };
 
-      //   scope.exportAction = function(){
-      //     switch(scope.export_action){
-      //     case 'pdf': scope.$broadcast('export-pdf', {});
-      //                 break;
-      //     case 'excel': scope.$broadcast('export-excel', {});
-      //                 break;
-      //     case 'doc': scope.$broadcast('export-doc', {});
-      //                 break;
-      //     default: scope.$broadcast('export-pdf', {});
-      //             // console.log('no event caught');
-      //   }
-      // }
-
         scope.$on('$destroy', function () {
           socket.unsyncUpdates(attrs.api.toLowerCase());
         });
       }
     }}])
-
-    //
-    // .directive('exportTable',function(){
-    // var link = function($scope, elm, attr){
-    //
-    // $scope.$on('export-pdf', function(e, d){
-    //
-    //       elm.tableExport({type:'pdf', escape:'false'});
-    //  });
-    //
-    // $scope.$on('export-excel', function(e, d){
-    //        elm.tableExport({type:'excel', escape:false});
-    //  });
-    //
-    // $scope.$on('export-doc', function(e, d){
-    //      elm.tableExport({type: 'doc', escape:false});
-    //  });
-    //
-    // }
-    //
-    // return {
-    //   restrict: 'C',
-    //   link: link
-    //    }
-    //  }
-    // )
 
 .directive('modalWindow', function ($timeout) {
   return {
@@ -93,119 +70,6 @@ angular.module('shopnxApp')
     }
   };
 })
-/*
-.directive('ngFocus', function($timeout) {
-    return {
-        link: function ( scope, element, attrs ) {
-            scope.$watch( attrs.ngFocus, function ( val ) {
-                if ( angular.isDefined( val ) && val ) {
-                    $timeout( function () { element[0].focus(); } );
-                }
-            }, true);
-
-            element.bind('blur', function () {
-                if ( angular.isDefined( attrs.ngFocusLost ) ) {
-                    scope.$apply( attrs.ngFocusLost );
-
-                }
-            });
-        }
-    };
-});*/
-
-/* .directive('checklistModel', ['$parse', '$compile', function($parse, $compile) {
-  // contains
-  function contains(arr, item) {
-    if (angular.isArray(arr)) {
-      for (var i = 0; i < arr.length; i++) {
-        if (angular.equals(arr[i], item)) {
-          return true;
-        }
-      }
-    }
-    return false;
-  }
-
-  // add
-  function add(arr, item) {
-    arr = angular.isArray(arr) ? arr : [];
-    for (var i = 0; i < arr.length; i++) {
-      if (angular.equals(arr[i], item)) {
-        return arr;
-      }
-    }
-    arr.push(item);
-    return arr;
-  }
-
-  // remove
-  function remove(arr, item) {
-    if (angular.isArray(arr)) {
-      for (var i = 0; i < arr.length; i++) {
-        if (angular.equals(arr[i], item)) {
-          arr.splice(i, 1);
-          break;
-        }
-      }
-    }
-    return arr;
-  }
-
-  function postLinkFn(scope, elem, attrs) {
-    // compile with `ng-model` pointing to `checked`
-    $compile(elem)(scope);
-
-    // getter / setter for original model
-    var getter = $parse(attrs.checklistModel);
-    var setter = getter.assign;
-
-    // value added to list
-    var value = $parse(attrs.checklistValue)(scope.$parent);
-    // watch UI checked change
-    scope.$watch('checked', function(newValue, oldValue) {
-      if (newValue === oldValue) {
-        return;
-      }
-      var current = getter(scope.$parent);
-      if (newValue === true) {
-        setter(scope.$parent, add(current, value));
-console.log(scope.$parent, value,current);
-      } else {
-        setter(scope.$parent, remove(current, value));
-      }
-    });
-
-    // watch original model change
-    scope.$parent.$watch(attrs.checklistModel, function(newArr, oldArr) {
-      scope.checked = contains(newArr, value);
-    }, true);
-  }
-
-  return {
-    restrict: 'A',
-    priority: 1000,
-    terminal: true,
-    scope: true,
-    compile: function(tElement, tAttrs) {
-      if (tElement[0].tagName !== 'INPUT' || !tElement.attr('type', 'checkbox')) {
-        throw 'checklist-model should be applied to `input[type="checkbox"]`.';
-      }
-
-      if (!tAttrs.checklistValue) {
-        throw 'You should provide `checklist-value`.';
-      }
-
-      // exclude recursion
-      tElement.removeAttr('checklist-model');
-
-      // local scope var storing individual checkbox model
-      tElement.attr('ng-model', 'checked');
-
-      return postLinkFn;
-    }
-  };
-}])
-*/
 
 .directive('autoFillCustomer',function(Customer) {
     return {

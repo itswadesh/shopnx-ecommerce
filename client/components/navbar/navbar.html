@@ -49,23 +49,23 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-dashboard">&nbsp;</i>Dashboard <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li ng-show="isAdmin()" ng-class="{active: isActive('/product')}">
-              <a href="/product"><i class="fa fa-truck">&nbsp;</i>Product</a>
+              <a href="/product"><i class="fa fa-truck">&nbsp;</i>Products</a>
             </li>
             <li ng-show="isAdmin()" ng-class="{active: isActive('/category')}">
-              <a href="/category"><i class="fa fa-ticket">&nbsp;</i>Category</a>
+              <a href="/category"><i class="fa fa-ticket">&nbsp;</i>Categories</a>
             </li>
             <li ng-show="isAdmin()" ng-class="{active: isActive('/brand')}">
-              <a href="/brand"><i class="fa fa-tag">&nbsp;</i>Brand</a>
+              <a href="/brand"><i class="fa fa-tag">&nbsp;</i>Brands</a>
             </li>
             <li ng-show="isLoggedIn()" ng-class="{active: isActive('/order')}">
-              <a href="/order"><i class="fa fa-road">&nbsp;</i>Order</a>
+              <a href="/order"><i class="fa fa-road">&nbsp;</i>Orders</a>
             </li>
             <li class="divider"></li>
             <li ng-show="isAdmin()" ng-class="{active: isActive('/customer')}">
-              <a href="/customer"><i class="fa fa-user">&nbsp;</i>Customer</a>
+              <a href="/customer"><i class="fa fa-user">&nbsp;</i>Customers</a>
             </li>
             <li ng-show="isLoggedIn()" ng-class="{active: isActive('/settings')}">
-              <a href="/settings"><i class="fa fa-wrench">&nbsp;</i>Settings</a>
+              <a href="/settings"><i class="fa fa-wrench">&nbsp;</i>Change Password</a>
             </li>
             <li ng-show="isLoggedIn()" ng-class="{active: isActive('/logout')}">
               <a href="" ng-click="logout()"><i class="fa fa-sign-out">&nbsp;</i>Logout</a>

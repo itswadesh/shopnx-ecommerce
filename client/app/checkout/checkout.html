@@ -1,0 +1,119 @@
+<div class="col-md-12">
+  <h4 class="blog-post-title">Checkout</h4>
+  <hr/>
+  <div class="row featured-boxes" ng-hide="cart.getTotalCount() > 0">
+      <div class="col-md-12">
+          <div class="featured-box featured-box-secundary featured-box-cart">
+              <div class="box-content">
+                  <div class="actions-continue">
+                      <h5> {{msg}} <a href="/">Shop more</a> </h5>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+
+  <form name="checkout_form" class="form-horizontal" role="form" novalidate ng-show="cart.getTotalCount() > 0">
+    <div class="panel panel-danger col-md-6">
+      <div class="panel-heading">
+            <h3 class="panel-title">Enter shipping details</h3>
+      </div>
+      <div class="panel-body">
+          <div class="form-group">
+              <label class="col-sm-3 control-label no-padding-right"> Phone </label>
+              <div class="col-sm-7">
+                 <span class="block input-icon input-icon-right">
+                      <input type="text" name="phone" class="form-control" placeholder="Your phone number" ng-model="customer.phone" required="" tabindex="1" autofocus>
+  <small class="errorMessage" ng-show="checkout_form.phone.$dirty && checkout_form.phone.$error.isCustomer"> Your phone number required.</small>
+  <!-- <small class="errorMessage" ng-show="checkout_form.phone.$dirty && checkout_form.phone.$error.isCustomer"> Customer.</small> -->
+                  </span>
+              </div>
+          </div>
+          <div class="form-group">
+              <label class="col-sm-3 control-label no-padding-right"> Name </label>
+              <div class="col-sm-7">
+                 <span class="block input-icon input-icon-right">
+                      <input type="text" ng-model="customer.name" name="name" class="form-control" required placeholder="Your name here" tabindex="2"/>
+      <small class="errorMessage"
+       ng-show="checkout_form.name.$dirty && checkout_form.name.$invalid"> Your name required.</small>
+                  </span>
+              </div>
+          </div>
+
+          <div class="form-group">
+              <label class="col-sm-3 control-label no-padding-right"> Address </label>
+              <div class="col-sm-7">
+                 <span class="block input-icon input-icon-right">
+                     <textarea name="address" ng-model="customer.address" class="form-control" required placeholder="Address"  tabindex="4"></textarea>
+     <small class="errorMessage"
+       ng-show="checkout_form.address.$dirty && checkout_form.address.$invalid"> We need your address to deliver.</small>
+                  </span>
+              </div>
+          </div>
+          <div class="form-group">
+              <label class="col-sm-3 control-label no-padding-right"> City </label>
+              <div class="col-sm-7">
+                 <span class="block input-icon input-icon-right">
+                      <input type="text" name="city" ng-model="customer.city" class="form-control" placeholder="Your city" tabindex="5"/>
+  <small class="errorMessage"
+       ng-show="checkout_form.city.$dirty && checkout_form.city.$invalid"> Please select your city.</small>
+                  </span>
+              </div>
+          </div>
+          <div class="form-group">
+              <label class="col-sm-3 control-label no-padding-right">  </label>
+              <div class="col-sm-7">
+                 <span class="block input-icon input-icon-right">
+                    <button ng-click="placeOrder(cart.items);cart.checkout('PayPal');cart.clearItems();" type="submit" class="btn btn-success" ng-disabled="checkout_form.$invalid" tabindex="6"><i class="icon icon-lock"></i>&nbsp;Make Payment</button>
+                  </span>
+              </div>
+          </div>
+
+  						</form>
+  					</div>
+  				</div>
+  			<div class="col-md-6">
+              <div class="panel panel-primary" ng-if="cart.getTotalCount()>0">
+                    <div class="panel-heading">
+                          <h3 class="panel-title">Cart Totals</h3>
+                    </div>
+                    <div class="panel-body">
+                          <table cellspacing="0" class="table table-striped">
+                      <tbody>
+                          <tr class="cart-subtotal">
+                              <th>
+                                  <strong>Cart Subtotal</strong>
+                              </th>
+                              <td>
+                                  <strong><span>{{cart.getTotalPrice() | currency:"Rs "}}</span></strong>
+                              </td>
+                          </tr>
+                          <tr class="shipping">
+                              <th>
+                                  Shipping
+                              </th>
+                              <td ng-if="cart.getTotalPrice()>=500">
+                                  Free Shipping
+                              </td>
+                              <td ng-if="cart.getTotalPrice()<=500">
+                                  Rs 20 <small>(<a href="/">Shop</a> Rs {{500-cart.getTotalPrice()}} more for free shipping) </small>
+                              </td>
+                          </tr>
+                          <tr class="total">
+                              <th>
+                                  <strong>Total Payable</strong>
+                              </th>
+                              <td>
+                                  <strong><span class="amount">{{cart.getTotalPriceAfterShipping() | currency:"Rs "}}</span></strong>
+                              </td>
+                          </tr>
+                      </tbody>
+                  </table>
+                    </div>
+              </div>
+
+  			</div>
+  		</div>
+  </form>
+</div>

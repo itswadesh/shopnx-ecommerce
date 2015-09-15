@@ -11,7 +11,7 @@ var BrandSchema = new Schema({
   image: String,
   uid: String,
   brand: Number,
-  active: { type: Boolean, default: false },
+  active: { type: Boolean, default: true },
   updated: {type: Date, default: Date.now}
 });
 

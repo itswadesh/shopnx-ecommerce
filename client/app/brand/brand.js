@@ -6,6 +6,7 @@ angular.module('shopnxApp')
       .state('brand', {
         url: '/brand',
         templateUrl: 'app/brand/brand.html',
-        controller: 'BrandCtrl'
+        controller: 'BrandCtrl',
+        authenticate: true
       });
   });

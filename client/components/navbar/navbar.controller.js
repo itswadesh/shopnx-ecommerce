@@ -63,7 +63,6 @@ angular.module('shopnxApp')
 // });
 
     $scope.globalSearch = function(input){
-          // console.log(input);
           var input = input.toLowerCase();
             var defer = $q.defer();
             if (input){

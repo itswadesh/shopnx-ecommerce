@@ -25,6 +25,7 @@
     "passport-local": "~0.1.6",
     "passport-twitter": "latest",
     "serve-favicon": "~2.0.1",
+    "shortid": "^2.2.2",
     "socket.io": "^1.0.6",
     "socket.io-client": "^1.0.6",
     "socketio-jwt": "^3.0.0"

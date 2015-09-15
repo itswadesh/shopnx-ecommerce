@@ -14,7 +14,7 @@ var ProductSchema = new Schema({
   info: String,
   uid: String,
   variants: Array,
-  active: { type: Boolean, default: false },
+  active: { type: Boolean, default: true },
   updated: {type: Date, default: Date.now}
 });
 

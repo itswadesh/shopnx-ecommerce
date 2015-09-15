@@ -6,6 +6,7 @@ angular.module('shopnxApp')
       .state('order', {
         url: '/order',
         templateUrl: 'app/order/order.html',
-        controller: 'OrderCtrl'
+        controller: 'OrderCtrl',
+        authenticate: true
       });
   });

@@ -13,7 +13,6 @@ angular.module('shopnxApp')
   .factory('Product', function($resource) {
     var obj = {};
     obj = $resource('/api/products/:id', null, {'update': { method:'PUT' } });
-    // obj.q = $resource('/products/limit/:limit/offset:offset');
     return obj;
   })
 
@@ -48,7 +47,19 @@ angular.module('shopnxApp')
     return $resource('/api/customers/:id', null, {'update': { method:'PUT' } });
   })
   .factory('Order', function($resource) {
-    return $resource('/api/orders/:id', null, {'update': { method:'PUT' } });
+    var obj = {}
+    obj = $resource('/api/orders/:id', null, {'update': { method:'PUT' } });
+    obj.my = $resource('/api/orders/my', null, {'update': { method:'PUT' }});
+    obj.status = [
+      {name:"Order Placed", val:201},
+      {name:"Order Accepted", val:202},
+      {name:"Order Executed", val:302},
+      {name:"Pending Payment", val:402},
+      {name:"Delivered", val:200},
+      {name:"Cancelled", val:204},
+      {name:"Not in Stock", val:404}
+    ];
+    return obj;
   });
 
   // Product.prototype.update = function(cb) {

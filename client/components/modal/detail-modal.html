@@ -2,14 +2,15 @@
   <button type="button" ng-click="$dismiss()" class="close">&times;</button>
   <h4 ng-if="options.title" ng-bind="options.title" class="modal-title"></h4>
 </div>
+
 <form name="modal-form" class="form-horizontal" role="form" novalidate>
 <div class="modal-body">
   <p ng-if="options.body" ng-bind="options.body"></p>
   <div class="form-group" ng-repeat="i in options.columns" ng-if="options.columns">
-    <label class="col-sm-3 control-label no-padding-right">{{i | labelCase}}</label>
+    <label class="col-sm-3 control-label no-padding-right">{{i.heading | labelCase}}</label>
     <div class="col-sm-7">
       <span class="block input-icon input-icon-right">
-        <input type="text" class="form-control" name="name" ng-model="data[i]" ng-disabled="i=='_id'" autofocus="i=='name'">
+        <input type="text" class="form-control" name="name" ng-model="data[i.heading]" ng-disabled="i.heading=='_id'" autofocus="i.heading=='name'">
       </span>
     </div>
   </div>

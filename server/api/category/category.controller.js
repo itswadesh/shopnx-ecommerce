@@ -42,40 +42,7 @@ exports.all = function(req, res) {
   );
 });
 
-// var p = [];
-// Category.find({parentId:0},{name:1,category:1,parentId:1},function(err,parents){
-//     parents.forEach(function(a){
-//       // a = JSON.parse(a);
-//       // console.log('ach',a);
-//         var x = {};
-//         Category.find({parentId:a.category}).select({name:1,category:1,parentId:1}).limit(2).exec(function(err,children){
-//           x.sub_categories = children;
-//         });
-//         p.push(x);
-//           console.log('chhhhhhhhhhhh',x);
-//     });
-//         // console.log(p);
-// });
 };
-
-// Get list of categorys
-// exports.all = function(req, res) {
-//   // console.log(req.params.id);
-//   Category.find({'parentId' : 0},function (err, parents) {
-//     var p = [];
-//     if(err) { return handleError(res, err); }
-//     parents.forEach(function(a){
-//       a.children = [];
-//       Category.find({'parentId' : a.category},function (err, children) {
-//         if(err) { return handleError(res, err); }
-//         a.children = children;
-//       });
-//     console.log(a);
-//         p.push(a);
-//     });
-//     return res.status(200).json(p);
-//   });
-// };
 
 // Get a single category
 exports.show = function(req, res) {
@@ -106,7 +73,7 @@ exports.create = function(req, res) {
 // Updates an existing category in the DB.
 exports.update = function(req, res) {
   if(req.body._id) { delete req.body._id; }
-  req.body.uid = req.user.email; // id change on every login hence email is used
+  req.body.uid = req.user.email; // id changes on every login hence email is used
   req.body.updated = Date.now();
   if(!req.body.slug && req.body.info)
   req.body.slug = req.body.info.toString().toLowerCase()

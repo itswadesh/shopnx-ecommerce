@@ -6,6 +6,7 @@ angular.module('shopnxApp')
       .state('category', {
         url: '/category',
         templateUrl: 'app/category/category.html',
-        controller: 'CategoryCtrl'
+        controller: 'CategoryCtrl',
+        authenticate: true
       });
   });

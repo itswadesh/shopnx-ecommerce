@@ -10,7 +10,7 @@
             <div class="sw-search" >
                   <div class="nav-search" id="nav-search">
                           Filter: <span class="input-icon">
-                              <input placeholder="Filter list ..." class="nav-search-input" ng-model="q" autocomplete="off" type="text" style="width:300px;" autofocus>
+                              <input placeholder="Filter list ..." class="nav-search-input" ng-model="filter" autocomplete="off" type="text" style="width:300px;" autofocus>
                               <i class="search-icon fa fa-search nav-search-icon"></i>
                           </span>
                   </div>
@@ -22,46 +22,44 @@
                 <button type="button" class="btn btn-danger" ng-click="edit({});">New <i class="fa fa-plus"></i> </button>
                 <button type="button" class="btn btn-warning">Hide columns <i class="fa fa-eye"></i> </button>
                 <button type="button" class="btn btn-primary">Export as <i class="fa fa-edit"></i> </button>
-                <span class="pull-right hidden-xs"> Filtered <b> 5 </b> of Total <b>12</b> </span>
+                <span class="pull-right hidden-xs"> <b>{{data.length}}</b> {{title}} found </span>
               </div>
             </div>
           </div>
         <div class="panel-body">
-           <!-- <div infinite-scroll='loadMore()'>  ts-wrapper-->
            <table class="table table-striped" ts-wrapper>
           <tr ng-hide="data.length>-1"><td style="vertical-align:middle;"><i class="fa fa-cog fa-3x fa-spin"></i>&nbsp;Loading</td></tr>
 
           <thead>
               <tr>
                 <th>#</th>
-                <th ng-repeat="c in cols" ts-criteria="{{c}}">{{c | labelCase}}</th>
+                <th ng-repeat="c in cols" ts-criteria="{{c.heading}} | {{c.sortType}}">
+                  {{c.heading | labelCase}}
+                </th>
                 <th>Action</th>
-                  <!-- <th>ID</th>
-                  <th>Name</th>
-                  <th>Description</th>
-                  <th>Parent</th>
-                  <th>User</th>
-                  <th>Date Added</th>
-                  <th>Status</th>
-                  <th>Action</th> -->
               </tr>
           </thead>
           <tbody>
-              <tr ng-repeat="p in data.slice().reverse() track by p._id" id="{{p._id}}" ts-repeat>
-                  <!-- <td><img src="img/{{p.category}}/{{p.image}}"/></td> -->
+            <i class="fa fa-cog fa-spin fa-2x" ng-if="loadingTable"></i>
+              <tr ng-repeat="p in data.slice().reverse() | filter:filter track by p._id" id="{{p._id}}" ts-repeat>
                   <td>{{$index+1}}</td>
-                  <td ng-repeat="c in cols" ng-switch="c">
-                    <span  ng-switch-when="active">
-                      <button class="btn" ng-class="{true:'btn-success', false:''}[p.active]" ng-click="changeActive(p);">{{p.active | active}}</button>
-                    </span>
-                    <span ng-switch-default="c === 'active'">{{p[c]}}</span>
+                  <td ng-repeat="c in cols" ng-switch="c.dataType">
+                      <span ng-switch-when="boolean">
+                        <button class="btn" ng-class="{true:'btn-success', false:''}[p[c.heading]]" ng-click="changeActive(p);">{{p.active | active}}</button>
+                      </span>
+                      <span ng-switch-when="date">
+                        {{p[c.heading] | amCalendar}}
+                      </span>
+                      <span ng-switch-when="currency">
+                        {{p[c.heading] | currency}}
+                      </span>
+                      <span ng-switch-when="image">
+                        <img src="img/{{p.image}}"/>
+                      </span>
+                      <span ng-switch-default>
+                        {{p[c.heading]}}
+                      </span>
                   </td>
-                  <!-- <td>{{p.name}}</td>
-                  <td>{{p.info}}</td>
-                  <td>{{p.parent}}</td>
-                  <td>{{p.uid}}</td>
-                  <td>{{p.created}}</td> -->
-
                   <td>
                       <div class="btn-group">
                         <button type="button" class="btn btn-default fa fa-edit" ng-click="edit(p);"></button>
@@ -71,12 +69,9 @@
               </tr>
           </tbody>
           </table>
-      <!-- </div> -->
       </div>
       </div>
       </div>
-
-
     </div>
 </div>
 </div>
