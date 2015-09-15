@@ -37,7 +37,7 @@
             <!-- empty cart message -->
             <tr ng-hide="cart.getTotalCount() > 0" >
                 <td class="tdCenter" colspan="7">
-                    Your cart is empty. &nbsp;&nbsp;<a class="btn btn-primary" href="#/store" ng-click="cancel();">Shop Now</a>
+                    Your cart is empty. &nbsp;&nbsp;<a class="btn btn-primary" href="/" ng-click="cancel();">Shop Now</a>
                 </td>
             </tr>
 
@@ -45,7 +45,7 @@
                 <td>{{$index+1}}</td>
                 <td class="product-thumbnail">
                     <a>
-                        <img ng-src="img/{{item.category}}/{{item.image}}" alt="{{item.name}}" data-err-src="img/product.jpg" width="54px" height="54px" />
+                        <img ng-src="/assets/img/{{item.image}}" alt="{{item.name}}" data-err-src="img/product.jpg" width="54px" height="54px" />
                     </a>
                 </td>
 

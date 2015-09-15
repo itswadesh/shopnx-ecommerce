@@ -15,8 +15,7 @@
 <div class="container">
     <div class="row">
     <div class="col-md-12">
-        <image ng-src="http://s.angularcode.com//assets/images/{{product.variants[i].image}}" alt="{{product.slug}}" width="320" height="320" class="pull-left" style="margin-right:30px;"/>
-
+        <img ng-src="/assets/img/{{product.variants[i].image}}" alt="{{product.slug}}" width="320" height="320" class="pull-left" style="margin-right:30px;"/>
 
         <table>
             <tbody><tr>
@@ -37,8 +36,8 @@
                         <button ng-click="navigate('Category',product.category);" style="font-size: 12px; font-weight: normal; padding-left: 10px; color: #069;">View All products</button>
                     </h4></td>
             </tr>
-            <tr> <th>MRP</th> <td><del>Rs {{product.variants[i].mrp}}</del></td> </tr>
-            <tr> <th><h4>For You</h4></th>  <td> <h4>Rs {{product.variants[i].price}}</h4> </td> </tr>
+            <tr> <th>MRP</th> <td><del>${{product.variants[i].mrp}}</del></td> </tr>
+            <tr> <th><h4>For You</h4></th>  <td> <h4>${{product.variants[i].price}}</h4> </td> </tr>
             <tr> <th><h4></h4></th>
               <td>
                 <div class="addButton">
@@ -58,7 +57,7 @@
 
          <div class="itemB" ng-repeat="v in product.variants" ng-click="changeIndex($index);" ng-if="v.size!=product.variants[i].size">
             <div class="itemImage">
-                <a href=""><img src="/assets/images/{{product.category}}/{{v.image}}" alt="{{product.name}}" width="140" height="140"></a>
+                <a href=""><img src="/assets/img/{{v.image}}" alt="{{product.name}}" width="140" height="140"></a>
             </div>
 
             <div class="itemName">
@@ -68,7 +67,7 @@
             </div>
 
             <div class="itemPrice">
-                <span>{{v.price | currency : 'Rs '}}</span> <span class="slash" ng-if="v.price!=v.mrp">{{v.mrp | currency : 'Rs '}}</span>
+                <span>{{v.price | currency : '$'}}</span> <span class="slash" ng-if="v.price!=v.mrp">{{v.mrp | currency : '$'}}</span>
             </div>
 
             <div class="addButton">
@@ -90,7 +89,7 @@
         <div infinite-scroll='scroll()' infinite-scroll-disabled='products.busy' >
         <div class="itemB" ng-repeat="product in products.items">
             <div class="itemImage">
-                <a href=""><img src="/assets/images/{{product.category}}/{{product.variants[0].image}}" alt="{{product.name}}" width="140" height="140"></a>
+                <a href=""><img src="/assets/img/{{product.variants[0].image}}" alt="{{product.name}}" width="140" height="140"></a>
             </div>
 
             <div class="itemName">
@@ -100,7 +99,7 @@
             </div>
 
             <div class="itemPrice">
-                <span>{{product.variants[0].price | currency : 'Rs '}}</span> <span class="slash" ng-if="product.variants[0].price!=product.variants[0].mrp">{{product.variants[0].mrp | currency : 'Rs '}}</span>
+                <span>{{product.variants[0].price | currency : '$'}}</span> <span class="slash" ng-if="product.variants[0].price!=product.variants[0].mrp">{{product.variants[0].mrp | currency : '$'}}</span>
             </div>
 
             <div class="addButton">

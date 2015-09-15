@@ -7,7 +7,7 @@ var CategorySchema = new Schema({
   name: String,
   slug: String,
   info: String,
-  parent: String,
+  parentCategory: Number,
   image: String,
   uid: String,
   active: { type: Boolean, default: false },

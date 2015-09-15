@@ -9,16 +9,16 @@
     <label class="col-sm-3 control-label no-padding-right">{{i | labelCase}}</label>
     <div class="col-sm-7">
       <span class="block input-icon input-icon-right">
-        <input type="text" class="form-control" name="name" ng-model="product[i]" ng-disabled="i=='_id'" autofocus="i=='name'">
+        <input type="text" class="form-control" name="name" ng-model="data[i]" ng-disabled="i=='_id'" autofocus="i=='name'">
       </span>
     </div>
   </div>
 
-  <div class="form-group" ng-repeat="(i, name) in product track by $index" ng-if="!options.columns">
+  <div class="form-group" ng-repeat="(i, name) in data track by $index" ng-if="!options.columns">
     <label class="col-sm-3 control-label no-padding-right">{{i}}</label>
     <div class="col-sm-7">
       <span class="block input-icon input-icon-right">
-        <input type="text" class="form-control" name="name" ng-model="product[i]" ng-disabled="i=='_id'" autofocus="i=='name'">
+        <input type="text" class="form-control" name="name" ng-model="data[i]" ng-disabled="i=='_id'" autofocus="i=='name'">
       </span>
     </div>
   </div>
@@ -26,6 +26,6 @@
 <div class="modal-footer">
   <!-- <button ng-repeat="button in options.buttons" ng-class="button.classes" ng-click="button.click($event)" ng-bind="button.text" class="btn"></button> -->
   <!-- <button type="button" class="btn" ng-click="cancel();">Cancel</button> -->
-  <button class="btn btn-primary" ng-click="saveItem(product);" type="submit">Save</button>
+  <button class="btn btn-primary" ng-click="saveItem(data);" type="submit">Save</button>
 </div>
 </form>

@@ -8,7 +8,6 @@ angular.module('shopnxApp')
     var api = $injector.get(options.api);
     $scope.data = angular.copy(data);
     $scope.options = options;
-
     $scope.saveItem = function(item){
         if($scope.data._id)
           api.update({ id:$scope.data._id }, $scope.data).$promise.then(function(res) {

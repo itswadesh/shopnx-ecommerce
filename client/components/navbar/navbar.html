@@ -12,10 +12,6 @@
     </div>
     <div collapse="isCollapsed" class="navbar-collapse collapse" id="navbar-main">
       <ul class="nav navbar-nav">
-        <!-- <li ng-repeat="item in menu" ng-class="{active: isActive(item.link)}">
-            <a ng-href="{{item.link}}">{{item.title}}</a>
-        </li> -->
-        <li ng-show="isAdmin()" ng-class="{active: isActive('/admin')}"><a href="/admin">Admin</a></li>
         <li>
           <a>
           <form id="searchForm" class="ng-scope ng-pristine ng-valid">
@@ -77,7 +73,7 @@
             <li class="divider"></li>
             </ul>
         </li>
-        <li><a class="btn" ng-click="openCart(cart,'lg');" href=""><i class="fa fa-opencart">&nbsp;</i> Cart ({{cart.getTotalCount()}}) - {{cart.getTotalPrice() | currency:"Rs "}}</a></li>
+        <li><a class="btn" ng-click="openCart(cart,'lg');" href=""><i class="fa fa-opencart">&nbsp;</i> Cart ({{cart.getTotalCount()}}) - {{cart.getTotalPrice() | currency:"$"}}</a></li>
       </ul>
     </div>
   </div>
