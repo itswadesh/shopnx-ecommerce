@@ -51,10 +51,11 @@ angular.module('shopnxApp')
     obj = $resource('/api/orders/:id', null, {'update': { method:'PUT' } });
     obj.my = $resource('/api/orders/my', null, {'update': { method:'PUT' }});
     obj.status = [
+      {name:"Pending Payment", val:402},
       {name:"Order Placed", val:201},
       {name:"Order Accepted", val:202},
       {name:"Order Executed", val:302},
-      {name:"Pending Payment", val:402},
+      {name:"Shipped", val:200},
       {name:"Delivered", val:200},
       {name:"Cancelled", val:204},
       {name:"Not in Stock", val:404}

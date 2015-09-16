@@ -13,17 +13,27 @@ angular.module('shopnxApp')
           api.update({ id:$scope.data._id }, $scope.data).$promise.then(function(res) {
 
           }, function(error) { // error handler
-            var err = error.data.errors;
-            // console.log(error,err);
-            toastr.error(err[Object.keys(err)].message,err[Object.keys(err)].name);
+            if(error.data.errors){
+              var err = error.data.errors;
+              toastr.error(err[Object.keys(err)].message,err[Object.keys(err)].name);
+            }
+            else{
+              var msg = error.data.message;
+              toastr.error(msg);
+            }
           });
         else
           api.save($scope.data).$promise.then(function(res) {
 
           }, function(error) { // error handler
+            if(error.data.errors){
               var err = error.data.errors;
-              // console.log(err);
               toastr.error(err[Object.keys(err)].message,err[Object.keys(err)].name);
+            }
+            else{
+              var msg = error.data.message;
+              toastr.error(msg);
+            }
           });
         $modalInstance.close(item);
     }

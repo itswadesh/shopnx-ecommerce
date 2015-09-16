@@ -7,7 +7,12 @@
 
       <div class="panel-heading">
             <div class="panel-title"><button class="btn btn-warning">{{o.orderNo}}</button>&nbsp;{{o.orderDate | amCalendar}}
-            <select ng-options="o.name for o in orderStatusLov" ng-model="o.status" class="pull-right"></select>
+            <div class="col-sm-3 pull-right" ng-if="isAdmin()">
+              <select ng-model="o.status"
+              ng-options="i.name for i in orderStatusLov track by i.val"
+              ng-change="changeStatus(o)"
+              class="form-control"></select>
+             </div>
           </div>
       </div>
       <div class="panel-body">

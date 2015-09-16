@@ -17,7 +17,7 @@ var OrderSchema = new Schema({
   active: { type: Boolean, default: true },
   updated: {type: Date},
   orderDate: {type: Date, default: Date.now},
-  status: {type: Object, default: {name: 'Order Placed', val: 201}},
+  status: Object({ name: String, val: Number}),
   items: [{ sku: String, name: String, packing: String, quantity: String, mrp: String, price: String, image: String, category: String }]
 });
 

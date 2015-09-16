@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('shopnxApp')
-  .controller('OrderCtrl', function ($scope, Order) {
+  .controller('OrderCtrl', function ($scope, Order, toastr) {
     var orderStatusLov = $scope.orderStatusLov = Order.status;
     var orders = $scope.orders = Order.my.query({},function(res){
       var total=0;
@@ -15,4 +15,19 @@ angular.module('shopnxApp')
       }
       res.total = total;
     });
+    $scope.changeStatus = function(order){
+      Order.update({ id:order._id }, order).$promise.then(function(res) {
+        console.log(res);
+      }, function(error) { // error handler
+        console.log(error);
+        if(error.data.errors){
+          var err = error.data.errors;
+          toastr.error(err[Object.keys(err)].message,err[Object.keys(err)].name);
+        }
+        else{
+          var msg = error.data.message;
+          toastr.error(msg);
+        }
+      });
+    }
   });
