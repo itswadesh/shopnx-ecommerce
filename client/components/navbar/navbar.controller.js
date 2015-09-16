@@ -8,8 +8,8 @@ angular.module('shopnxApp')
       'link': '/'
     }];
 
-    var brands = $rootScope.brands = Brand.query();
-    var sortOptions = $rootScope.sortOptions = SortOptions.server;
+    $rootScope.brands = Brand.query();
+    $rootScope.sortOptions = SortOptions.server;
 
     $scope.isCollapsed = true;
     $scope.isCollapsed1 = true;
@@ -27,8 +27,9 @@ angular.module('shopnxApp')
 
     $rootScope.getQuantity = function(sku){
         for(var i = 0;i<$scope.cart.items.length;i++){
-            if($scope.cart.items[i].sku == sku)
-            return $scope.cart.items[i].quantity;
+            if($scope.cart.items[i].sku === sku){
+              return $scope.cart.items[i].quantity;
+            }
         }
     };
 
@@ -41,10 +42,11 @@ angular.module('shopnxApp')
       return route === $location.path();
     };
 
-    $scope.onSelectProduct = function($item, $model, $label){
+    $scope.onSelectProduct = function($item){
         $state.go('productDetail', {id:$item._id, slug:$item.slug}, {reload: false});
-        $scope.search = "";
-    }
+        $scope.search = '';
+    };
+
     $scope.categories = Category.all.query();
 
 // // Script which calls all category from parent 0 and constructs the category hierarchy
@@ -63,11 +65,11 @@ angular.module('shopnxApp')
 // });
 
     $scope.globalSearch = function(input){
-          var input = input.toLowerCase();
+          input = input.toLowerCase();
             var defer = $q.defer();
             if (input){
                 Product.query({where:{nameLower: {'$regex': input}}, limit:10, select: {id: 1, name:1, slug: 1}},
-                    function(data,headers){
+                    function(data){
                           console.log(data);
                         if (!$scope.$$phase){ //check if digest is not in progress
                             $rootScope.$apply(function(){
@@ -90,29 +92,29 @@ angular.module('shopnxApp')
                 if (!$scope.$$phase){
                     $rootScope.$apply(function(){
                         defer.reject('No search query ');
-                        $log.info('No search query provided');
+                        // $log.info('No search query provided');
                     });
                 } else {
                     defer.reject('No search query ');
-                    $log.info('No search query provided');
+                    // $log.info('No search query provided');
                 }
             }
             return defer.promise;
         };
 
         $scope.openCart = function (cart,size) {
-            var cart = $scope.cart = cart;
+            cart = $scope.cart = cart;
             // console.log(cart);
             var modalOptions = {
-                templateUrl: "/components/navbar/cart-edit.html",
+                templateUrl: '/components/navbar/cart-edit.html',
                 controller: cartEditCtrl,
-                controllerAs: "modal",
-                windowClass: "ab-modal-window",
+                controllerAs: 'modal',
+                windowClass: 'ab-modal-window',
                 resolve: {
                     cart: function () { return cart; },
                 }
             };
-            var modalInstance = $modal.open(modalOptions);
+            $modal.open(modalOptions);
         };
 
         var cartEditCtrl = function ($scope, $modalInstance, cart) {
@@ -120,5 +122,5 @@ angular.module('shopnxApp')
             $scope.cancel = function () {
                 $modalInstance.dismiss('Close');
             };
-        }
+        };
   });

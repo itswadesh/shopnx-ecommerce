@@ -28,7 +28,7 @@ exports.all = function(req, res) {
   Category.find({parentCategory:0}).select({name:1,category:1,parentCategory:1,slug:1}).exec(function(err,parents){
   // Using async library which will enable us to wait until data received from database
   async.each(parents, function(a, callback){
-      var a = a.toObject();
+      a = a.toObject();
       Category.find({parentCategory:parseInt(a.category)}).select({name:1,category:1,parentCategory:1,slug:1}).exec(function(err,c){
         a.sub_categories = c;
         p.push(a);
