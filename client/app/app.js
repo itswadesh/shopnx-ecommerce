@@ -61,6 +61,11 @@ angular.module('shopnxApp', [
         }
       });
     });
+
+    $rootScope.$on('$stateChangeSuccess', function (evt, toState, toParams, fromState, fromParams) {
+        window.document.title = toState.title + ' - ShopNx';
+    });
+
     $rootScope.spinner = {
       active: false,
       on: function () {
