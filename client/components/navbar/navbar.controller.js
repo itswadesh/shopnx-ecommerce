@@ -102,7 +102,7 @@ angular.module('shopnxApp')
             return defer.promise;
         };
 
-        $scope.openCart = function (cart,size) {
+        $scope.openCart = function (cart) {
             cart = $scope.cart = cart;
             // console.log(cart);
             var modalOptions = {

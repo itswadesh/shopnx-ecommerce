@@ -1,6 +1,6 @@
 'use strict';
 
 angular.module('shopnxApp')
-  .controller('CategoryCtrl', function ($scope) { //, socket, Category, Modal, toastr
-    
+  .controller('CategoryCtrl', function () { //, socket, Category, Modal, toastr
+
   });

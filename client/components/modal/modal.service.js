@@ -4,13 +4,26 @@ angular.module('shopnxApp')
 .factory('Modal', function ($rootScope, $modal) {
 
   var obj = {};
+  // function openModal(scope, modalClass,template) {
+  //   var modalScope = $rootScope.$new();
+  //   scope = scope || {};
+  //   modalClass = modalClass || 'modal-default';
+  //
+  //   angular.extend(modalScope, scope);
+  //
+  //   return $modal.open({
+  //     templateUrl: 'components/modal/'+template,
+  //     windowClass: modalClass,
+  //     scope: modalScope
+  //   });
+  // }
   obj.selectModalInstanceCtrl = function ($scope,$modalInstance, $injector, data, options, toastr) {
     var api = $injector.get(options.api);
     $scope.data = angular.copy(data);
     $scope.options = options;
     $scope.saveItem = function(item){
-        if($scope.data._id)
-          api.update({ id:$scope.data._id }, $scope.data).$promise.then(function(res) {
+        if($scope.data._id){
+          api.update({ id:$scope.data._id }, $scope.data).$promise.then(function() {
 
           }, function(error) { // error handler
             if(error.data.errors){
@@ -22,8 +35,9 @@ angular.module('shopnxApp')
               toastr.error(msg);
             }
           });
-        else
-          api.save($scope.data).$promise.then(function(res) {
+        }
+        else{
+          api.save($scope.data).$promise.then(function() {
 
           }, function(error) { // error handler
             if(error.data.errors){
@@ -35,8 +49,10 @@ angular.module('shopnxApp')
               toastr.error(msg);
             }
           });
+        }
         $modalInstance.close(item);
-    }
+    };
+
     $scope.cancel = function () {
         $modalInstance.dismiss('cancel');
     };
@@ -45,33 +61,21 @@ angular.module('shopnxApp')
   obj.show = function(data,options){
     // del = del || angular.noop;
       var modalOptions = {
-          templateUrl: "components/modal/detail-modal.html",
+          templateUrl: 'components/modal/detail-modal.html',
           controller: obj.selectModalInstanceCtrl,
-          controllerAs: "modal",
-          windowClass: "ab-modal-window",
+          controllerAs: 'modal',
+          windowClass: 'ab-modal-window',
           resolve: {
               data: function () { return data; },
               options :  function () { return options; }
           }
       };
-      var modalInstance = $modal.open(modalOptions);
+      $modal.open(modalOptions);
   };
 
   return obj;
 
 
-    function openModal(scope, modalClass,template) {
-      var modalScope = $rootScope.$new();
-      scope = scope || {};
-      modalClass = modalClass || 'modal-default';
 
-      angular.extend(modalScope, scope);
-
-      return $modal.open({
-        templateUrl: 'components/modal/'+template,
-        windowClass: modalClass,
-        scope: modalScope
-      });
-    };
 
 });

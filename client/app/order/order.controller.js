@@ -2,8 +2,8 @@
 
 angular.module('shopnxApp')
   .controller('OrderCtrl', function ($scope, Order, toastr) {
-    var orderStatusLov = $scope.orderStatusLov = Order.status;
-    var orders = $scope.orders = Order.my.query({},function(res){
+    $scope.orderStatusLov = Order.status;
+    $scope.orders = Order.my.query({},function(res){
       var total=0;
       for(var i=0;i<res.length;i++){
           var subTotal = 0;
@@ -29,5 +29,5 @@ angular.module('shopnxApp')
           toastr.error(msg);
         }
       });
-    }
+    };
   });

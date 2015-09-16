@@ -2,55 +2,58 @@
 
 angular.module('shopnxApp')
   .controller('ProductCtrl', function ($scope, socket, Product, Category, Brand, Modal, toastr) {
-    var cols = ["sku","name","nameLower","slug","status","info","uid", "active","img"];
+    var cols = ['sku','name','nameLower','slug','status','info','uid', 'active','img'];
     $scope.products = [];
     $scope.product = {};
     $scope.variant = {};
     $scope.product.variants = [];
     // $scope.subcategories = [];
-    var products = $scope.products =Product.query(function(data) {
+    $scope.products =Product.query(function() {
       // console.log(data);
       socket.syncUpdates('product', $scope.data);
     });
 
-    var categories = $scope.categories = Category.query(function(data) {
+    $scope.categories = Category.query(function() {
       socket.syncUpdates('category', $scope.data);
     });
-    var brands = $scope.brands = Brand.query(function(data) {
+    $scope.brands = Brand.query(function() {
       socket.syncUpdates('brand', $scope.data);
     });
     $scope.edit = function(product) {
-      var title; if(product.name) title = 'Editing ' + product.name; else title = 'Add New';
-      var modalInstance = Modal.show(product,{title:title, api:'Product', columns: cols});
+      var title; if(product.name){ title = 'Editing ' + product.name;} else{ title = 'Add New';}
+      Modal.show(product,{title:title, api:'Product', columns: cols});
     };
     $scope.save = function(product){
       if('variants' in $scope.product){
       }else{
           $scope.product.variants = [];
       }
-      if('size' in $scope.variant)
+      if('size' in $scope.variant){
         $scope.product.variants.push($scope.variant);
+      }
       $scope.variant = {};
-      if('_id' in product)
-          Product.update({ id:$scope.product._id }, $scope.product).$promise.then(function(res) {
+      if('_id' in product){
+          Product.update({ id:$scope.product._id }, $scope.product).$promise.then(function() {
 // console.log(res);
           }, function(error) { // error handler
             // console.log(error,err);
             var err = error.data.errors;
             toastr.error(err[Object.keys(err)].message,err[Object.keys(err)].name);
           });
-        else
-          Product.save($scope.product).$promise.then(function(res) {
+        }
+        else{
+          Product.save($scope.product).$promise.then(function() {
 
           }, function(error) { // error handler
               var err = error.data.errors;
               // console.log(error,err);
               toastr.error(err[Object.keys(err)].message,err[Object.keys(err)].name);
           });
-    }
+        }
+    };
     $scope.changeActive = function(b){ // success handler
       b.active = !b.active;
-      Product.update({ id:b._id }, b).$promise.then(function(data) {
+      Product.update({ id:b._id }, b).$promise.then(function() {
 
       }, function(error) { // error handler
           // console.log(error);
@@ -64,8 +67,8 @@ angular.module('shopnxApp')
     };
 
     $scope.productDetail = function(product){
-        if(product)  $scope.product = product;
-        else $scope.product = {};
-    }
+        if(product){ $scope.product = product; }
+        else{ $scope.product = {}; }
+    };
 
   });

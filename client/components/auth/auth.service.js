@@ -50,7 +50,7 @@ angular.module('shopnxApp')
         currentUser = {};
       },
       saveAttemptUrl: function() {
-        if($location.path().toLowerCase() != '/login' || $location.path().toLowerCase() != '/signup') {
+        if($location.path().toLowerCase() !== '/login' || $location.path().toLowerCase() !== '/signup') {
           redirectToUrlAfterLogin.url = $location.path();
         }
         else {

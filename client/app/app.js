@@ -62,7 +62,7 @@ angular.module('shopnxApp', [
       });
     });
 
-    $rootScope.$on('$stateChangeSuccess', function (evt, toState, toParams, fromState, fromParams) {
+    $rootScope.$on('$stateChangeSuccess', function (evt, toState) {
         window.document.title = toState.title + ' - ShopNx';
     });
 

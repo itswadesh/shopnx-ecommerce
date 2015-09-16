@@ -12,12 +12,12 @@ angular.module('shopnxApp')
         scope.title = attrs.api+'s';
         var cols = JSON.parse(attrs.cols);
         var obj = [];
-        angular.forEach(cols, function(o, index) {
-          var k,v;
+        angular.forEach(cols, function(o) {
+          // var k,v;
           angular.forEach(o, function(v, k) {
             var v1;
-            if(v=='number' || v=='float' || v=='integer') v1 = 'parseFloat';
-            else v1 = 'lowercase';
+            if(v==='number' || v==='float' || v==='integer'){ v1 = 'parseFloat';}
+            else{ v1 = 'lowercase';}
             obj.push({heading:k,dataType:v, sortType:v1});
           });
         });
@@ -29,17 +29,17 @@ angular.module('shopnxApp')
         var api = $injector.get(attrs.api);
         scope.data = [];
         scope.loadingTable = true;
-        var data = scope.data =api.query(function(data) {
+        scope.data =api.query(function() {
           scope.loadingTable = false;
           socket.syncUpdates(attrs.api.toLowerCase(), scope.data);
         });
         scope.edit = function(item) {
-          var title; if(item.name) title = 'Editing ' + item.name; else title = 'Add New';
-          var modalInstance = Modal.show(item,{title:title, api:attrs.api, columns: obj});
+          var title; if(item.name){ title = 'Editing ' + item.name;} else{ title = 'Add New';}
+          Modal.show(item,{title:title, api:attrs.api, columns: obj});
         };
         scope.changeActive = function(b){ // success handler
           b.active = !b.active;
-          api.update({ id:b._id }, b).$promise.then(function(data) {
+          api.update({ id:b._id }, b).$promise.then(function() {
 
           }, function(error) { // error handler
               console.log(error);
@@ -56,16 +56,18 @@ angular.module('shopnxApp')
           socket.unsyncUpdates(attrs.api.toLowerCase());
         });
       }
-    }}])
+    };}])
 
 .directive('modalWindow', function ($timeout) {
   return {
     priority: 1,
-    link: function (scope, element, attrs) {
+    link: function (scope, element) {
       $timeout(function () {
         // var elem = element[0].querySelector('[autofocus]').focus();
         var elem = element[0].querySelector('input');
-        if(elem) elem.focus();
+        if(elem){
+          elem.focus();
+        }
       });
     }
   };
@@ -96,7 +98,7 @@ angular.module('shopnxApp')
               }
             });
         }
-    }
+    };
 
 })
 
@@ -104,12 +106,12 @@ angular.module('shopnxApp')
     return {
         restrict:'A',
         replace:true,
-        templateUrl:"views/sortable-columns.tpl.html",
+        templateUrl:'views/sortable-columns.tpl.html',
         scope:{
-            columns:"=",
-            itemsToSort:"="
+            columns:'=',
+            itemsToSort:'='
         },
-        link:function(scope,elm,attr){
+        link:function(scope){
             scope.columnClicked = function(column){
                     if(scope.columns.columnToSort.predicate === column.predicate){
                         scope.columns.columnToSort.reverse = !scope.columns.columnToSort.reverse;
@@ -123,9 +125,9 @@ angular.module('shopnxApp')
               console.log(column);
                 scope.itemsToSort = _.sortBy(scope.itemsToSort,function(obj){
                     switch (column.dataType){
-                        case "number":
+                        case 'number':
                             return Number(obj[column.predicate]);
-                        case "date":
+                        case 'date':
                             return new Date(obj[column.predicate]);
                         default:
                             return obj[column.predicate].toString();
@@ -139,7 +141,7 @@ angular.module('shopnxApp')
             scope.columns.columnToSort = scope.columns[1];
             scope.sortBy(scope.columns.columnToSort);
         }
-    }
+    };
 
 }])
 .directive('formElement', function() {
@@ -147,8 +149,8 @@ angular.module('shopnxApp')
         restrict: 'E',
         transclude: true,
         scope: {
-            label : "@",
-            model : "="
+            label : '@',
+            model : '='
         },
         link: function(scope, element, attrs) {
             scope.disabled = attrs.hasOwnProperty('disabled');
@@ -163,8 +165,8 @@ angular.module('shopnxApp')
 .directive('onlyNumbers', function() {
     return function(scope, element, attrs) {
         var keyCode = [8,9,13,37,39,46,48,49,50,51,52,53,54,55,56,57,96,97,98,99,100,101,102,103,104,105,110,190];
-        element.bind("keydown", function(event) {
-            if($.inArray(event.which,keyCode) == -1) {
+        element.bind('keydown', function(event) {
+            if($.inArray(event.which,keyCode) === -1) {
                 scope.$apply(function(){
                     scope.$eval(attrs.onlyNum);
                     event.preventDefault();
@@ -184,14 +186,14 @@ angular.module('shopnxApp')
 .directive('animateOnChange', function($animate) {
   return function(scope, elem, attr) {
       scope.$watch(attr.animateOnChange, function(nv,ov) {
-        if (nv!=ov) {
+        if (nv!==ov) {
               var c = 'change-up';
               $animate.addClass(elem,c, function() {
               $animate.removeClass(elem,c);
           });
         }
       });
-  }
+  };
 })
 
 .directive('passwordMatch', [function () {
@@ -207,14 +209,15 @@ angular.module('shopnxApp')
 
                 //get the value of the other password
                 var e2 = scope.$eval(attrs.passwordMatch);
-                if(e2!=null)
-                return e1 == e2;
+                if(e2!=null){
+                  return e1 === e2;
+                }
             };
             scope.$watch(checker, function (n) {
 
                 //set the form control to valid if both
                 //passwords are the same, else invalid
-                control.$setValidity("passwordNoMatch", n);
+                control.$setValidity('passwordNoMatch', n);
             });
         }
     };
@@ -235,12 +238,12 @@ angular.module('shopnxApp')
       return {
         restrict: 'A',
         scope:{
-          ngConfirmClick:"&",
-          item:"="
+          ngConfirmClick:'&',
+          item:'='
         },
         link: function(scope, element, attrs) {
           element.bind('click', function() {
-            var message = attrs.ngConfirmMessage || "Are you sure to delete? ";
+            var message = attrs.ngConfirmMessage || 'Are you sure to delete? ';
 
             /*
             //This works
@@ -271,17 +274,17 @@ angular.module('shopnxApp')
           });
 
         }
-      }
+      };
     }
   ])
   .directive('errSrc', function() {
   return {
     link: function(scope, element, attrs) {
       element.bind('error', function() {
-        if (attrs.src != attrs.errSrc) {
+        if (attrs.src !== attrs.errSrc) {
           attrs.$set('src', attrs.errSrc);
         }
       });
     }
-  }
+  };
 });
