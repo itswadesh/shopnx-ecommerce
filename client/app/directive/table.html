@@ -22,14 +22,15 @@
                 <button type="button" class="btn btn-danger" ng-click="edit({});">New <i class="fa fa-plus"></i> </button>
                 <button type="button" class="btn btn-warning">Hide columns <i class="fa fa-eye"></i> </button>
                 <button type="button" class="btn btn-primary">Export as <i class="fa fa-edit"></i> </button>
-                <span class="pull-right hidden-xs"> <b>{{data.length}}</b> {{title}} found </span>
+                <span class="pull-right hidden-xs">
+                  <div ng-hide="data.length>-1"><i class="fa fa-cog fa-3x fa-spin"></i>&nbsp;Loading</div>&nbsp;
+                  <b>{{data.length}}</b> {{title}} found
+                </span>
               </div>
             </div>
           </div>
         <div class="panel-body">
            <table class="table table-striped" ts-wrapper>
-          <tr ng-hide="data.length>-1"><td style="vertical-align:middle;"><i class="fa fa-cog fa-3x fa-spin"></i>&nbsp;Loading</td></tr>
-
           <thead>
               <tr>
                 <th>#</th>
