@@ -14,8 +14,8 @@ describe('Controller: BrandCtrl', function () {
       $scope: scope
     });
   }));
-
-  it('should ...', function () {
-    expect(1).toEqual(1);
-  });
+  // 
+  // it('should ...', function () {
+  //   expect(true).toBe(true);
+  // });
 });

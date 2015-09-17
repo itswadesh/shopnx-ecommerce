@@ -1,7 +1,7 @@
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252bfd"},"category":"1","info":"Bedroom","name":"Bedroom","parentCategory":0,"slug":"bedroom"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252bfe"},"category":"2","info":"Bathroom","name":"Bathroom","parentCategory":0,"slug":"bathroom"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252bff"},"category":"4","info":"Cleaning World","name":"Cleaning World","parentCategory":0,"slug":"cleaning-world"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c00"},"category":"130","info":"Deodrants","name":"Deodrants","parentCategory":1.0,"slug":"deodrants"}
+{"__v":1,"_id":{"$oid":"55ed1d3d3b4f0edec5252bfd"},"active":true,"category":"1","info":"Bedroom","name":"Bedroom","parentCategory":0,"slug":"bedroom","sub_categories":[],"uid":"admin@admin.com","updated":{"$date":"2015-09-14T13:07:58.629Z"}}
+{"__v":1,"_id":{"$oid":"55ed1d3d3b4f0edec5252bfe"},"active":true,"category":"2","info":"Bathroom","name":"Bathroom","parentCategory":0,"slug":"bathroom","sub_categories":[],"uid":"admin@admin.com","updated":{"$date":"2015-09-14T13:08:02.680Z"}}
+{"__v":1,"_id":{"$oid":"55ed1d3d3b4f0edec5252bff"},"active":true,"category":"4","info":"Cleaning World","name":"Cleaning World","parentCategory":0,"slug":"cleaning-world","sub_categories":[],"uid":"admin@admin.com","updated":{"$date":"2015-09-14T13:08:04.301Z"}}
+{"__v":1,"_id":{"$oid":"55ed1d3d3b4f0edec5252c00"},"active":false,"category":"130","info":"Deodrants","name":"Deodrants","parentCategory":2,"slug":"deodrants","sub_categories":[],"uid":"admin@admin.com","updated":{"$date":"2015-09-14T13:30:36.815Z"}}
 {"_id":{"$oid":"55ed1d3d3b4f0edec5252c01"},"category":"170","info":"Shower Gel","name":"Shower Gel","parentCategory":2.0,"slug":"shower-gel"}
 {"_id":{"$oid":"55ed1d3d3b4f0edec5252c02"},"category":"190","info":"Moisturisers","name":"Moisturisers","parentCategory":2.0,"slug":"moisturisers"}
 {"_id":{"$oid":"55ed1d3d3b4f0edec5252c03"},"category":"210","info":"Hair Oil","name":"Hair Oil","parentCategory":2.0,"slug":"hair-oil"}
@@ -123,7 +123,7 @@
 {"_id":{"$oid":"55ed1d3d3b4f0edec5252c77"},"category":"6020","info":"Baby Powder","name":"Baby Powder","parentCategory":1.0,"slug":"baby-powder"}
 {"_id":{"$oid":"55ed1d3d3b4f0edec5252c78"},"category":"6030","info":"Baby Oil","name":"Baby Oil","parentCategory":1.0,"slug":"baby-oil"}
 {"_id":{"$oid":"55ed1d3d3b4f0edec5252c79"},"category":"6035","info":"Bbaby Cream","name":"Bbaby Cream","parentCategory":1.0,"slug":"bbaby-cream"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c7a"},"category":"6045","info":"Adhesive Tape","name":"Adhesive Tape","parentCategory":1.0,"slug":"adhesive-tape"}
+{"__v":1,"_id":{"$oid":"55ed1d3d3b4f0edec5252c7a"},"active":true,"category":"6045","info":"Adhesive Tape","name":"Adhesive Tape","parentCategory":1.0,"slug":"adhesive-tape","sub_categories":[],"uid":"admin@admin.com","updated":{"$date":"2015-09-14T13:08:10.744Z"}}
 {"_id":{"$oid":"55ed1d3d3b4f0edec5252c7b"},"category":"7010","info":"Instant Drink Mix","name":"Instant Drink Mix","parentCategory":5.0,"slug":"instant-drink-mix"}
 {"_id":{"$oid":"55ed1d3d3b4f0edec5252c7c"},"category":"7040","info":"Water","name":"Water","parentCategory":5.0,"slug":"water"}
 {"_id":{"$oid":"55ed1d3d3b4f0edec5252c7d"},"category":"7060","info":"Cold Coffe","name":"Cold Coffe","parentCategory":5.0,"slug":"cold-coffe"}

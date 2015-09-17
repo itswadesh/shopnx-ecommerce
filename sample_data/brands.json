@@ -5,7 +5,6 @@
 {"_id":{"$oid":"55ed1ba43b4f0edec5252bb2"},"brand":"210","image":"","info":"Bajaj","name":"Bajaj","slug":"bajaj"}
 {"_id":{"$oid":"55ed1ba43b4f0edec5252bb3"},"brand":"230","image":"","info":"Shree Balaji","name":"Shree Balaji","slug":"shree-balaji"}
 {"_id":{"$oid":"55ed1ba43b4f0edec5252bb4"},"brand":"250","image":"","info":"Marico","name":"Marico","slug":"marico"}
-{"_id":{"$oid":"55ed1ba43b4f0edec5252bb5"},"brand":"270","image":"","info":"PAWAN  CONSUMER CARE","name":"PAWAN  CONSUMER CARE","slug":"pawan-consumer-care"}
 {"_id":{"$oid":"55ed1ba43b4f0edec5252bb6"},"brand":"340","image":"","info":"ALL OUT","name":"ALL OUT","slug":"all-out"}
 {"_id":{"$oid":"55ed1ba43b4f0edec5252bb7"},"brand":"360","image":"","info":"Reckitt Benckiser","name":"Reckitt Benckiser","slug":"reckitt-benckiser"}
 {"_id":{"$oid":"55ed1ba43b4f0edec5252bb8"},"brand":"380","image":"","info":"Druk","name":"Druk","slug":"druk"}

@@ -11,8 +11,4 @@ describe('Service: factory', function () {
     factory = _factory_;
   }));
 
-  it('should do something', function () {
-    expect(!!factory).toBe(true);
-  });
-
 });

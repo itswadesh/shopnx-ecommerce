@@ -99,13 +99,13 @@
       </div>
 
       <div class="addButton">
-          <img src="/assets/images/addtocartred.png" class="addButton" alt="Add" ng-click="cart.addItem(product._id, product.name, product.variants[0].mrp, product.variants[0].price, 1, product.variants[0].image,product.category, product.variants[0].size ,true);" ng-show="checkCart(product._id)">
+          <img src="/assets/images/addtocartred.png" class="addButton" alt="Add" ng-click="cart.addItem(product._id, product.name, product.slug, product.variants[0].mrp, product.variants[0].price, 1, product.variants[0].image,product.category, product.variants[0].size ,true);" ng-show="checkCart(product._id)">
 
-          <img src="/assets/images/deletered.png" class="decrease" alt="Add" ng-click="cart.addItem(product._id, product.name, product.variants[0].mrp, product.variants[0].price, -1)" ng-hide="checkCart(product._id)">
+          <img src="/assets/images/deletered.png" class="decrease" alt="Add" ng-click="cart.addItem(product._id, product.name, product.slug, product.variants[0].mrp, product.variants[0].price, -1)" ng-hide="checkCart(product._id)">
 
           <span class="counter" style="display: inline-block;" ng-hide="checkCart(product._id)">{{getQuantity(product._id);}}</span>
 
-          <img src="/assets/images/addedred.png" class="increase" alt="Remove" ng-click="cart.addItem(product._id, product.name, product.variants[0].mrp, product.variants[0].price, +1)" ng-hide="checkCart(product._id)">
+          <img src="/assets/images/addedred.png" class="increase" alt="Remove" ng-click="cart.addItem(product._id, product.name, product.slug, product.variants[0].mrp, product.variants[0].price, +1)" ng-hide="checkCart(product._id)">
       </div>
   </div>
 </div>

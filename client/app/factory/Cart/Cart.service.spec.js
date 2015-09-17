@@ -11,8 +11,4 @@ describe('Service: Cart', function () {
     Cart = _Cart_;
   }));
 
-  it('should do something', function () {
-    expect(!!Cart).toBe(true);
-  });
-
 });

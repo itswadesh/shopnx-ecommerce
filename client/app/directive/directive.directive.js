@@ -209,7 +209,7 @@ angular.module('shopnxApp')
 
                 //get the value of the other password
                 var e2 = scope.$eval(attrs.passwordMatch);
-                if(e2!=null){
+                if(e2!==null){
                   return e1 === e2;
                 }
             };

@@ -32,6 +32,12 @@ function isAuthenticated() {
         req.user = user;
         next();
       });
+    }).use(function (err, req, res, next) {
+      if (err.name === 'UnauthorizedError') {
+        var e = [];
+        e.push(err);
+        return res.status(401).send(e);
+      }
     });
 }
 

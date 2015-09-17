@@ -7,7 +7,7 @@
 </button>
 
 <div class="modal-header">
-    <h3 class="modal-title">Cart Details</h3> Total Amount: {{cart.getTotalPrice() | currency:"Rs "}} - ({{cart.getTotalCount()}} items)
+    <h3 class="modal-title">Cart Details</h3> Total Amount: {{cart.getTotalPrice() | currency}} - ({{cart.getTotalCount()}} items)
 </div>
 
 <div class="modal-body">
@@ -50,23 +50,23 @@
                 </td>
 
                 <td class="product-name">
-                    <a>{{item.name}}&nbsp;({{item.variants[0].size}})</a>
+                    <a ui-sref="productDetail({id:item.sku, slug:item.slug})">{{item.name}}&nbsp;({{item.variants[0].size}})</a>
                 </td>
 
-                <td>{{item.price | currency:'Rs '}}</td>
+                <td>{{item.price | currency}}</td>
 
                 <td>
                     <div class="input-group" style="width:105px;">
-                      <div class="input-group-addon btn" ng-disabled="item.quantity <= 1" ng-click="cart.addItem(item.sku, item.name, item.mrp, item.price, -1)">-</div>
+                      <div class="input-group-addon btn" ng-disabled="item.quantity <= 1" ng-click="cart.addItem(item.sku, item.name, item.slug, item.mrp, item.price, -1)">-</div>
                       <input class="form-control" type="text" min="1" step="1" ng-model="item.quantity" ng-change="cart.saveItems()">
-                      <div class="input-group-addon btn" ng-disabled="item.quantity >= 1000" ng-click="cart.addItem(item.sku, item.name, item.mrp, item.price, +1)">+</div>
+                      <div class="input-group-addon btn" ng-disabled="item.quantity >= 1000" ng-click="cart.addItem(item.sku, item.name, item.slug, item.mrp, item.price, +1)">+</div>
                     </div>
                 </td>
 
-                <td><span><strong>{{item.price * item.quantity | currency:"Rs "}}</strong></span></td>
+                <td><span><strong>{{item.price * item.quantity | currency}}</strong></span></td>
 
                 <td class="product-actions">
-                    <a title="Remove this item" class="remove" href="" ng-click="cart.addItem(item.sku, item.name,item.mrp, item.price, -10000000)">
+                    <a title="Remove this item" class="remove" href="" ng-click="cart.addItem(item.sku, item.name,item.slug, item.mrp, item.price, -10000000)">
                         <i class="fa fa-times"></i>
                     </a>
                 </td>

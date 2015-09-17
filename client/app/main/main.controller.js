@@ -5,10 +5,10 @@ angular.module('shopnxApp')
     var id = $stateParams.id;
     // var slug = $stateParams.slug;
     // Storing the product id into localStorage because the _id of the selected product which was passed as a hidden parameter from products won't available on page refresh
-    if (localStorage != null && JSON != null && id != null) {
+    if (localStorage !== null && JSON !== null && id !== null) {
         localStorage.productId = id;
     }
-    var productId = localStorage != null ? localStorage.productId : null;
+    var productId = localStorage !== null ? localStorage.productId : null;
 
     $scope.product = Product.get({id:productId},function(data) {
       socket.syncUpdates('product', $scope.data);
@@ -53,7 +53,7 @@ angular.module('shopnxApp')
 
   .controller('MainCtrl', function ($scope, $state, $stateParams, $location, Product, Brand, Category, socket, $rootScope, $injector, $loading) {
 
-    if ($stateParams.productSku != null) {
+    if ($stateParams.productSku) { // != null
         $scope.product = $scope.store.getProduct($stateParams.productSku);
     }
 

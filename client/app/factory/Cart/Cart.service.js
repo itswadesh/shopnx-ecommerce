@@ -13,9 +13,10 @@
     //----------------------------------------------------------------
     // items in the cart
     //
-    function CartItem(sku, name, mrp, price, quantity, image, category, packing) {
+    function CartItem(sku, name, slug, mrp, price, quantity, image, category, packing) {
         this.sku = sku;
         this.name = name;
+        this.slug = slug;
         this.image = image;
         this.category = category;
         this.packing = packing;
@@ -27,23 +28,24 @@
 
     //----------------------------------------------------------------
     // checkout parameters (one per supported payment service)
+    // replaced this.serviceName with serviceName because of jshint complaint
     //
     function checkoutParameters(serviceName, merchantID, options) {
-        this.serviceName = serviceName;
-        this.merchantID = merchantID;
-        this.options = options;
+        serviceName = serviceName;
+        merchantID = merchantID;
+        options = options;
     }
 
   // load items from local storage
   ShoppingCart.prototype.loadItems = function () {
-      var items = localStorage != null ? localStorage[this.cartName + '_items'] : null;
-      if (items != null && JSON != null) {
+      var items = localStorage !== null ? localStorage[this.cartName + '_items'] : null;
+      if (items !== null && JSON !== null) {
           try {
               items = JSON.parse(items);
               for (var i = 0; i < items.length; i++) {
                   var item = items[i];
-                  if (item.sku != null && item.name != null && item.price != null) {
-                      item = new CartItem(item.sku, item.name, item.mrp, item.price, item.quantity, item.image, item.category, item.packing, item.status);
+                  if (item.sku !== null && item.name !== null && item.price !== null) {
+                      item = new CartItem(item.sku, item.name, item.slug, item.mrp, item.price, item.quantity, item.image, item.category, item.packing, item.status);
                       this.items.push(item);
                       this.skuArray.push(item.sku);
                   }
@@ -58,13 +60,13 @@
 
   // save items to local storage
   ShoppingCart.prototype.saveItems = function () {
-      if (localStorage != null && JSON != null) {
+      if (localStorage !== null && JSON !== null) {
           localStorage[this.cartName + '_items'] = JSON.stringify(this.items);
       }
   };
 
   // adds an item to the cart
-  ShoppingCart.prototype.addItem = function (sku, name, mrp, price, quantity, image, category, packing) {
+  ShoppingCart.prototype.addItem = function (sku, name, slug, mrp, price, quantity, image, category, packing) {
       quantity = this.toNumber(quantity);
       if (quantity !== 0) {
           // update quantity for existing item
@@ -83,7 +85,7 @@
 
           // new item, add now
           if (!found) {
-              var itm = new CartItem(sku, name, mrp, price, quantity, image, category, packing, 0);
+              var itm = new CartItem(sku, name, slug, mrp, price, quantity, image, category, packing, 0);
               this.items.push(itm);
               this.skuArray.push(itm.sku);
           }
@@ -98,7 +100,7 @@
       var total = 0;
       for (var i = 0; i < this.items.length; i++) {
           var item = this.items[i];
-          if (sku == null || item.sku === sku) {
+          if (sku === undefined || item.sku === sku) {
               total += this.toNumber(item.quantity * item.price);
           }
       }
@@ -119,7 +121,7 @@
       var count = 0;
       for (var i = 0; i < this.items.length; i++) {
           var item = this.items[i];
-          if (sku == null || item.sku === sku) {
+          if (sku === undefined || item.sku === sku) {
               count += this.toNumber(item.quantity);
           }
       }
@@ -145,7 +147,7 @@
       if (serviceName !== 'PayPal') {
           throw 'Name of the service must be PayPal.';
       }
-      if (merchantID == null) {
+      if (merchantID === null) {
           throw ' Need merchantID in order to checkout.';
       }
 
@@ -157,19 +159,19 @@
   ShoppingCart.prototype.checkout = function (serviceName, clearCart) {
 
       // select serviceName if we have to
-      if (serviceName == null) {
+      if (serviceName === null) {
           var p = this.checkoutParameters[Object.keys(this.checkoutParameters)[0]];
           serviceName = p.serviceName;
       }
 
       // sanity
-      if (serviceName == null) {
+      if (serviceName === null) {
           throw 'Use the addCheckoutParameters method to define at least one checkout service.';
       }
 
       // go to work
       var parms = this.checkoutParameters[serviceName];
-      if (parms == null) {
+      if (parms === null) {
           throw 'Cannot get checkout parameters for ' + serviceName + '.';
       }
       switch (parms.serviceName) {
@@ -215,7 +217,7 @@
       $('body').append(form);
 
       // submit form
-      this.clearCart = clearCart == null || clearCart;
+      this.clearCart = clearCart === null || clearCart;
       form.submit();
       form.remove();
   };
@@ -223,9 +225,9 @@
 
   // utility methods
   ShoppingCart.prototype.addFormFields = function (form, data) {
-      if (data != null) {
+      if (data !== null) {
           $.each(data, function (name, value) {
-              if (value != null) {
+              if (value !== null) {
                   var input = $('<input></input>').attr('type', 'hidden').attr('name', name).val(value);
                   form.append(input);
               }

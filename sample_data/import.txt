@@ -1,6 +1,6 @@
-mongoexport --db angularfullstack-dev --collection products --out products.json &&
-mongoexport --db angularfullstack-dev --collection categories --out categories.json &&
-mongoexport --db angularfullstack-dev --collection brands --out brands.json &&
+mongoexport --db angularfullstack-dev --collection products --out products.json 
+mongoexport --db angularfullstack-dev --collection categories --out categories.json 
+mongoexport --db angularfullstack-dev --collection brands --out brands.json 
 mongoexport --db angularfullstack-dev --collection orders --out orders.json
 
 

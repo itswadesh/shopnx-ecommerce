@@ -86,7 +86,7 @@
                                   <strong>Cart Subtotal</strong>
                               </th>
                               <td>
-                                  <strong><span>{{cart.getTotalPrice() | currency:"Rs "}}</span></strong>
+                                  <strong><span>{{cart.getTotalPrice() | currency}}</span></strong>
                               </td>
                           </tr>
                           <tr class="shipping">
@@ -105,7 +105,7 @@
                                   <strong>Total Payable</strong>
                               </th>
                               <td>
-                                  <strong><span class="amount">{{cart.getTotalPriceAfterShipping() | currency:"Rs "}}</span></strong>
+                                  <strong><span class="amount">{{cart.getTotalPriceAfterShipping() | currency}}</span></strong>
                               </td>
                           </tr>
                       </tbody>

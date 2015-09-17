@@ -18,6 +18,7 @@ module.exports = {
   GOOGLE_ID:        'app-id',
   GOOGLE_SECRET:    'secret',
 
+  OPENSHIFT_MONGODB_DB_URL: 'mongodb://admin:qptNTh25dHPB@shopnx-shopnx.rhcloud.com/shopnx-shopnx',
   // Control debug level for modules using visionmedia/debug
   DEBUG: ''
 };
