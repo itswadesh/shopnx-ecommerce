@@ -1,23 +1,10 @@
 'use strict';
 
 angular.module('shopnxApp')
-.factory('Modal', function ($rootScope, $modal) {
+.factory('Modal',['$rootScope','$modal', function ($rootScope, $modal) {
 
   var obj = {};
-  // function openModal(scope, modalClass,template) {
-  //   var modalScope = $rootScope.$new();
-  //   scope = scope || {};
-  //   modalClass = modalClass || 'modal-default';
-  //
-  //   angular.extend(modalScope, scope);
-  //
-  //   return $modal.open({
-  //     templateUrl: 'components/modal/'+template,
-  //     windowClass: modalClass,
-  //     scope: modalScope
-  //   });
-  // }
-  obj.selectModalInstanceCtrl = function ($scope,$modalInstance, $injector, data, options, toastr) {
+  var selectModalInstanceCtrl = function ($scope,$modalInstance, $injector, data, options, toastr) {
     var api = $injector.get(options.api);
     $scope.data = angular.copy(data);
     $scope.options = options;
@@ -58,24 +45,24 @@ angular.module('shopnxApp')
     };
   };
 
+  // We need to manually inject to be minsafe
+  selectModalInstanceCtrl.$inject = ['$scope', '$modalInstance', '$injector', 'data', 'options', 'toastr'];
+
   obj.show = function(data,options){
-    // del = del || angular.noop;
       var modalOptions = {
-          templateUrl: 'components/modal/detail-modal.html',
-          controller: obj.selectModalInstanceCtrl,
+          templateUrl: 'components/modal/modal.html',
+          controller: selectModalInstanceCtrl,
           controllerAs: 'modal',
-          windowClass: 'ab-modal-window',
+          windowClass: 'modal-danger',
           resolve: {
               data: function () { return data; },
-              options :  function () { return options; }
+              options : function () { return options; }
           }
       };
       $modal.open(modalOptions);
+
   };
 
   return obj;
 
-
-
-
-});
+}]);

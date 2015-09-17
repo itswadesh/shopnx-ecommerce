@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('shopnxApp')
-  .controller('NavbarCtrl', function ($scope, $rootScope, $location, Auth, $modal, Cart, Category, Brand,SortOptions,$q, Product, $state) {
+  .controller('NavbarCtrl', ['$scope', '$rootScope', '$location', 'Auth', '$modal', 'Cart', 'Category', 'Brand', 'SortOptions', '$q', 'Product', '$state', function ($scope, $rootScope, $location, Auth, $modal, Cart, Category, Brand,SortOptions,$q, Product, $state) {
     $rootScope.cart = Cart.cart;
     $scope.menu = [{
       'title': 'Home',
@@ -105,8 +105,9 @@ angular.module('shopnxApp')
         $scope.openCart = function (cart) {
             cart = $scope.cart = cart;
             // console.log(cart);
+
             var modalOptions = {
-                templateUrl: '/components/navbar/cart-edit.html',
+                templateUrl: 'app/cart/cart.html',
                 controller: cartEditCtrl,
                 controllerAs: 'modal',
                 windowClass: 'ab-modal-window',
@@ -115,12 +116,13 @@ angular.module('shopnxApp')
                 }
             };
             $modal.open(modalOptions);
-        };
 
+        };
         var cartEditCtrl = function ($scope, $modalInstance, cart) {
             $scope.cart = cart;
             $scope.cancel = function () {
                 $modalInstance.dismiss('Close');
             };
         };
-  });
+        cartEditCtrl.$inject = ['$scope', '$modalInstance', 'cart'];
+  }]);

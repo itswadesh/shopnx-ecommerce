@@ -1,6 +1,9 @@
 /*.navbar-default .navbar-nav>li>a {
   color: #fff;
 }*/
+.dropdown-menu > li > a {
+    cursor: pointer;
+}
 .megamenu.navbar-default {
   background-color: #000;
   z-index: 10;

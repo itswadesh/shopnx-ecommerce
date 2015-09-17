@@ -58,7 +58,7 @@ angular.module('shopnxApp')
       }
     };}])
 
-.directive('modalWindow', function ($timeout) {
+.directive('modalWindow', ['$timeout', function ($timeout) {
   return {
     priority: 1,
     link: function (scope, element) {
@@ -71,36 +71,36 @@ angular.module('shopnxApp')
       });
     }
   };
-})
+}])
 
-.directive('autoFillCustomer',function(Customer) {
-    return {
-        require: 'ngModel',
-        link: function(scope, element, attrs,ctrl) {
-            scope.$watch(attrs.ngModel, function (val) {
-                if(val){
-                // ctrl.$setValidity('phoneLoading', false);
-                Customer.findOne({filter:{where:{phone:val}}}).then(function (data) {
-                  if(data){
-                    var customer = data.data[0];
-                    scope.customer.name = customer.name;
-                    scope.customer.email = customer.email;
-                    scope.customer.address = customer.address;
-                    scope.customer.city = customer.city;
-                    ctrl.$setValidity('isCustomer', true);
-                  }else{
-                    ctrl.$setValidity('isCustomer', false);
-                  }
-                });
-              }else{
-                    ctrl.$setValidity('isCustomer', false);
-                    scope.customer = '';
-              }
-            });
-        }
-    };
-
-})
+// .directive('autoFillCustomer',function(Customer) {
+//     return {
+//         require: 'ngModel',
+//         link: function(scope, element, attrs,ctrl) {
+//             scope.$watch(attrs.ngModel, function (val) {
+//                 if(val){
+//                 // ctrl.$setValidity('phoneLoading', false);
+//                 Customer.findOne({filter:{where:{phone:val}}}).then(function (data) {
+//                   if(data){
+//                     var customer = data.data[0];
+//                     scope.customer.name = customer.name;
+//                     scope.customer.email = customer.email;
+//                     scope.customer.address = customer.address;
+//                     scope.customer.city = customer.city;
+//                     ctrl.$setValidity('isCustomer', true);
+//                   }else{
+//                     ctrl.$setValidity('isCustomer', false);
+//                   }
+//                 });
+//               }else{
+//                     ctrl.$setValidity('isCustomer', false);
+//                     scope.customer = '';
+//               }
+//             });
+//         }
+//     };
+//
+// })
 
 .directive('sortableColumns', [function () {
     return {
@@ -144,57 +144,52 @@ angular.module('shopnxApp')
     };
 
 }])
-.directive('formElement', function() {
-    return {
-        restrict: 'E',
-        transclude: true,
-        scope: {
-            label : '@',
-            model : '='
-        },
-        link: function(scope, element, attrs) {
-            scope.disabled = attrs.hasOwnProperty('disabled');
-            scope.required = attrs.hasOwnProperty('required');
-            scope.pattern = attrs.pattern || '.*';
-        },
-        template: '<div class="form-group"><label class="col-sm-3 control-label no-padding-right" >  {{label}}</label><div class="col-sm-7"><span class="block input-icon input-icon-right" ng-transclude></span></div></div>'
-      };
+// .directive('formElement', function() {
+//     return {
+//         restrict: 'E',
+//         transclude: true,
+//         scope: {
+//             label : '@',
+//             model : '='
+//         },
+//         link: function(scope, element, attrs) {
+//             scope.disabled = attrs.hasOwnProperty('disabled');
+//             scope.required = attrs.hasOwnProperty('required');
+//             scope.pattern = attrs.pattern || '.*';
+//         },
+//         template: '<div class="form-group"><label class="col-sm-3 control-label no-padding-right" >  {{label}}</label><div class="col-sm-7"><span class="block input-icon input-icon-right" ng-transclude></span></div></div>'
+//       };
+//
+// })
 
-})
+// .directive('onlyNumbers', function() {
+//     return function(scope, element, attrs) {
+//         var keyCode = [8,9,13,37,39,46,48,49,50,51,52,53,54,55,56,57,96,97,98,99,100,101,102,103,104,105,110,190];
+//         element.bind('keydown', function(event) {
+//             if($.inArray(event.which,keyCode) === -1) {
+//                 scope.$apply(function(){
+//                     scope.$eval(attrs.onlyNum);
+//                     event.preventDefault();
+//                 });
+//                 event.preventDefault();
+//             }
+//
+//         });
+//     };
+// })
 
-.directive('onlyNumbers', function() {
-    return function(scope, element, attrs) {
-        var keyCode = [8,9,13,37,39,46,48,49,50,51,52,53,54,55,56,57,96,97,98,99,100,101,102,103,104,105,110,190];
-        element.bind('keydown', function(event) {
-            if($.inArray(event.which,keyCode) === -1) {
-                scope.$apply(function(){
-                    scope.$eval(attrs.onlyNum);
-                    event.preventDefault();
-                });
-                event.preventDefault();
-            }
-
-        });
-    };
-})
-
-/*.directive('focus', function() {
-    return function(scope, element) {
-        element[0].focus();
-    }
-});*/
-.directive('animateOnChange', function($animate) {
-  return function(scope, elem, attr) {
-      scope.$watch(attr.animateOnChange, function(nv,ov) {
-        if (nv!==ov) {
-              var c = 'change-up';
-              $animate.addClass(elem,c, function() {
-              $animate.removeClass(elem,c);
-          });
-        }
-      });
-  };
-})
+// .directive('animateOnChange', function($animate) {
+//   return function(scope, elem, attr) {
+//       scope.$watch(attr.animateOnChange, function(nv,ov) {
+//         if (nv!==ov) {
+//               var c = 'change-up';
+//               $animate.addClass(elem,c, function() {
+//               $animate.removeClass(elem,c);
+//           });
+//         }
+//       });
+//   };
+// })
 
 .directive('passwordMatch', [function () {
     return {
@@ -277,7 +272,7 @@ angular.module('shopnxApp')
       };
     }
   ])
-  .directive('errSrc', function() {
+  .directive('errSrc', [function() {
   return {
     link: function(scope, element, attrs) {
       element.bind('error', function() {
@@ -287,4 +282,4 @@ angular.module('shopnxApp')
       });
     }
   };
-});
+}]);

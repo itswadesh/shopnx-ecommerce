@@ -6,7 +6,7 @@ angular.module('shopnxApp')
       .state('cart', {
         title: 'Details of items in your shopping cart',
         url: '/cart',
-        templateUrl: 'app/cart/cart.html',
-        controller: 'CartCtrl'
+        templateUrl: 'app/cart/cart.html'
+        // controller: 'CartCtrl'
       });
   });

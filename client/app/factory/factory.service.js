@@ -2,21 +2,21 @@
 
 angular.module('shopnxApp')
 // Sample factory (dummy)
-  .factory('factory', function () {
+  .factory('factory', [function () {
     var somValue = 42;
     return {
       someMethod: function () {
         return somValue;
       }
     };
-  })
-  .factory('Product', function($resource) {
+  }])
+  .factory('Product', ['$resource', function($resource) {
     var obj = {};
     obj = $resource('/api/products/:id', null, {'update': { method:'PUT' } });
     return obj;
-  })
+  }])
 
-  .factory('SortOptions', function() {
+  .factory('SortOptions', [function() {
     var obj = {};
     obj.server= [
        {name:'Price Asc', val:{'variants.price':1}},
@@ -31,22 +31,22 @@ angular.module('shopnxApp')
        {name:'Name Desc', val:'-name'}
     ];
     return obj;
-  })
+  }])
 
-  .factory('Category', function($resource) {
+  .factory('Category', ['$resource', function($resource) {
     var obj = {};
     obj = $resource('/api/category/:id', null, {'update': { method:'PUT' }});
     obj.parent = $resource('/api/category/parent/:id', null, {'update': { method:'PUT' }});
     obj.all = $resource('/api/category/all', null, {'update': { method:'PUT' }});
     return obj;
-  })
-  .factory('Brand', function($resource) {
+  }])
+  .factory('Brand', ['$resource', function($resource) {
     return $resource('/api/brands/:id', null, {'update': { method:'PUT' } });
-  })
-  .factory('Customer', function($resource) {
+  }])
+  .factory('Customer', ['$resource', function($resource) {
     return $resource('/api/customers/:id', null, {'update': { method:'PUT' } });
-  })
-  .factory('Order', function($resource) {
+  }])
+  .factory('Order', ['$resource', function($resource) {
     var obj = {};
     obj = $resource('/api/orders/:id', null, {'update': { method:'PUT' } });
     obj.my = $resource('/api/orders/my', null, {'update': { method:'PUT' }});
@@ -61,33 +61,4 @@ angular.module('shopnxApp')
       {name:'Not in Stock', val:404}
     ];
     return obj;
-  });
-
-  // Product.prototype.update = function(cb) {
-  //   return Product.update({
-  //     id: this.id
-  //   }, angular.extend({}, this, {
-  //     _id: undefined
-  //   }), cb);
-  // }
-
-
-    // var Product = $resource('/api/products/:id', {id: '@id'}, {
-    //   'put': {method: 'PUT', params: {id: 'id'}, isArray: false}
-    // });
-    //
-    // Product.prototype.$save = function() {
-    //   console.log(this);
-    //     if (this._id) {
-    //         return this.$update();
-    //     } else {
-    //         return this.$create();
-    //     }
-    // };
-    //
-    //
-    // Todo.get({id: 123}, function(todo) {
-    //    todo.foo += '!';
-    //    todo.$save();
-    // });
-    //  return Product;
+  }]);

@@ -45,8 +45,9 @@
         <li ng-hide="isLoggedIn()" ng-class="{active: isActive('/login')}"><a href="/login">Login</a></li>
         <li ng-show="isLoggedIn()"><p class="navbar-text">Hello {{ getCurrentUser().name }}</p> </li>
 
-        <li class="dropdown" ng-show="isLoggedIn()">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-dashboard">&nbsp;</i>Dashboard <span class="caret"></span></a>
+        <li class="dropdown" ng-show="isLoggedIn()" dropdown="">
+          <a href="#" dropdown-toggle="" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-dashboard">&nbsp;</i>Dashboard<b class="caret"></b>
+            </a>
           <ul class="dropdown-menu" role="menu">
             <li ng-show="isAdmin()" ng-class="{active: isActive('/product')}">
               <a href="/product"><i class="fa fa-truck">&nbsp;</i>Products</a>
