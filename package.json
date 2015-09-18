@@ -1,6 +1,24 @@
 {
   "name": "shopnx",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "ShopNx AngularJS Full Stack Shopping Cart Application",
+  "keywords": [
+    "CodeNx",
+    "Node.js",
+    "application",
+    "AngularJS",
+    "Express",
+    "Mean",
+    "MongoDB",
+    "Shopping Cart",
+    "Single Page Web App"
+  ],
+  "author": {
+    "name": "Swadesh",
+    "email": "itswadesh@gmail.com",
+    "url": "http://www.codenx.com/"
+  },
+  "homepage": "http://www.codenx.com/",
   "main": "server/app.js",
   "dependencies": {
     "async": "^1.4.2",
