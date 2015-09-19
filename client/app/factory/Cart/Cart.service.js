@@ -31,9 +31,9 @@
     // replaced this.serviceName with serviceName because of jshint complaint
     //
     function checkoutParameters(serviceName, merchantID, options) {
-        serviceName = serviceName;
-        merchantID = merchantID;
-        options = options;
+        this.serviceName = serviceName;
+        this.merchantID = merchantID;
+        this.options = options;
     }
 
   // load items from local storage
@@ -213,6 +213,7 @@
       form.attr('method', 'POST');
       form.attr('style', 'display:none;');
       this.addFormFields(form, data);
+      if(!parms.options){parms.options = {};}
       this.addFormFields(form, parms.options);
       $('body').append(form);
 

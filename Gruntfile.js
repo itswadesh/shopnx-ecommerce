@@ -345,7 +345,7 @@ module.exports = function (grunt) {
             '.htaccess',
             'bower_components/**/*.min.js                              ',
             'assets/images/{,*/}*.{webp}',
-            'assets/fonts/**/*',
+            'fonts/**/*',
             'index.html'
           ]
         }, {
@@ -387,12 +387,6 @@ module.exports = function (grunt) {
       openshift: {
         options: {
           remote: 'openshift',
-          branch: 'master'
-        }
-      },
-      shopnx: {
-        options: {
-          remote: 'https://github.com/itswadesh/shopnx                                     ',
           branch: 'master'
         }
       }

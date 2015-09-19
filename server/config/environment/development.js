@@ -5,7 +5,7 @@
 module.exports = {
   // MongoDB connection options
   mongo: {
-    uri: 'mongodb://localhost/angularfullstack-dev'
+    uri: 'mongodb://localhost/shopnx-dev'
   },
 
   seedDB: true

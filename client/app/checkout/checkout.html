@@ -1,5 +1,6 @@
 <div class="container">
 <div class="col-md-12">
+  <div class="row">
   <h4 class="blog-post-title">Checkout</h4>
   <hr/>
   <div class="row featured-boxes" ng-hide="cart.getTotalCount() > 0">
@@ -14,9 +15,9 @@
       </div>
   </div>
 
-
-  <form name="checkout_form" class="form-horizontal" role="form" novalidate ng-show="cart.getTotalCount() > 0">
     <div class="panel panel-danger col-md-6">
+      <form name="checkout_form" class="form-horizontal" role="form" novalidate ng-show="cart.getTotalCount() > 0">
+
       <div class="panel-heading">
             <h3 class="panel-title">Enter shipping details</h3>
       </div>
@@ -70,8 +71,9 @@
               </div>
           </div>
 
-  						</form>
+
   					</div>
+            </form>
   				</div>
   			<div class="col-md-6">
               <div class="panel panel-primary" ng-if="cart.getTotalCount()>0">
@@ -112,7 +114,7 @@
                   </table>
                     </div>
               </div>
-
-  			</div>
-  		</div>
-</div>
+          </div>
+  			</div> <!--row-->
+  		</div><!--col-md-12-->
+</div><!--container-->

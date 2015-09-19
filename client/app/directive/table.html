@@ -41,7 +41,7 @@
               </tr>
           </thead>
           <tbody>
-            <i class="fa fa-cog fa-spin fa-2x" ng-if="loadingTable"></i>
+            <!-- <i class="fa fa-cog fa-spin fa-2x" ng-if="loadingTable"></i> -->
               <tr ng-repeat="p in data.slice().reverse() | filter:filter track by p._id" id="{{p._id}}" ts-repeat>
                   <td>{{$index+1}}</td>
                   <td ng-repeat="c in cols" ng-switch="c.dataType">

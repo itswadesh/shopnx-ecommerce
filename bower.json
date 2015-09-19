@@ -16,13 +16,13 @@
     "angular-ui-router": "~0.2.15",
     "bootstrap": "~3.1.1",
     "checklist-model": "~0.5.0",
-    "components-font-awesome": "~4.4.0",
     "es5-shim": "~3.0.1",
-    "font-awesome": ">=4.1.0",
     "json3": "~3.3.1",
     "lodash": "~2.4.1",
     "ngInfiniteScroll": "~1.2.1",
-    "angularjs-slider": "~0.1.29"
+    "angularjs-slider": "~0.1.29",
+    "components-font-awesome": "~4.4.0",
+    "font-awesome": "~4.4.0"
   },
   "devDependencies": {
     "angular-mocks": ">=1.2.*",

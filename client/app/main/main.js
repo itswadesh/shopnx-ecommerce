@@ -23,6 +23,7 @@ angular.module('shopnxApp')
         controller: 'ProductDetailsCtrl'
       })
       .state('SubProduct', {
+        title: 'All products under current category or brand',
         url: '/:page/:slug/:_id',
         templateUrl: 'app/main/main.html',
         controller: 'MainCtrl',
