@@ -5,42 +5,37 @@ A single page Shopping Cart web applications with many necessary features of an 
 # Requirements
 Install the following 2 softwares
 
-    Node http://nodejs.org/ (Server)
-    MongoDB https://www.mongodb.org/ (Database)
+1.    Node http://nodejs.org/ (Server)
+2.    MongoDB https://www.mongodb.org/ (Database)
 
 # Install
 Run the following commands and the application will start automatically
 
-    npm install yo -g (Install yeoman for scaffolding web application)
-    npm install grunt-cli -g (This creates and runs javascript repetative tasks )
-    npm install bower -g ( A frontend package manager for web applications)
-    npm install (Install all nodejs dependencies, also automatically installs bower components)
-    grunt serve
+1.    npm install yo -g (Install yeoman for scaffolding web application)
+2.    npm install grunt-cli -g (This creates and runs javascript repetative tasks )
+3.    npm install bower -g ( A frontend package manager for web applications)
+4.    npm install (Install all nodejs dependencies, also automatically installs bower components)
+5.    grunt serve
 
 # Features
-* Store Front features
-  Fastest shop ever experienced
-  Product Search
-  Product Filter
-  Add to Cart
-  Checkout
-  Simple User Registration process
-  A Global chat room
-  Invoice generation
-  Order history
-  Multi level category
-  Mobile friendly
-  Instantly updates any changes made across all clients
+### Store Front features
+*  Single page web app (SPA) created using AngularJS, NodeJS, Express, MongoDB (MEAN)
+*  Fastest shop experience
+*  Fast Product Search, Filter with AJAX
+*  Price slider and multiple brand selector
+*  Faster Add to Cart and Product Details
+*  Checkout with Paypal Integration
+*  Minimal User Registration process
+*  Order history and Password Management
+*  Facility for Multi level Category
+*  Mobile optimized with Bootstrap
+*  Instant updates for any changes made across all clients with SocketIO implementation
+*  OAUTH login with facebook, gmail, twitter
 
-* Store Back Office
-  Product Management with stock (inventory)
-  Category Management
-  Brand Selection
-  Download Invoice
-  All Orders in 1 page
-  Multiple product variants (size, color, price)
-
-There are automated scripts that automatically generates the following modules for your AngularJS ecommerce application
-
-NodeJS CRUD modules (ReST API)
-AngularJS controller, partial pages, directives, filters ...
+### Store Back Office
+*  Products, Categories, Brand, Order Management from admin panel with easy directives
+*  Manage Order and Change Status from admin panel
+*  Facility for Multiple product variants (size, color, price, image)
+*  User roles - Administrator, User, Guest
+*  SEO friendly URLs for each page
+*  Secure and quality code - Takes care all single page web app standards

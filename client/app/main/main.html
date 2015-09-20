@@ -84,10 +84,9 @@
             <img ng-src="/assets/img/{{product.variants[0].image}}"
                 err-src="/assets/img/photo.png"
                 alt="{{product.name}}" width="140" height="140">
-<!-- src="http://s.angularcode.com/img/{{product.variants[0].image}}" -->
           </a>
       </div>
-  <!-- /{{product.category}}/{{product.variants[0].image}} -->
+
       <div class="itemName">
           <a ui-sref="productDetail({id:product._id, slug:product.slug})">
               <span>{{product.name}}  </span>
@@ -109,7 +108,6 @@
       </div>
   </div>
 </div>
-  <!-- <div ng-show='products.busy'>Loading data...</div> -->
 
 </div> <!-- infinite-scroll -->
 
