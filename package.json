@@ -18,11 +18,11 @@
     "email": "itswadesh@gmail.com",
     "url": "http://www.codenx.com/"
   },
-  "homepage": "http://www.codenx.com/",
+  "homepage": "http://biri.in/",
   "main": "server/app.js",
   "dependencies": {
     "async": "^1.4.2",
-    "body-parser": "~1.5.0",
+    "body-parser": "^1.5.2",
     "composable-middleware": "^0.3.0",
     "compression": "~1.0.1",
     "connect-mongo": "^0.8.1",

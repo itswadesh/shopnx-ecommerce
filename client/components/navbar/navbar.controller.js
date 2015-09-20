@@ -3,7 +3,7 @@
 angular.module('shopnxApp')
   .controller('NavbarCtrl', ['$scope', '$rootScope', '$location', 'Auth', '$modal', 'Cart', 'Category', 'Brand', 'SortOptions', '$q', 'Product', '$state', function ($scope, $rootScope, $location, Auth, $modal, Cart, Category, Brand,SortOptions,$q, Product, $state) {
     $scope.hideSubMenu = function(){
-      $('.megamenu .dropdown:hover .dropdown-menu').hide(); // Hide the navbar submenu once a category is selected
+      // $('.megamenu .dropdown:hover .dropdown-menu').hide(); // Hide the navbar submenu once a category is selected
     }
     $rootScope.cart = Cart.cart;
     $scope.menu = [{

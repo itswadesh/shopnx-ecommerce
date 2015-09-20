@@ -30,7 +30,7 @@ Run the following commands and the application will start automatically
 *  Facility for Multi level Category
 *  Mobile optimized with Bootstrap
 *  Instant updates for any changes made across all clients with SocketIO implementation
-*  OAUTH login with facebook, gmail, twitter
+*  Loads more products on scroll (No paging required)
 
 ### Store Back Office
 *  Products, Categories, Brand, Order Management from admin panel with easy directives
@@ -39,3 +39,6 @@ Run the following commands and the application will start automatically
 *  User roles - Administrator, User, Guest
 *  SEO friendly URLs for each page
 *  Secure and quality code - Takes care all single page web app standards
+
+### Future Plan
+* Plan to add OAUTH login with facebook, gmail, twitter

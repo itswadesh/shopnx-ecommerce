@@ -2,7 +2,18 @@
 
 angular.module('shopnxApp')
   .controller('ProductCtrl', function ($scope, socket, Product, Category, Brand, Modal, toastr) {
-    var cols = ['sku','name','nameLower','slug','status','info','uid', 'active','img'];
+    var cols = [
+      {heading:'sku',dataType:'text', sortType:'lowercase'},
+      {heading:'name',dataType:'text', sortType:'lowercase'},
+      {heading:'nameLower',dataType:'text', sortType:'lowercase'},
+      {heading:'slug',dataType:'text', sortType:'lowercase'},
+      {heading:'status',dataType:'text', sortType:'lowercase'},
+      {heading:'info',dataType:'text', sortType:'lowercase'},
+      {heading:'uid',dataType:'text', sortType:'lowercase'},
+      {heading:'active',dataType:'boolean', sortType:'lowercase'},
+      {heading:'img',dataType:'text', sortType:'lowercase'}
+    ];
+    // var cols = ['sku','name','nameLower','slug','status','info','uid', 'active','img'];
     $scope.products = [];
     $scope.product = {};
     $scope.variant = {};
