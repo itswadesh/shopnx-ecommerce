@@ -13,16 +13,24 @@ angular.module('shopnxApp')
   .factory('Product', ['$resource', function($resource) {
     var obj = {};
     obj = $resource('/api/products/:id', null, {'update': { method:'PUT' } });
+    obj.count = $resource('/api/products/count', null, {'update': { method:'PUT' }});
+    return obj;
+  }])
+
+  .factory('Shipping', ['$resource', function($resource) {
+    var obj = {};
+    obj = $resource('/api/shippings/:id', null, {'update': { method:'PUT' } });
+    obj.best = $resource('/api/shippings/best', null, {'update': { method:'PUT' }});
     return obj;
   }])
 
   .factory('SortOptions', [function() {
     var obj = {};
     obj.server= [
-       {name:'Price Asc', val:{'variants.price':1}},
-       {name:'Price Desc', val:{'variants.price':-1}},
-       {name:'Name Asc', val:{'name':1}},
-       {name:'Name Desc', val:{'name':-1}}
+       {name:'Low Price', val:{'variants.price':1}},
+       {name:'Hign Price', val:{'variants.price':-1}},
+       {name:'Name (A-Z)', val:{'name':1}},
+       {name:'Name (Z-A)', val:{'name':-1}}
     ];
     obj.client= [
        {name:'Price Asc', val:'variants[0].price'},
@@ -40,11 +48,35 @@ angular.module('shopnxApp')
     obj.all = $resource('/api/category/all', null, {'update': { method:'PUT' }});
     return obj;
   }])
+  .factory('Country', ['$resource', function($resource) {
+    return $resource('/api/countries/:id', null, {'update': { method:'PUT' } });
+  }])
   .factory('Brand', ['$resource', function($resource) {
     return $resource('/api/brands/:id', null, {'update': { method:'PUT' } });
   }])
+  .factory('Coupon', ['$resource', function($resource) {
+    return $resource('/api/coupons/:id', null, {'update': { method:'PUT' } });
+  }])
+  // .factory('Shipping', ['$resource', function($resource) {
+  //   return $resource('/api/shippings/:id', null, {'update': { method:'PUT' } });
+  // }])
+  .factory('Feature', ['$resource', function($resource) {
+    var obj = {};
+    obj = $resource('/api/features/:id', null, {'update': { method:'PUT' } });
+    obj.group = $resource('/api/features/group', null, {'update': { method:'PUT' }});
+    return obj;
+  }])
+  .factory('PaymentMethod', ['$resource', function($resource) {
+    var obj = {};
+    obj = $resource('/api/PaymentMethods/:id', null, {'update': { method:'PUT' } });
+    obj.active = $resource('/api/PaymentMethods/active', null, {'update': { method:'PUT' }});
+    return obj;
+  }])
   .factory('Customer', ['$resource', function($resource) {
     return $resource('/api/customers/:id', null, {'update': { method:'PUT' } });
+  }])
+  .factory('Setting', ['$resource', function($resource) {
+    return $resource('/api/settings/:id', null, {'update': { method:'PUT' } });
   }])
   .factory('Order', ['$resource', function($resource) {
     var obj = {};

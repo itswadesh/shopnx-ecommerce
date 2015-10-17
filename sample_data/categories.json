@@ -1,131 +1,20 @@
-{"__v":1,"_id":{"$oid":"55ed1d3d3b4f0edec5252bfd"},"active":true,"category":"1","info":"Bedroom","name":"Bedroom","parentCategory":0,"slug":"bedroom","sub_categories":[],"uid":"admin@admin.com","updated":{"$date":"2015-09-14T13:07:58.629Z"}}
-{"__v":1,"_id":{"$oid":"55ed1d3d3b4f0edec5252bfe"},"active":true,"category":"2","info":"Bathroom","name":"Bathroom","parentCategory":0,"slug":"bathroom","sub_categories":[],"uid":"admin@admin.com","updated":{"$date":"2015-09-14T13:08:02.680Z"}}
-{"__v":1,"_id":{"$oid":"55ed1d3d3b4f0edec5252bff"},"active":true,"category":"4","info":"Cleaning World","name":"Cleaning World","parentCategory":0,"slug":"cleaning-world","sub_categories":[],"uid":"admin@admin.com","updated":{"$date":"2015-09-14T13:08:04.301Z"}}
-{"__v":1,"_id":{"$oid":"55ed1d3d3b4f0edec5252c00"},"active":false,"category":"130","info":"Deodrants","name":"Deodrants","parentCategory":2,"slug":"deodrants","sub_categories":[],"uid":"admin@admin.com","updated":{"$date":"2015-09-14T13:30:36.815Z"}}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c01"},"category":"170","info":"Shower Gel","name":"Shower Gel","parentCategory":2.0,"slug":"shower-gel"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c02"},"category":"190","info":"Moisturisers","name":"Moisturisers","parentCategory":2.0,"slug":"moisturisers"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c03"},"category":"210","info":"Hair Oil","name":"Hair Oil","parentCategory":2.0,"slug":"hair-oil"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c04"},"category":"230","info":"Hair Conditioner","name":"Hair Conditioner","parentCategory":2.0,"slug":"hair-conditioner"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c05"},"category":"260","info":"Hair Gel","name":"Hair Gel","parentCategory":2.0,"slug":"hair-gel"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c06"},"category":"300","info":"Face Scrub","name":"Face Scrub","parentCategory":2.0,"slug":"face-scrub"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c07"},"category":"320","info":"Face Pack","name":"Face Pack","parentCategory":2.0,"slug":"face-pack"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c08"},"category":"340","info":"Kajal","name":"Kajal","parentCategory":2.0,"slug":"kajal"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c09"},"category":"380","info":"Razor","name":"Razor","parentCategory":2.0,"slug":"razor"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c0a"},"category":"400","info":"shaving Cream","name":"shaving Cream","parentCategory":2.0,"slug":"shaving-cream"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c0b"},"category":"430","info":"shaving Gel","name":"shaving Gel","parentCategory":2.0,"slug":"shaving-gel"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c0c"},"category":"450","info":"Sanitary Protections","name":"Sanitary Protections","parentCategory":2.0,"slug":"sanitary-protections"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c0d"},"category":"470","info":"Pedicure Tool","name":"Pedicure Tool","parentCategory":2.0,"slug":"pedicure-tool"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c0e"},"category":"500","info":"Bucket","name":"Bucket","parentCategory":2.0,"slug":"bucket"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c0f"},"category":"2110","info":"Tooth Paste","name":"Tooth Paste","parentCategory":2.0,"slug":"tooth-paste"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c10"},"category":"4005","info":"Air Freshener","name":"Air Freshener","parentCategory":4.0,"slug":"air-freshener"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c11"},"category":"4015","info":"Toilet Cleaner","name":"Toilet Cleaner","parentCategory":4.0,"slug":"toilet-cleaner"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c12"},"category":"4020","info":"Surface Cleaner","name":"Surface Cleaner","parentCategory":4.0,"slug":"surface-cleaner"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c13"},"category":"4030","info":"Scrub Pad","name":"Scrub Pad","parentCategory":4.0,"slug":"scrub-pad"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c14"},"category":"4040","info":"Dishwash","name":"Dishwash","parentCategory":4.0,"slug":"dishwash"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c15"},"category":"4050","info":"Broms","name":"Broms","parentCategory":4.0,"slug":"broms"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c16"},"category":"4060","info":"CFLBlbu","name":"CFLBlbu","parentCategory":4.0,"slug":"cflblbu"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c17"},"category":"4070","info":"Detergent Powder","name":"Detergent Powder","parentCategory":4.0,"slug":"detergent-powder"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c18"},"category":"4085","info":"Liquid Stiffener","name":"Liquid Stiffener","parentCategory":4.0,"slug":"liquid-stiffener"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c19"},"category":"4100","info":"Liquid Fabric Whitener","name":"Liquid Fabric Whitener","parentCategory":4.0,"slug":"liquid-fabric-whitener"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c1a"},"category":"4120","info":"Hanger","name":"Hanger","parentCategory":4.0,"slug":"hanger"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c1b"},"category":"4130","info":"Dust Pan","name":"Dust Pan","parentCategory":4.0,"slug":"dust-pan"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c1c"},"category":"5000","info":"Masala","name":"Masala","parentCategory":3.0,"slug":"masala"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c1d"},"category":"5010","info":"Grinded Spice","name":"Grinded Spice","parentCategory":3.0,"slug":"grinded-spice"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c1e"},"category":"5025","info":"Coffee","name":"Coffee","parentCategory":3.0,"slug":"coffee"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c1f"},"category":"5035","info":"Rice","name":"Rice","parentCategory":1000.0,"slug":"rice"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c20"},"category":"5045","info":"Suji","name":"Suji","parentCategory":1000.0,"slug":"suji"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c21"},"category":"5055","info":"Pickle","name":"Pickle","parentCategory":3.0,"slug":"pickle"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c22"},"category":"5065","info":"Mouth Freshener","name":"Mouth Freshener","parentCategory":3.0,"slug":"mouth-freshener"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c23"},"category":"5080","info":"Cream Biscuit","name":"Cream Biscuit","parentCategory":3.0,"slug":"cream-biscuit"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c24"},"category":"5090","info":"Rusk","name":"Rusk","parentCategory":3.0,"slug":"rusk"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c25"},"category":"5105","info":"Cereals","name":"Cereals","parentCategory":3.0,"slug":"cereals"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c26"},"category":"5125","info":"Vegetable Oil","name":"Vegetable Oil","parentCategory":3.0,"slug":"vegetable-oil"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c27"},"category":"5135","info":"Sunflower Oil","name":"Sunflower Oil","parentCategory":3.0,"slug":"sunflower-oil"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c28"},"category":"5145","info":"Mustard Oil","name":"Mustard Oil","parentCategory":3.0,"slug":"mustard-oil"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c29"},"category":"5155","info":"Soyabean Oil","name":"Soyabean Oil","parentCategory":3.0,"slug":"soyabean-oil"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c2a"},"category":"5165","info":"Corn Flour","name":"Corn Flour","parentCategory":3.0,"slug":"corn-flour"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c2b"},"category":"5175","info":"sugar","name":"sugar","parentCategory":3.0,"slug":"sugar"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c2c"},"category":"6000","info":"Infant Cereal","name":"Infant Cereal","parentCategory":1.0,"slug":"infant-cereal"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c2d"},"category":"6010","info":"Baby Soap","name":"Baby Soap","parentCategory":1.0,"slug":"baby-soap"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c2e"},"category":"6025","info":"Baby Lotion","name":"Baby Lotion","parentCategory":1.0,"slug":"baby-lotion"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c2f"},"category":"6040","info":"Baby Shampoo","name":"Baby Shampoo","parentCategory":1.0,"slug":"baby-shampoo"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c30"},"category":"7000","info":"Juices","name":"Juices","parentCategory":5.0,"slug":"juices"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c31"},"category":"7020","info":"Soft Drinks","name":"Soft Drinks","parentCategory":5.0,"slug":"soft-drinks"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c32"},"category":"7030","info":"Energy Drinks","name":"Energy Drinks","parentCategory":5.0,"slug":"energy-drinks"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c33"},"category":"7050","info":"Ice Tea","name":"Ice Tea","parentCategory":5.0,"slug":"ice-tea"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c34"},"category":"7070","info":"Soda","name":"Soda","parentCategory":5.0,"slug":"soda"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c35"},"category":"3","info":"Kitchen","name":"Kitchen","parentCategory":0,"slug":"kitchen"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c36"},"category":"5","info":"Refrigerator","name":"Refrigerator","parentCategory":0,"slug":"refrigerator"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c37"},"category":"21","info":"Dental Care","name":"Dental Care","parentCategory":2.0,"slug":"dental-care"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c38"},"category":"40","info":"HOME CARE","name":"HOME CARE","parentCategory":4.0,"slug":"home-care"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c39"},"category":"140","info":"Soaps","name":"Soaps","parentCategory":2.0,"slug":"soaps"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c3a"},"category":"160","info":"Hand Wash","name":"Hand Wash","parentCategory":2.0,"slug":"hand-wash"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c3b"},"category":"180","info":"Powder","name":"Powder","parentCategory":1.0,"slug":"powder"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c3c"},"category":"200","info":"Shampoo","name":"Shampoo","parentCategory":2.0,"slug":"shampoo"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c3d"},"category":"220","info":"Gulab Jal","name":"Gulab Jal","parentCategory":2.0,"slug":"gulab-jal"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c3e"},"category":"240","info":"Hair Brush","name":"Hair Brush","parentCategory":2.0,"slug":"hair-brush"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c3f"},"category":"250","info":"Hair Colour","name":"Hair Colour","parentCategory":2.0,"slug":"hair-colour"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c40"},"category":"270","info":"Mehendi","name":"Mehendi","parentCategory":2.0,"slug":"mehendi"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c41"},"category":"280","info":"Face Wash","name":"Face Wash","parentCategory":2.0,"slug":"face-wash"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c42"},"category":"290","info":"Face Cream","name":"Face Cream","parentCategory":2.0,"slug":"face-cream"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c43"},"category":"310","info":"Lip Balm","name":"Lip Balm","parentCategory":2.0,"slug":"lip-balm"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c44"},"category":"330","info":"Cold Cream","name":"Cold Cream","parentCategory":2.0,"slug":"cold-cream"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c45"},"category":"360","info":"Tooth Brush","name":"Tooth Brush","parentCategory":2.0,"slug":"tooth-brush"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c46"},"category":"370","info":"Mouthwash","name":"Mouthwash","parentCategory":2.0,"slug":"mouthwash"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c47"},"category":"390","info":"Blades","name":"Blades","parentCategory":2.0,"slug":"blades"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c48"},"category":"410","info":"Shaving Foams","name":"Shaving Foams","parentCategory":2.0,"slug":"shaving-foams"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c49"},"category":"420","info":"After Shave","name":"After Shave","parentCategory":2.0,"slug":"after-shave"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c4a"},"category":"440","info":"Shaving Brush","name":"Shaving Brush","parentCategory":2.0,"slug":"shaving-brush"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c4b"},"category":"460","info":"Hair Remover","name":"Hair Remover","parentCategory":2.0,"slug":"hair-remover"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c4c"},"category":"480","info":"Nail Color Remover","name":"Nail Color Remover","parentCategory":2.0,"slug":"nail-color-remover"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c4d"},"category":"490","info":"Bath Brush","name":"Bath Brush","parentCategory":2.0,"slug":"bath-brush"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c4e"},"category":"510","info":"Mugs","name":"Mugs","parentCategory":2.0,"slug":"mugs"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c4f"},"category":"1000","info":"Granular","name":"Granular","parentCategory":3.0,"slug":"granular"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c50"},"category":"4000","info":"Home Utility","name":"Home Utility","parentCategory":4.0,"slug":"home-utility"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c51"},"category":"4010","info":"Insect Repellent","name":"Insect Repellent","parentCategory":4.0,"slug":"insect-repellent"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c52"},"category":"4025","info":"Tissue Paper","name":"Tissue Paper","parentCategory":4.0,"slug":"tissue-paper"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c53"},"category":"4035","info":"Household Cleaner","name":"Household Cleaner","parentCategory":4.0,"slug":"household-cleaner"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c54"},"category":"4045","info":"Wipes","name":"Wipes","parentCategory":4.0,"slug":"wipes"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c55"},"category":"4055","info":"Battery","name":"Battery","parentCategory":4.0,"slug":"battery"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c56"},"category":"4065","info":"Torches","name":"Torches","parentCategory":4.0,"slug":"torches"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c57"},"category":"4075","info":"Detergent Bar","name":"Detergent Bar","parentCategory":4.0,"slug":"detergent-bar"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c58"},"category":"4080","info":"Liquid Detergent","name":"Liquid Detergent","parentCategory":4.0,"slug":"liquid-detergent"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c59"},"category":"4090","info":"Liquid Ddishwash","name":"Liquid Ddishwash","parentCategory":4.0,"slug":"liquid-ddishwash"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c5a"},"category":"4115","info":"Toilet Brush","name":"Toilet Brush","parentCategory":4.0,"slug":"toilet-brush"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c5b"},"category":"4125","info":"Cloth Clips","name":"Cloth Clips","parentCategory":4.0,"slug":"cloth-clips"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c5c"},"category":"4135","info":"Car Perfume","name":"Car Perfume","parentCategory":4.0,"slug":"car-perfume"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c5d"},"category":"4140","info":"Car Cleaning","name":"Car Cleaning","parentCategory":4.0,"slug":"car-cleaning"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c5e"},"category":"4145","info":"Car Polish","name":"Car Polish","parentCategory":4.0,"slug":"car-polish"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c5f"},"category":"4150","info":"Car Shampoo","name":"Car Shampoo","parentCategory":4.0,"slug":"car-shampoo"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c60"},"category":"4155","info":"Shoe Care","name":"Shoe Care","parentCategory":4.0,"slug":"shoe-care"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c61"},"category":"5005","info":"Whole Spice","name":"Whole Spice","parentCategory":3.0,"slug":"whole-spice"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c62"},"category":"5015","info":"Tea Bag","name":"Tea Bag","parentCategory":1000.0,"slug":"tea-bag"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c63"},"category":"5020","info":"Tea","name":"Tea","parentCategory":3.0,"slug":"tea"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c64"},"category":"5030","info":"Dairy Whitener","name":"Dairy Whitener","parentCategory":3.0,"slug":"dairy-whitener"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c65"},"category":"5040","info":"Dal","name":"Dal","parentCategory":1000.0,"slug":"dal"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c66"},"category":"5050","info":"Soya Chunks","name":"Soya Chunks","parentCategory":3.0,"slug":"soya-chunks"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c67"},"category":"5060","info":"Sauce","name":"Sauce","parentCategory":3.0,"slug":"sauce"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c68"},"category":"5070","info":"Vinegar","name":"Vinegar","parentCategory":3.0,"slug":"vinegar"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c69"},"category":"5075","info":"Biscuits","name":"Biscuits","parentCategory":3.0,"slug":"biscuits"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c6a"},"category":"5085","info":"Crackers","name":"Crackers","parentCategory":3.0,"slug":"crackers"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c6b"},"category":"5100","info":"Jams","name":"Jams","parentCategory":3.0,"slug":"jams"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c6c"},"category":"5110","info":"Honey","name":"Honey","parentCategory":3.0,"slug":"honey"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c6d"},"category":"5115","info":"Agarbatti","name":"Agarbatti","parentCategory":3.0,"slug":"agarbatti"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c6e"},"category":"5120","info":"Cotton Batti","name":"Cotton Batti","parentCategory":3.0,"slug":"cotton-batti"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c6f"},"category":"5130","info":"Ghee","name":"Ghee","parentCategory":3.0,"slug":"ghee"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c70"},"category":"5140","info":"Olive Oil","name":"Olive Oil","parentCategory":3.0,"slug":"olive-oil"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c71"},"category":"5150","info":"Groundnut Oil","name":"Groundnut Oil","parentCategory":3.0,"slug":"groundnut-oil"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c72"},"category":"5160","info":"Wheat Flour","name":"Wheat Flour","parentCategory":3.0,"slug":"wheat-flour"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c73"},"category":"5170","info":"Maida","name":"Maida","parentCategory":3.0,"slug":"maida"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c74"},"category":"5180","info":"Salts","name":"Salts","parentCategory":3.0,"slug":"salts"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c75"},"category":"6005","info":"Diapers","name":"Diapers","parentCategory":1.0,"slug":"diapers"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c76"},"category":"6015","info":"Baby Wipes","name":"Baby Wipes","parentCategory":1.0,"slug":"baby-wipes"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c77"},"category":"6020","info":"Baby Powder","name":"Baby Powder","parentCategory":1.0,"slug":"baby-powder"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c78"},"category":"6030","info":"Baby Oil","name":"Baby Oil","parentCategory":1.0,"slug":"baby-oil"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c79"},"category":"6035","info":"Bbaby Cream","name":"Bbaby Cream","parentCategory":1.0,"slug":"bbaby-cream"}
-{"__v":1,"_id":{"$oid":"55ed1d3d3b4f0edec5252c7a"},"active":true,"category":"6045","info":"Adhesive Tape","name":"Adhesive Tape","parentCategory":1.0,"slug":"adhesive-tape","sub_categories":[],"uid":"admin@admin.com","updated":{"$date":"2015-09-14T13:08:10.744Z"}}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c7b"},"category":"7010","info":"Instant Drink Mix","name":"Instant Drink Mix","parentCategory":5.0,"slug":"instant-drink-mix"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c7c"},"category":"7040","info":"Water","name":"Water","parentCategory":5.0,"slug":"water"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c7d"},"category":"7060","info":"Cold Coffe","name":"Cold Coffe","parentCategory":5.0,"slug":"cold-coffe"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c7e"},"category":"7080","info":"Health Drinks","name":"Health Drinks","parentCategory":1.0,"slug":"health-drinks"}
-{"_id":{"$oid":"55ed1d3d3b4f0edec5252c7f"},"category":"7090","info":"Stomach Care","name":"Stomach Care","parentCategory":1.0,"slug":"stomach-care"}
+{"__v":0,"_id":{"$oid":"560773abd4124c770bfc4b57"},"active":true,"category":2,"name":"Men","parentCategory":0,"slug":"men","sub_categories":[],"uid":"admin@admin.com","updated":{"$date":"2015-09-27T04:51:40.269Z"}}
+{"__v":0,"_id":{"$oid":"560773b6d4124c770bfc4b58"},"active":true,"category":1,"name":"Women","parentCategory":0,"slug":"women","sub_categories":[],"uid":"admin@admin.com","updated":{"$date":"2015-09-27T04:51:42.313Z"}}
+{"__v":0,"_id":{"$oid":"560773d2d4124c770bfc4b59"},"active":true,"category":100,"name":"Dresses","parentCategory":1,"slug":"dresses","sub_categories":[],"uid":"admin@admin.com","updated":{"$date":"2015-09-27T04:51:43.601Z"}}
+{"__v":0,"_id":{"$oid":"560773dfd4124c770bfc4b5a"},"active":true,"category":101,"name":"Tops","parentCategory":1,"slug":"tops","sub_categories":[],"uid":"admin@admin.com","updated":{"$date":"2015-09-27T04:51:46.140Z"}}
+{"__v":0,"_id":{"$oid":"560773e6d4124c770bfc4b5b"},"active":true,"category":102,"name":"Tees","parentCategory":1,"slug":"tees","sub_categories":[],"uid":"admin@admin.com","updated":{"$date":"2015-09-27T04:51:47.845Z"}}
+{"__v":0,"_id":{"$oid":"560773f9d4124c770bfc4b5c"},"active":true,"category":103,"name":"Shirts","parentCategory":1,"slug":"shirts","sub_categories":[],"uid":"admin@admin.com","updated":{"$date":"2015-09-27T04:52:26.784Z"}}
+{"__v":0,"_id":{"$oid":"5607740bd4124c770bfc4b5d"},"active":true,"category":104,"name":"Tunics","parentCategory":1,"slug":"tunics","sub_categories":[],"uid":"admin@admin.com","updated":{"$date":"2015-09-27T04:52:28.795Z"}}
+{"__v":0,"_id":{"$oid":"56077414d4124c770bfc4b5e"},"active":true,"category":105,"name":"Trousers","parentCategory":1,"slug":"trousers","sub_categories":[],"uid":"admin@admin.com","updated":{"$date":"2015-09-27T04:52:30.366Z"}}
+{"__v":0,"_id":{"$oid":"56077420d4124c770bfc4b5f"},"active":true,"category":106,"name":"Jeans","parentCategory":1,"slug":"jeans","sub_categories":[],"uid":"admin@admin.com","updated":{"$date":"2015-09-27T04:52:31.820Z"}}
+{"__v":0,"_id":{"$oid":"5607742ad4124c770bfc4b60"},"active":true,"category":107,"name":"Skirts","parentCategory":1,"slug":"skirts","sub_categories":[],"uid":"admin@admin.com","updated":{"$date":"2015-09-27T04:52:33.404Z"}}
+{"__v":0,"_id":{"$oid":"5607743dd4124c770bfc4b61"},"active":true,"category":108,"name":"Leggings \u0026 Jeggings","parentCategory":1,"slug":"leggings-jeggings","sub_categories":[],"uid":"admin@admin.com","updated":{"$date":"2015-09-27T04:52:35.561Z"}}
+{"__v":0,"_id":{"$oid":"56077480d4124c770bfc4b62"},"active":true,"category":200,"name":"Polo \u0026 Tees","parentCategory":2,"slug":"polo-tees","sub_categories":[],"uid":"admin@admin.com","updated":{"$date":"2015-09-27T04:52:37.129Z"}}
+{"__v":0,"_id":{"$oid":"5607748fd4124c770bfc4b63"},"active":true,"category":201,"name":"Casual Shirts","parentCategory":2,"slug":"casual-shirts","sub_categories":[],"uid":"admin@admin.com","updated":{"$date":"2015-09-27T04:52:38.450Z"}}
+{"__v":0,"_id":{"$oid":"560774a1d4124c770bfc4b64"},"active":true,"category":203,"name":"Winter Wear","parentCategory":2,"slug":"winter-wear","sub_categories":[],"uid":"admin@admin.com","updated":{"$date":"2015-09-27T04:52:39.835Z"}}
+{"__v":0,"_id":{"$oid":"560774b4d4124c770bfc4b65"},"active":true,"category":204,"name":"Formal Shirts","parentCategory":2,"slug":"formal-shirts","sub_categories":[],"uid":"admin@admin.com","updated":{"$date":"2015-09-27T04:52:41.319Z"}}
+{"__v":0,"_id":{"$oid":"560774bbd4124c770bfc4b66"},"active":true,"category":205,"name":"Denims","parentCategory":2,"slug":"denims","sub_categories":[],"uid":"admin@admin.com","updated":{"$date":"2015-09-27T04:52:42.937Z"}}
+{"__v":0,"_id":{"$oid":"560774c6d4124c770bfc4b67"},"active":true,"category":206,"name":"Track Wear","parentCategory":2,"slug":"track-wear","sub_categories":[],"uid":"admin@admin.com","updated":{"$date":"2015-09-27T04:52:50.470Z"}}
+{"__v":0,"_id":{"$oid":"560774dad4124c770bfc4b68"},"active":true,"category":209,"name":"Casual Trousers","parentCategory":2,"slug":"casual-trousers","sub_categories":[],"uid":"admin@admin.com","updated":{"$date":"2015-09-27T04:52:52.101Z"}}
+{"__v":0,"_id":{"$oid":"560774f1d4124c770bfc4b69"},"active":true,"category":207,"name":"Shorts \u0026 3/4ths","parentCategory":2,"slug":"shorts-34ths","sub_categories":[],"uid":"admin@admin.com","updated":{"$date":"2015-09-27T04:52:53.552Z"}}
+{"__v":0,"_id":{"$oid":"56077501d4124c770bfc4b6a"},"active":true,"category":208,"name":"Suits \u0026 Blazers","parentCategory":2,"slug":"suits-blazers","sub_categories":[],"uid":"admin@admin.com","updated":{"$date":"2015-09-27T04:52:55.039Z"}}

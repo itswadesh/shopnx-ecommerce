@@ -11,7 +11,7 @@ exports.index = function(req, res) {
   });
 };
 
-// Get list of categorys
+// Get list of parents
 exports.parents = function(req, res) {
   // console.log(req.params.id);
   Category.find({'parentId' : parseInt(req.params.id)},function (err, categorys) {
@@ -21,15 +21,14 @@ exports.parents = function(req, res) {
 };
 
 // Get all categories with corresponding sub_categories
-
 exports.all = function(req, res) {
   var async = require("async");
   var p = [];
-  Category.find({parentCategory:0}).select({name:1,category:1,parentCategory:1,slug:1}).exec(function(err,parents){
+  Category.find({parentCategory:0, active:true}).select({name:1,category:1,parentCategory:1,slug:1}).exec(function(err,parents){
   // Using async library which will enable us to wait until data received from database
   async.each(parents, function(a, callback){
       a = a.toObject();
-      Category.find({parentCategory:parseInt(a.category)}).select({name:1,category:1,parentCategory:1,slug:1}).exec(function(err,c){
+      Category.find({parentCategory:parseInt(a.category), active:true}).select({name:1,category:1,parentCategory:1,slug:1}).exec(function(err,c){
         a.sub_categories = c;
         p.push(a);
         callback();
@@ -57,8 +56,8 @@ exports.show = function(req, res) {
 exports.create = function(req, res) {
   req.body.uid = req.user.email; // id change on every login hence email is used
   req.body.updated = Date.now();
-  if(!req.body.slug && req.body.info)
-  req.body.slug = req.body.info.toString().toLowerCase()
+  if(!req.body.slug && req.body.name)
+  req.body.slug = req.body.name.toString().toLowerCase()
                       .replace(/\s+/g, '-')        // Replace spaces with -
                       .replace(/[^\w\-]+/g, '')   // Remove all non-word chars
                       .replace(/\-\-+/g, '-')      // Replace multiple - with single -
@@ -75,8 +74,8 @@ exports.update = function(req, res) {
   if(req.body._id) { delete req.body._id; }
   req.body.uid = req.user.email; // id changes on every login hence email is used
   req.body.updated = Date.now();
-  if(!req.body.slug && req.body.info)
-  req.body.slug = req.body.info.toString().toLowerCase()
+  if(!req.body.slug && req.body.name)
+  req.body.slug = req.body.name.toString().toLowerCase()
                       .replace(/\s+/g, '-')        // Replace spaces with -
                       .replace(/[^\w\-]+/g, '')   // Remove all non-word chars
                       .replace(/\-\-+/g, '-')      // Replace multiple - with single -

@@ -12,11 +12,23 @@ function isJson(str) {
   return str
 }
 
+// Get all features group
+exports.count = function(req, res) {
+  if(req.query){
+    var q = isJson(req.query.where);
+    Product.find(q).count().exec(function (err, count) {
+      if(err) { return handleError(res, err); }
+      return res.status(200).json([{count:count}]);
+    });
+  }
+};
+
 // Get list of products
 exports.index = function(req, res) {
   if(req.query){
     // console.log(req.query,req.query.skip,req.query.limit,req.query.sort);
     var q = isJson(req.query.where);
+    // console.log(q);
     var sort = isJson(req.query.sort);
     var select = isJson(req.query.select);
 
@@ -74,10 +86,13 @@ exports.update = function(req, res) {
                       .replace(/\-\-+/g, '-')      // Replace multiple - with single -
                       .replace(/^-+/, '')          // Trim - from start of text
                       .replace(/-+$/, '');
+    console.log('EDit');
   Product.findById(req.params.id, function (err, product) {
     if (err) { return handleError(res, err); }
     if(!product) { return res.status(404).send('Not Found'); }
     product.variants = req.body.variants;
+    product.features = req.body.features;
+    product.keyFeatures = req.body.keyFeatures;
     var updated = _.merge(product, req.body);
     updated.save(function (err) {
       if (err) { return handleError(res, err); }

@@ -5,10 +5,13 @@ var Brand = require('./brand.model');
 
 // Get list of brands
 exports.index = function(req, res) {
-  Brand.find(function (err, brands) {
-    if(err) { return handleError(res, err); }
-    return res.status(200).json(brands);
-  });
+  var q = req.query;
+  // setTimeout(function(){
+    Brand.find(q, function (err, brands) {
+      if(err) { return handleError(res, err); }
+      return res.status(200).json(brands);
+    });
+  // },1000);
 };
 
 // Get a single brand

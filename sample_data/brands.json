@@ -1,38 +1,16 @@
-{"_id":{"$oid":"55ed1ba43b4f0edec5252bae"},"brand":"120","image":"","info":"Everest","name":"Everest","slug":"everest"}
-{"_id":{"$oid":"55ed1ba43b4f0edec5252baf"},"brand":"150","image":"","info":"MDH","name":"MDH","slug":"mdh"}
-{"_id":{"$oid":"55ed1ba43b4f0edec5252bb0"},"brand":"170","image":"","info":"Ramdev","name":"Ramdev","slug":"ramdev"}
-{"_id":{"$oid":"55ed1ba43b4f0edec5252bb1"},"brand":"190","image":"","info":"Dabur","name":"Dabur","slug":"dabur"}
-{"_id":{"$oid":"55ed1ba43b4f0edec5252bb2"},"brand":"210","image":"","info":"Bajaj","name":"Bajaj","slug":"bajaj"}
-{"_id":{"$oid":"55ed1ba43b4f0edec5252bb3"},"brand":"230","image":"","info":"Shree Balaji","name":"Shree Balaji","slug":"shree-balaji"}
-{"_id":{"$oid":"55ed1ba43b4f0edec5252bb4"},"brand":"250","image":"","info":"Marico","name":"Marico","slug":"marico"}
-{"_id":{"$oid":"55ed1ba43b4f0edec5252bb6"},"brand":"340","image":"","info":"ALL OUT","name":"ALL OUT","slug":"all-out"}
-{"_id":{"$oid":"55ed1ba43b4f0edec5252bb7"},"brand":"360","image":"","info":"Reckitt Benckiser","name":"Reckitt Benckiser","slug":"reckitt-benckiser"}
-{"_id":{"$oid":"55ed1ba43b4f0edec5252bb8"},"brand":"380","image":"","info":"Druk","name":"Druk","slug":"druk"}
-{"_id":{"$oid":"55ed1ba43b4f0edec5252bb9"},"brand":"440","image":"","info":"Henkel","name":"Henkel","slug":"henkel"}
-{"_id":{"$oid":"55ed1ba43b4f0edec5252bba"},"brand":"460","image":"","info":"3M","name":"3M","slug":"3m"}
-{"_id":{"$oid":"55ed1ba43b4f0edec5252bbb"},"brand":"490","image":"","info":"Head \u0026 shoulders","name":"Head \u0026 shoulders","slug":"head-shoulders"}
-{"_id":{"$oid":"55ed1ba43b4f0edec5252bbc"},"brand":"110","image":"","info":"Colgate","name":"Colgate","slug":"colgate"}
-{"_id":{"$oid":"55ed1ba43b4f0edec5252bbd"},"brand":"130","image":"","info":"Godrej","name":"Godrej","slug":"godrej"}
-{"_id":{"$oid":"55ed1ba43b4f0edec5252bbe"},"brand":"140","image":"","info":"HUL","name":"HUL","slug":"hul"}
-{"_id":{"$oid":"55ed1ba43b4f0edec5252bbf"},"brand":"160","image":"","info":"Priya","name":"Priya","slug":"priya"}
-{"_id":{"$oid":"55ed1ba43b4f0edec5252bc0"},"brand":"180","image":"","info":"Ruchi","name":"Ruchi","slug":"ruchi"}
-{"_id":{"$oid":"55ed1ba43b4f0edec5252bc1"},"brand":"200","image":"","info":"Shalimar","name":"Shalimar","slug":"shalimar"}
-{"_id":{"$oid":"55ed1ba43b4f0edec5252bc2"},"brand":"220","image":"","info":"Aswini Homeo","name":"Aswini Homeo","slug":"aswini-homeo"}
-{"_id":{"$oid":"55ed1ba43b4f0edec5252bc3"},"brand":"240","image":"","info":"Himani","name":"Himani","slug":"himani"}
-{"_id":{"$oid":"55ed1ba43b4f0edec5252bc4"},"brand":"260","image":"","info":"Recon","name":"Recon","slug":"recon"}
-{"_id":{"$oid":"55ed1ba43b4f0edec5252bc5"},"brand":"280","image":"","info":"MOKSH AGARBATTI CO.","name":"MOKSH AGARBATTI CO.","slug":"moksh-agarbatti-co"}
-{"_id":{"$oid":"55ed1ba43b4f0edec5252bc6"},"brand":"290","image":"","info":"DARSHAN INTERNATIONAL","name":"DARSHAN INTERNATIONAL","slug":"darshan-international"}
-{"_id":{"$oid":"55ed1ba43b4f0edec5252bc7"},"brand":"300","image":"","info":"Zed Black","name":"Zed Black","slug":"zed-black"}
-{"_id":{"$oid":"55ed1ba43b4f0edec5252bc8"},"brand":"310","image":"","info":"MADHU KUNJ","name":"MADHU KUNJ","slug":"madhu-kunj"}
-{"_id":{"$oid":"55ed1ba43b4f0edec5252bc9"},"brand":"320","image":"","info":"GANGA PRODUCTS","name":"GANGA PRODUCTS","slug":"ganga-products"}
-{"_id":{"$oid":"55ed1ba43b4f0edec5252bca"},"brand":"330","image":"","info":"WINNING HORSE","name":"WINNING HORSE","slug":"winning-horse"}
-{"_id":{"$oid":"55ed1ba43b4f0edec5252bcb"},"brand":"350","image":"","info":"Mortein","name":"Mortein","slug":"mortein"}
-{"_id":{"$oid":"55ed1ba43b4f0edec5252bcc"},"brand":"370","image":"","info":"Mother","name":"Mother","slug":"mother"}
-{"_id":{"$oid":"55ed1ba43b4f0edec5252bcd"},"brand":"390","image":"","info":"Kissan","name":"Kissan","slug":"kissan"}
-{"_id":{"$oid":"55ed1ba43b4f0edec5252bce"},"brand":"400","image":"","info":"Good Knight","name":"Good Knight","slug":"good-knight"}
-{"_id":{"$oid":"55ed1ba43b4f0edec5252bcf"},"brand":"410","image":"","info":"MAXO","name":"MAXO","slug":"maxo"}
-{"_id":{"$oid":"55ed1ba43b4f0edec5252bd0"},"brand":"420","image":"","info":"Goodcare","name":"Goodcare","slug":"goodcare"}
-{"_id":{"$oid":"55ed1ba43b4f0edec5252bd1"},"brand":"430","image":"","info":"MTR","name":"MTR","slug":"mtr"}
-{"_id":{"$oid":"55ed1ba43b4f0edec5252bd2"},"brand":"450","image":"","info":"Exo","name":"Exo","slug":"exo"}
-{"_id":{"$oid":"55ed1ba43b4f0edec5252bd3"},"brand":"470","image":"","info":"LOREAL","name":"LOREAL","slug":"loreal"}
-{"_id":{"$oid":"55ed1ba43b4f0edec5252bd4"},"brand":"480","image":"","info":"Garnier Fructis","name":"Garnier Fructis","slug":"garnier-fructis"}
+{"__v":0,"_id":{"$oid":"5607c58bdddfb6780c5bddf3"},"active":true,"info":"Estelle","name":"Estelle","slug":"estelle","uid":"admin@admin.com","updated":{"$date":"2015-09-27T10:31:39.880Z"}}
+{"__v":0,"_id":{"$oid":"5607c599dddfb6780c5bddf4"},"active":true,"info":"FREECULTR","name":"FREECULTR","slug":"freecultr","uid":"admin@admin.com","updated":{"$date":"2015-09-27T10:31:53.165Z"}}
+{"__v":0,"_id":{"$oid":"5607c5a5dddfb6780c5bddf5"},"active":true,"info":"John Jacobs","name":"John Jacobs","slug":"john-jacobs","uid":"admin@admin.com","updated":{"$date":"2015-09-27T10:32:05.016Z"}}
+{"__v":0,"_id":{"$oid":"5607c5b1dddfb6780c5bddf6"},"active":true,"info":"Melange","name":"Melange","slug":"melange","uid":"admin@admin.com","updated":{"$date":"2015-09-27T10:32:17.318Z"}}
+{"__v":0,"_id":{"$oid":"5607c5b9dddfb6780c5bddf7"},"active":true,"info":"Phosphorus","name":"Phosphorus","slug":"phosphorus","uid":"admin@admin.com","updated":{"$date":"2015-09-27T10:32:25.592Z"}}
+{"__v":0,"_id":{"$oid":"5607c5c1dddfb6780c5bddf8"},"active":true,"info":"Alleviater","name":"Alleviater","slug":"alleviater","uid":"admin@admin.com","updated":{"$date":"2015-09-27T10:32:33.976Z"}}
+{"__v":0,"_id":{"$oid":"5607c5cddddfb6780c5bddf9"},"active":true,"info":"Massimo Italiano","name":"Massimo Italiano","slug":"massimo-italiano","uid":"admin@admin.com","updated":{"$date":"2015-09-27T10:32:45.460Z"}}
+{"__v":0,"_id":{"$oid":"5607c5dadddfb6780c5bddfa"},"active":true,"info":"New Look","name":"New Look","slug":"new-look","uid":"admin@admin.com","updated":{"$date":"2015-09-27T10:32:58.477Z"}}
+{"__v":0,"_id":{"$oid":"5607c5e2dddfb6780c5bddfb"},"active":true,"info":"LA BRIZA","name":"LA BRIZA","slug":"la-briza","uid":"admin@admin.com","updated":{"$date":"2015-09-27T10:33:06.246Z"}}
+{"__v":0,"_id":{"$oid":"5607c5e9dddfb6780c5bddfc"},"active":true,"info":"Li-Ning","name":"Li-Ning","slug":"li-ning","uid":"admin@admin.com","updated":{"$date":"2015-09-27T10:33:13.152Z"}}
+{"__v":0,"_id":{"$oid":"5607c5f0dddfb6780c5bddfd"},"active":true,"info":"Knotty Derby","name":"Knotty Derby","slug":"knotty-derby","uid":"admin@admin.com","updated":{"$date":"2015-09-27T10:33:20.754Z"}}
+{"__v":0,"_id":{"$oid":"5607c5fcdddfb6780c5bddfe"},"active":true,"info":"J Collection","name":"J Collection","slug":"j-collection","uid":"admin@admin.com","updated":{"$date":"2015-09-27T10:33:32.221Z"}}
+{"__v":0,"_id":{"$oid":"5607c602dddfb6780c5bddff"},"active":true,"info":"Inc.5","name":"Inc.5","slug":"inc5","uid":"admin@admin.com","updated":{"$date":"2015-09-27T10:33:38.490Z"}}
+{"__v":0,"_id":{"$oid":"5607c60ddddfb6780c5bde00"},"active":true,"info":"Happy Feet","name":"Happy Feet","slug":"happy-feet","uid":"admin@admin.com","updated":{"$date":"2015-09-27T10:33:49.617Z"}}
+{"__v":0,"_id":{"$oid":"5607c616dddfb6780c5bde01"},"active":true,"info":"Garfield","name":"Garfield","slug":"garfield","uid":"admin@admin.com","updated":{"$date":"2015-09-27T10:33:58.639Z"}}
+{"__v":0,"_id":{"$oid":"5609309da578d3a11dcfdb00"},"active":true,"name":"aaa","uid":"admin@admin.com","updated":{"$date":"2015-09-28T12:20:45.512Z"}}

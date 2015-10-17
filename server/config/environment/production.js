@@ -17,5 +17,7 @@ module.exports = {
   mongo: {
     uri:    process.env.OPENSHIFT_MONGODB_DB_URL ||
             'mongodb://localhost/shopnx'
-  }
+  },
+
+  seedDB: true
 };

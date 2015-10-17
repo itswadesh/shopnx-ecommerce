@@ -1,0 +1,58 @@
+<div class="col-md-12">
+<crud-table api='PaymentMethods' cols='[{"name":"text"},{"email":"text"},{"active":"boolean"}]' nodelete="true" noadd="true" disabledColumn="name"></crud-table>
+</div>
+
+  <!-- <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <div class="box">
+            <h1>Payment Options</h1>
+      <form class="form" name="paymentForm" ng-submit="savePaymentMethod(payment)" novalidate>
+
+        <div class="form-group">
+          <label>Paypal Email ID</label>
+
+          <input type="text" name="paypal" class="form-control" ng-model="payment.paypal"
+                 mongoose-error placeholder="Paypal Email" required/>
+                 <input type="checkbox" name="cod" ng-model="payment.cod"
+                        mongoose-error placeholder="COD"/>
+          <p class="help-block" ng-show="paymentForm.paypal.$error.mongoose">
+              {{ errors.other }}
+          </p>
+        </div>
+        <div class="form-group">
+          <label>Stripe publishable key</label>
+
+          <input type="text" name="stripe" class="form-control" ng-model="payment.stripe"
+                 mongoose-error placeholder="Stripe Key" required/>
+          <p class="help-block" ng-show="paymentForm.stripe.$error.mongoose">
+              {{ errors.other }}
+          </p>
+        </div>
+        <div class="form-group">
+          <label>Google Wallet</label>
+
+          <input type="text" name="google" class="form-control" ng-model="payment.google"
+                 mongoose-error placeholder="Google Email ID" required/>
+          <p class="help-block" ng-show="paymentForm.google.$error.mongoose">
+              {{ errors.other }}
+          </p>
+        </div>
+        <div class="form-group">
+          <label>Cash on Delivery</label>
+
+          <input type="checkbox" name="cod" class="form-control" ng-model="payment.cod"
+                 mongoose-error placeholder="COD"/>
+          <p class="help-block" ng-show="paymentForm.cod.$error.mongoose">
+              {{ errors.other }}
+          </p>
+        </div>
+
+        <p class="help-block"> {{ message }} </p>
+
+        <button class="btn btn-lg btn-warning" type="submit" ng-disabled="paymentForm.$pristine" ng-disabled="paymentForm.$dirty && paymentForm.$invalid">Save Payment Methods</button>
+      </form>
+    </div>
+    </div>
+    <div class="col-md-3"></div>
+  </div> -->

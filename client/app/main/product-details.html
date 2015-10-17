@@ -1,3 +1,4 @@
+
 <div class="container">
 <div class="row">
   <div class="col-sm-12 text-center">
@@ -14,107 +15,146 @@
 </div>
 <div class="container">
     <div class="row">
-    <div class="col-md-12">
-        <img ng-src="/assets/img/{{product.variants[i].image}}"
-        err-src="/assets/img/photo.png" alt="{{product.slug}}" width="320" height="320" class="pull-left" style="margin-right:30px;"/>
+      <div class="col-md-3">
+          <!-- *** MENUS AND FILTERS ***
+_________________________________________________________ -->
+          <div class="panel panel-default sidebar-menu">
 
-        <table>
-            <tbody><tr>
-                <th width="100px">Name</th>
-                <td><h4>{{product.name}} {{product.variants[i].size}}</h4></td>
-            </tr>
-            <tr>
-                <th>Brand</th>
-                <td><h4>
-                        <span>{{product.brand.name}}</span>
-                        <button ng-click="navigate('Brand',product.brand);" style="font-size: 12px; font-weight: normal; padding-left: 10px; color: #069;">View All products</button>
-                    </h4></td>
-            </tr>
-            <tr>
-                <th>Category</th>
-                <td><h4>
-                        <span>{{product.category.name}}</span>
-                        <button ng-click="navigate('Category',product.category);" style="font-size: 12px; font-weight: normal; padding-left: 10px; color: #069;">View All products</button>
-                    </h4></td>
-            </tr>
-            <tr> <th>MRP</th> <td><del>${{product.variants[i].mrp}}</del></td> </tr>
-            <tr> <th><h4>For You</h4></th>  <td> <h4>${{product.variants[i].price}}</h4> </td> </tr>
-            <tr> <th><h4></h4></th>
-              <td>
-                <div class="addButton">
-                    <img src="/assets/images/addtocartred.png" class="addButton" alt="Add" ng-click="cart.addItem(product._id, product.name, product.slug, product.variants[0].mrp, product.variants[0].price, 1, product.variants[0].image,product.category, product.variants[0].size ,true);" ng-show="checkCart(product._id)">
+              <div class="panel-heading">
+                  <h3 class="panel-title">Categories</h3>
+              </div>
+              <div class="panel-body">
+                  <ul class="nav nav-pills nav-stacked category-menu">
+                      <li ng-repeat= "p in categories">
+                          <a href="category.html">{{p.name}} <span class="badge pull-right">42</span></a>
+                          <ul>
+                              <li ng-repeat="c in p.sub_categories"><a href="/Category/{{c.slug}}/{{c._id}}">{{c.name}}</a>
+                              </li>
+                          </ul>
+                      </li>
+                  </ul>
 
-                    <img src="/assets/images/deletered.png" class="decrease" alt="Add" ng-click="cart.addItem(product._id, product.name, product.slug, product.variants[0].mrp, product.variants[0].price, -1)" ng-hide="checkCart(product._id)">
+              </div>
+          </div>
 
-                    <span class="counter" style="display: inline-block;" ng-hide="checkCart(product._id)">{{getQuantity(product._id);}}</span>
+          <!-- *** MENUS AND FILTERS END *** -->
 
-                    <img src="/assets/images/addedred.png" class="increase" alt="Remove" ng-click="cart.addItem(product._id, product.name, product.slug, product.variants[0].mrp, product.variants[0].price, +1)" ng-hide="checkCart(product._id)">
-                </div>
-              </td>
-            </tr>
-            </tbody>
-        </table>
-        <hr/>
+          <div class="banner">
+              <a href="#">
+                  <img src="/assets/img/banner.jpg" alt="sales 2015" class="img-responsive">
+              </a>
+          </div>
+      </div>
 
-         <div class="itemB" ng-repeat="v in product.variants" ng-click="changeIndex($index);" ng-if="v.size!=product.variants[i].size">
-            <div class="itemImage">
-                <a href=""><img src="/assets/img/{{v.image}}" alt="{{product.name}}" width="140" height="140"></a>
-            </div>
+      <div class="col-md-9">
+          <div class="row" id="productMain">
+              <div class="col-sm-6">
+                  <div id="mainImage">
+                      <img src="/assets/clothing/{{product.variants[0].image}}" err-src="/assets/images/photo.png" alt="{{product.name}}" class="img-responsive">
+                  </div>
 
-            <div class="itemName">
-                <a href="">
-                    <span>{{product.name}}  </span>
-                </a><span class="packing">{{v.size}}</span>
-            </div>
+                  <div class="ribbon sale">
+                      <div class="theribbon">SALE</div>
+                      <div class="ribbon-background"></div>
+                  </div>
+                  <!-- /.ribbon -->
 
-            <div class="itemPrice">
-                <span>{{v.price | currency : '$'}}</span> <span class="slash" ng-if="v.price!=v.mrp">{{v.mrp | currency : '$'}}</span>
-            </div>
+                  <div class="ribbon new">
+                      <div class="theribbon">NEW</div>
+                      <div class="ribbon-background"></div>
+                  </div>
+                  <!-- /.ribbon -->
 
-            <div class="addButton">
-                <img src="/assets/images/addtocartred.png" class="addButton" alt="Add" ng-click="cart.addItem(product._id, product.name, product.slug, v.mrp, product.price, 1, v.image,product.category, v.packing ,true);" ng-show="checkCart(product._id)">
+              </div>
+              <div class="col-sm-6">
+                  <div class="box">
+                      <h1 class="text-center">{{product.name}} (Size: {{product.variants[i].size}})</h1>
+                      <p class="goToDescription"><a href="#details" class="scroll-to">Scroll to product details, material & care and sizing</a>
+                      </p>
+                      <p class="price"><del class="text-muted" ng-if="product.variants[0].price!=product.variants[0].mrp" >${{product.variants[i].mrp}}</del>&nbsp;${{product.variants[i].price}}</p>
 
-                <img src="/assets/images/deletered.png" class="decrease" alt="Plus" ng-click="cart.addItem(product._id, product.name, product.slug, v.mrp, v.price, -1)" ng-hide="checkCart(product._id)">
+                      <div class="text-center buttons">
+                        <div class="btn-group text-center">
+                        <a href="/" class="btn btn-default">View All products</a>
+                        <a ng-click="cart.addItem(product._id, product.name, product.slug, product.variants[0].mrp, product.variants[0].price, -1)" ng-hide="checkCart(product._id)" class="btn btn-primary">-</a>
 
-                <span class="counter" style="display: inline-block;" ng-hide="checkCart(product._id)">{{getQuantity(product._id);}}</span>
+                        <a ng-hide="checkCart(product._id)" class="btn btn-default">{{getQuantity(product._id);}}</a>
 
-                <img src="/assets/images/addedred.png" class="increase" alt="Minus" ng-click="cart.addItem(product._id, product.name, product.slug, v.mrp, v.price, +1)" ng-hide="checkCart(product._id)">
-            </div>
+                        <a ng-click="cart.addItem(product._id, product.name, product.slug, product.variants[0].mrp, product.variants[0].price, +1)" ng-hide="checkCart(product._id)" class="btn btn-primary">+</a>
+                        </div>
+                        <a ng-click="cart.addItem(product._id, product.name, product.slug, product.variants[0].mrp, product.variants[0].price, 1, product.variants[0].image,product.category, product.variants[0].size ,true);" ng-show="checkCart(product._id)" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                      </div>
 
-            </div>
-        </div>
-    </div>
-        <br/>
-        <hr/>
-    <div class="row">
-        <div infinite-scroll='scroll()' infinite-scroll-disabled='products.busy' >
-        <div class="itemB" ng-repeat="product in products.items">
-            <div class="itemImage">
-                <a href=""><img ng-src="/assets/img/{{product.variants[0].image}}"
-                  err-src="/assets/img/photo.png" alt="{{product.name}}" width="140" height="140"></a>
-            </div>
+                  </div>
 
-            <div class="itemName">
-                <a href="">
-                    <span>{{product.name}}  </span>
-                </a><span class="packing">{{product.variants[0].size}}</span>
-            </div>
+                  <div class="row" id="thumbs">
+                      <div class="col-xs-4" ng-repeat="v in product.variants" ng-click="changeIndex($index);" ng-if="v.size!=product.variants[i].size">
+                          <a href="" class="thumb">
+                              <img src="/assets/clothing/{{v.image}}" err-src="/assets/images/photo.png" alt="{{product.name}}" class="img-responsive">
+                              {{product.name}} (Size: {{v.size}})
+                              <p class="price"><del class="text-muted" ng-if="v.price!=v.mrp" >${{v.mrp}}</del>&nbsp;${{v.price}}</p>
+                          </a>
+                      </div>
 
-            <div class="itemPrice">
-                <span>{{product.variants[0].price | currency : '$'}}</span> <span class="slash" ng-if="product.variants[0].price!=product.variants[0].mrp">{{product.variants[0].mrp | currency : '$'}}</span>
-            </div>
+                  </div>
+              </div>
 
-            <div class="addButton">
-                <img src="/assets/images/addtocartred.png" class="addButton" alt="Add" ng-click="cart.addItem(product._id, product.name, product.slug, product.mrp, product.price, 1, product.image,product.category, product.packing ,true);" ng-show="checkCart(product._id)">
+          </div>
 
-                <img src="/assets/images/deletered.png" class="decrease" alt="Plus" ng-click="cart.addItem(product._id, product.name, product.slug, product.mrp, product.price, -1)" ng-hide="checkCart(product._id)">
 
-                <span class="counter" style="display: inline-block;" ng-hide="checkCart(product._id)">{{getQuantity(product._id);}}</span>
+          <div class="box" id="details">
+              <p>
+                  <div ng-if="product.info">
+                    <h4>Product details</h4>
+                    <p>{{product.info}}</p>
+                  </div>
 
-                <img src="/assets/images/addedred.png" class="increase" alt="Minus" ng-click="cart.addItem(product._id, product.name, product.slug, product.mrp, product.price, +1)" ng-hide="checkCart(product._id)">
-            </div>
-        </div>
-        <div ng-show='products.busy'>Loading data...</div>
-        </div>
+                  <div ng-if="product.brand">
+                  <h4>Brand</h4>
+                  <ul>
+                      <li><a href="/Brand/{{product.brand.name}}/{{product.brand._id}}">{{product.brand.name}}</a></li>
+                  </ul>
+                  </div>
+                  <div ng-if="product.category">
+                  <h4>Category</h4>
+                  <ul>
+                      <li><a href="/Category/{{product.category.slug}}/{{product.category._id}}">{{product.category.name}}</a></li>
+                  </ul>
+                  </div>
+
+                  <div ng-if="product.variants[i]">
+                  <h4>Weight</h4>
+                  <ul>
+                      <li>{{product.variants[i].weight}}</a></li>
+                  </ul>
+                  </div>
+                  <div ng-if="product.features.length>0">
+                  <h4>Features</h4>
+                  <ul>
+                      <li ng-repeat="f in product.features">{{f.key}} : {{f.val}}</li>
+                  </ul>
+                  </div>
+                  <div ng-if="product.keyFeatures.length>0">
+                  <h4>Key Features</h4>
+                  <ul>
+                      <li ng-repeat="f in product.keyFeatures">{{f}}</li>
+                  </ul>
+                  </div>
+                  <blockquote>
+                      <p>Define style this season with Armani's new range of trendy tops, crafted with intricate details. Create a chic statement look by teaming this lace number with skinny jeans and pumps.
+                      </p>
+                  </blockquote>
+
+                  <hr>
+                  <div class="social">
+                      <h4>Show it to your friends</h4>
+                      <p>
+                          <a href="https://www.facebook.com/codenx2" class="external facebook" data-animate-hover="pulse"><i class="fa fa-facebook"></i></a>
+                          <a href="#" class="external gplus" data-animate-hover="pulse"><i class="fa fa-google-plus"></i></a>
+                          <a href="https://twitter.com/itswadesh" class="external twitter" data-animate-hover="pulse"><i class="fa fa-twitter"></i></a>
+                          <a href="#" class="email" data-animate-hover="pulse"><i class="fa fa-envelope"></i></a>
+                      </p>
+                  </div>
+          </div>
     </div>
 </div>

@@ -1,23 +1,25 @@
-<div class="container">
 <div class="col-md-12">
-  <div class="row">
-  <h4 class="blog-post-title">Checkout</h4>
-  <hr/>
-  <div class="row featured-boxes" ng-hide="cart.getTotalCount() > 0">
-      <div class="col-md-12">
-          <div class="featured-box featured-box-secundary featured-box-cart">
-              <div class="box-content">
-                  <div class="actions-continue">
-                      <h5> {{msg}}</h5>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
+    <ul class="breadcrumb">
+        <li><a href="/">Home</a>
+        </li>
+        <li>Checkout</li>
+    </ul>
+</div>
 
-    <div class="panel panel-danger col-md-6">
+<div class="col-md-7" id="checkout">
+
+    <div class="box">
       <form name="checkout_form" class="form-horizontal" role="form" novalidate ng-show="cart.getTotalCount() > 0">
-
+        <ul class="nav nav-pills nav-justified">
+            <li class="active"><a href="#"><i class="fa fa-map-marker"></i><br>Address</a>
+            </li>
+            <li class="disabled"><a href="#"><i class="fa fa-truck"></i><br>Delivery Method</a>
+            </li>
+            <li class="disabled"><a href="#"><i class="fa fa-money"></i><br>Payment Method</a>
+            </li>
+            <li class="disabled"><a href="#"><i class="fa fa-eye"></i><br>Order Review</a>
+            </li>
+        </ul>
       <div class="panel-heading">
             <h3 class="panel-title">Enter shipping details</h3>
       </div>
@@ -63,58 +65,104 @@
               </div>
           </div>
           <div class="form-group">
-              <label class="col-sm-3 control-label no-padding-right">  </label>
+              <label class="col-sm-3 control-label no-padding-right"> Country </label>
               <div class="col-sm-7">
                  <span class="block input-icon input-icon-right">
-                    <button ng-click="placeOrder(cart.items);cart.checkout('PayPal');cart.clearItems();" type="submit" class="btn btn-success" ng-disabled="checkout_form.$invalid" tabindex="6"><i class="icon icon-lock"></i>&nbsp;Make Payment</button>
+                      <select name="paymentMethod" ng-model="customer.country" class="form-control" required="" ng-options="option.name for option in countries | orderBy:'name' track by option.code" ng-change="calculateShipping(customer.country);" class="form-control">
+                      </select>
+
+                      <div ng-if="!shipping._id">Sorry... We do not ship to this Country.</div>
+  <small class="errorMessage"
+       ng-show="checkout_form.country.$dirty && checkout_form.country.$invalid"> Please select your country.</small>
+                  </span>
+              </div>
+          </div>
+          <div class="form-group">
+              <label class="col-sm-3 control-label no-padding-right"> Payment Method </label>
+              <div class="col-sm-7">
+                 <span class="block input-icon input-icon-right">
+                      <select name="paymentMethod" ng-model="customer.paymentMethod" class="form-control" required="" ng-options="option.name for option in paymentMethods | orderBy:'name' track by option._id" class="form-control">
+                      </select>
+  <small class="errorMessage"
+       ng-show="checkout_form.paymentMethod.$dirty && checkout_form.paymentMethod.$invalid"> Please select payment method.</small>
                   </span>
               </div>
           </div>
 
-
-  					</div>
-            </form>
-  				</div>
-  			<div class="col-md-6">
-              <div class="panel panel-primary" ng-if="cart.getTotalCount()>0">
-                    <div class="panel-heading">
-                          <h3 class="panel-title">Cart Totals</h3>
-                    </div>
-                    <div class="panel-body">
-                          <table cellspacing="0" class="table table-striped">
-                      <tbody>
-                          <tr class="cart-subtotal">
-                              <th>
-                                  <strong>Cart Subtotal</strong>
-                              </th>
-                              <td>
-                                  <strong><span>{{cart.getTotalPrice() | currency}}</span></strong>
-                              </td>
-                          </tr>
-                          <tr class="shipping">
-                              <th>
-                                  Shipping
-                              </th>
-                              <td ng-if="cart.getTotalPrice()>=500">
-                                  Free Shipping
-                              </td>
-                              <td ng-if="cart.getTotalPrice()<=500">
-                                  Rs 20 <small>(<a href="/">Shop</a> Rs {{500-cart.getTotalPrice()}} more for free shipping) </small>
-                              </td>
-                          </tr>
-                          <tr class="total">
-                              <th>
-                                  <strong>Total Payable</strong>
-                              </th>
-                              <td>
-                                  <strong><span class="amount">{{cart.getTotalPriceAfterShipping() | currency}}</span></strong>
-                              </td>
-                          </tr>
-                      </tbody>
-                  </table>
-                    </div>
+          <div class="form-group">
+              <label class="col-sm-3 control-label no-padding-right"> Coupon </label>
+              <div class="col-sm-7">
+                 <span class="block input-icon input-icon-right">
+                      <input type="text" name="coupon" ng-model="customer.coupon" class="form-control" placeholder="Discount Coupon" tabindex="5" ng-change="checkCoupon(customer.coupon, cart.getTotalPrice());"/>
+                      <span class="text-muted text-success" ng-if="coupon.code">{{coupon.type}} of {{coupon.amount | currency}} was applied to the cart</span>
+  <small class="errorMessage"
+       ng-show="checkout_form.coupon.$dirty && checkout_form.coupon.$invalid"> Discount coupon was expired.</small>
+                  </span>
               </div>
           </div>
-  			</div> <!--row-->
-  		</div><!--col-md-12-->
-</div><!--container-->
+
+            </div>
+            <div class="box-footer">
+                <div class="pull-left">
+                    <a href="/" class="btn btn-default"><i class="fa fa-chevron-left"></i>Back to basket</a>
+                </div>
+                <div class="pull-right">
+                    <button type="submit" class="btn btn-primary" ng-click="placeOrder(cart.items);cart.checkout(customer.paymentMethod);cart.clearItems();" ng-disabled="checkout_form.$invalid || !shipping._id" tabindex="6">Make Payment<i class="fa fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+            </form>
+    </div>
+    <!-- /.box -->
+
+
+</div>
+<!-- /.col-md-9 -->
+
+<div class="col-md-5">
+
+    <div class="box" id="order-summary" ng-if="cart.getTotalCount()>0">
+        <div class="box-header">
+            <h3>Order summary</h3>
+        </div>
+        <p class="text-muted">Shipping and additional costs are calculated based on the values you have entered.</p>
+
+        <div class="table-responsive">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td>Order subtotal</td>
+                        <th>{{cart.getTotalPrice() | currency}}</th>
+                    </tr>
+                    <tr>
+                        <td>Shipping and handling</td>
+                        <td ng-if="cart.getTotalPrice()>=shipping.minOrderValue">
+                            Free Shipping
+                        </td>
+                        <td ng-if="cart.getTotalPrice()<=shipping.minOrderValue">
+                            {{shipping.charge | currency}} <br/>
+                            <small><i><a href="/">Shop</a> {{shipping.minOrderValue-cart.getTotalPrice() | currency}} more for free shipping</i></small>
+                        </td>
+                    </tr>
+                    <tr ng-if="coupon.amount">
+                        <td>Coupon Discount</td>
+                        <td><small>{{coupon.amount | currency}}</small></td>
+                    </tr>
+
+                    <tr class="total">
+                        <td>Total</td>
+                        <th ng-if="cart.getTotalPrice() >= shipping.minOrderValue">
+                            {{cart.getTotalPrice() - coupon.amount | currency}}
+                        </th>
+                        <th ng-if="cart.getTotalPrice() < shipping.minOrderValue">
+                            {{cart.getTotalPrice() + shipping.charge - coupon.amount | currency}}
+                        </th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</div>
+<!-- /.col-md-3 -->

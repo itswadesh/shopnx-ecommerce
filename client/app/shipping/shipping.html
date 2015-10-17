@@ -1,0 +1,43 @@
+<div class="col-md-12">
+  <div class="row">
+    <div class="box">
+      <h3>Shipping Settings</h3>
+      <div class="alert-info">Weight is always in grams. Please enter stripped out version.
+        e.g.: 100 instead of 100g or 100kg </div>
+      </div>
+    </div>
+    </div>
+
+
+      <crud-table api='Shipping' cols='[{"carrier":"text"},{"country":"text"},{"charge":"currency"},{"minWeight":"number"},{"maxWeight":"number"},{"minOrderValue":"currency"},{"active":"boolean"}]'></crud-table>
+
+<!-- <div class="col-md-12">
+      <div class="row">
+        <div class="box">
+          <form class="form" name="shippingForm" ng-submit="saveSettings(settings)" novalidate>
+
+      <div class="form-group">
+        <label>Free shipping on minimum order value of </label>
+        <input type="text" name="shipping" class="form-control" ng-model="settings.minOrderValue"
+               mongoose-error placeholder="Minimum Order Value" required/>
+        <p class="help-block" ng-show="shippingForm.shipping.$error.mongoose">
+            {{ errors.other }}
+        </p>
+        </div>
+
+        <div class="form-group">
+          <label>Shipping Charge</label>
+          <input type="text" name="shippingCharge" class="form-control" ng-model="settings.shippingCharge"
+                 mongoose-error placeholder="Charge" required/>
+          <p class="help-block" ng-show="shippingForm.shippingCharge.$error.mongoose">
+              {{ errors.other }}
+          </p>
+        </div>
+
+        <p class="help-block"> {{ message }} </p>
+
+        <button class="btn btn-lg btn-warning" type="submit" ng-disabled="shippingForm.$pristine" ng-disabled="shippingForm.$dirty && shippingForm.$invalid">Save Shipping Settings</button>
+      </form>
+    </div>
+  </div>
+</div> -->

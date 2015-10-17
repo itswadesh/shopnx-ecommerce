@@ -2,7 +2,7 @@
 
 angular.module('shopnxApp')
 
-  .directive('crudTable',['Modal','$injector','socket','toastr', function (Modal,$injector,socket,toastr) {
+  .directive('crudTable',['Modal','$injector','$loading','socket','toastr', function (Modal,$injector,$loading,socket,toastr) {
     return {
       templateUrl: 'app/directive/table.html',
       restrict: 'EA',
@@ -12,11 +12,16 @@ angular.module('shopnxApp')
         scope.title = attrs.api+'s';
         var cols = JSON.parse(attrs.cols);
         var obj = [];
+        scope.noedit = attrs.noedit;
+        scope.nodelete = attrs.nodelete;
+        scope.noadd = attrs.noadd;
+        // console.log();
+        // scope.disabledColumn = attrs.disabledcolumn;
         angular.forEach(cols, function(o) {
           // var k,v;
           angular.forEach(o, function(v, k) {
             var v1;
-            if(v==='number' || v==='float' || v==='integer'){ v1 = 'parseFloat';}
+            if(v==='number' || v==='float' || v==='integer' || v==='currency'){ v1 = 'parseFloat';}
             else{ v1 = 'lowercase';}
             obj.push({heading:k,dataType:v, sortType:v1});
           });
@@ -28,14 +33,16 @@ angular.module('shopnxApp')
         // }
         var api = $injector.get(attrs.api);
         scope.data = [];
-        scope.loadingTable = true;
+        // scope.loadingTable = true;
+        $loading.start('crudTable');
         scope.data =api.query(function() {
-          scope.loadingTable = false;
+          // scope.loadingTable = false;
+          $loading.finish('crudTable');
           socket.syncUpdates(attrs.api.toLowerCase(), scope.data);
         });
         scope.edit = function(item) {
-          var title; if(item.name){ title = 'Editing ' + item.name;} else{ title = 'Add New';}
-          Modal.show(item,{title:title, api:attrs.api, columns: obj});
+          var title; if(item._id){ title = 'Editing ' + item._id;} else{ title = 'Add New';}
+          Modal.show(item,{title:title, api:attrs.api, columns: obj, disabledColumn: attrs.disabledcolumn});
         };
         scope.changeActive = function(b){ // success handler
           b.active = !b.active;
@@ -72,6 +79,36 @@ angular.module('shopnxApp')
     }
   };
 }])
+
+// .directive('checkCoupon',function(Coupon) {
+//     return {
+//         require: 'ngModel',
+//         link: function(scope, element, attrs, ctrl) {
+//             scope.$watch(attrs.ngModel, function (val) {
+//             console.log(val);
+//               if(val){
+//               // ctrl.$setValidity('phoneLoading', false);
+//               Coupon.get({id:val}, function (data) {
+//                 if(data){
+//                   var customer = data.data[0];
+//                   scope.customer.name = customer.name;
+//                   scope.customer.email = customer.email;
+//                   scope.customer.address = customer.address;
+//                   scope.customer.city = customer.city;
+//                   ctrl.$setValidity('isCustomer', true);
+//                 }else{
+//                   ctrl.$setValidity('isCustomer', false);
+//                 }
+//               });
+//             }else{
+//                   ctrl.$setValidity('isCustomer', false);
+//                   scope.customer = '';
+//             }
+//           });
+//         }
+//     };
+//
+// })
 
 // .directive('autoFillCustomer',function(Customer) {
 //     return {
@@ -162,21 +199,21 @@ angular.module('shopnxApp')
 //
 // })
 
-// .directive('onlyNumbers', function() {
-//     return function(scope, element, attrs) {
-//         var keyCode = [8,9,13,37,39,46,48,49,50,51,52,53,54,55,56,57,96,97,98,99,100,101,102,103,104,105,110,190];
-//         element.bind('keydown', function(event) {
-//             if($.inArray(event.which,keyCode) === -1) {
-//                 scope.$apply(function(){
-//                     scope.$eval(attrs.onlyNum);
-//                     event.preventDefault();
-//                 });
-//                 event.preventDefault();
-//             }
-//
-//         });
-//     };
-// })
+.directive('onlyNumbers', function() {
+    return function(scope, element, attrs) {
+        var keyCode = [8,9,13,37,39,46,48,49,50,51,52,53,54,55,56,57,96,97,98,99,100,101,102,103,104,105,110,190];
+        element.bind('keydown', function(event) {
+            if($.inArray(event.which,keyCode) === -1) {
+                scope.$apply(function(){
+                    scope.$eval(attrs.onlyNum);
+                    event.preventDefault();
+                });
+                event.preventDefault();
+            }
+
+        });
+    };
+})
 
 // .directive('animateOnChange', function($animate) {
 //   return function(scope, elem, attr) {

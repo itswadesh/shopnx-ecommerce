@@ -1,6 +1,7 @@
-/*.navbar-default .navbar-nav>li>a {
-  color: #fff;
-}*/
+#searchForm .input-group{
+  width:400px;
+  text-align: left;
+}
 .dropdown-menu > li > a {
     cursor: pointer;
 }

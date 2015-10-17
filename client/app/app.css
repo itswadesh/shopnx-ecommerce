@@ -26,6 +26,33 @@
     font-weight: normal;
     font-style: normal;
 }
+/* To fix tablesort plugin text while data is loading it shows No data */
+.showIfLast td:after {
+    content: "" !important;
+}
+/* To fix tablesort plugin */
+.stripe-button-el{
+  display: none !important;
+}
+.dropdown{
+  text-align: left;
+}
+.btn-group:hover>.dropdown-menu {
+display: block;
+}
+.panel-footer{
+  background-color: #eee;
+}
+.post .image img{
+  margin-left: auto;
+  margin-right: auto;
+  -moz-box-shadow: 0px 0px 5px #686961;
+  -webkit-box-shadow: 0px 0px 5px #686961;
+  box-shadow: 0px 0px 5px #686961;
+}
+#top ul.menu .dropdown-menu a{
+  color: #222 !important;
+}
 
 /**
  * App-wide Styles

@@ -11,7 +11,7 @@ angular.module('shopnxApp')
       'link': '/'
     }];
 
-    $rootScope.brands = Brand.query();
+    $rootScope.brands = Brand.query({active:true});
     $rootScope.sortOptions = SortOptions.server;
 
     $scope.isCollapsed = true;

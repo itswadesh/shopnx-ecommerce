@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <base href="/">
     <title></title>
-    <meta name="description" content="">
+    <meta name="description" content="ShopNX is a Shopping cart application using AngularJS, NodeJS, MongoDB, Express. A whole ecommerce website as a single page web application which provides fastest shopping experience">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(client) app/vendor.css -->
@@ -17,6 +17,7 @@
       <link rel="stylesheet" href="bower_components/angularjs-slider/dist/rzslider.css" />
       <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
       <link rel="stylesheet" href="bower_components/components-font-awesome/css/font-awesome.css" />
+      <link rel="stylesheet" href="bower_components/ui-select/dist/select.css" />
       <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,client}) app/app.css -->
@@ -28,18 +29,26 @@
       <link rel="stylesheet" href="app/brand/brand.css">
       <link rel="stylesheet" href="app/category/category.css">
       <link rel="stylesheet" href="app/checkout/checkout.css">
+      <link rel="stylesheet" href="app/contact/contact.css">
+      <link rel="stylesheet" href="app/coupon/coupon.css">
       <link rel="stylesheet" href="app/customer/customer.css">
       <link rel="stylesheet" href="app/dashboard/dashboard.css">
       <link rel="stylesheet" href="app/directive/modal.css">
+      <link rel="stylesheet" href="app/documentation/documentation.css">
+      <link rel="stylesheet" href="app/feature/feature.css">
       <link rel="stylesheet" href="app/inventory/inventory.css">
       <link rel="stylesheet" href="app/invoice/invoice.css">
       <link rel="stylesheet" href="app/main/main.css">
       <link rel="stylesheet" href="app/order/order.css">
+      <link rel="stylesheet" href="app/paymentMethod/paymentMethod.css">
       <link rel="stylesheet" href="app/product/product.css">
+      <link rel="stylesheet" href="app/shipping/shipping.css">
       <link rel="stylesheet" href="app/shop/shop.css">
+      <link rel="stylesheet" href="app/theme.css">
       <link rel="stylesheet" href="components/navbar/megamenu.css">
       <!-- endinjector -->
     <!-- endbuild -->
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,300,100' rel='stylesheet' type='text/css'>
   </head>
   <body ng-app="shopnxApp">
     <!--[if lt IE 7]>
@@ -47,10 +56,185 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div ng-include="'components/navbar/navbar.html'"></div>
-    <div ui-view=""></div>
 
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID
+    <div ng-include="'components/navbar/navbar.html'"></div>
+    <div id="all">
+
+      <div id="content">
+          <div class="container">
+
+    <div ui-view=""></div>
+  </div>
+  <!-- /.container -->
+</div>
+<!-- /#content -->
+
+            <!-- *** FOOTER ***
+     _________________________________________________________ -->
+            <div id="footer" data-animate="fadeInUp">
+                <div class="container">
+                        <div class="col-md-3 col-sm-6">
+                            <h4>Pages</h4>
+
+                            <ul>
+                                <li><a href="/">About us</a>
+                                </li>
+                                <li><a href="/">Terms and conditions</a>
+                                </li>
+                                <li><a href="/">FAQ</a>
+                                </li>
+                                <li><a href="/contact">Contact us</a>
+                                </li>
+                            </ul>
+
+                            <hr>
+
+                            <h4>User section</h4>
+
+                            <ul>
+                                <li><a href="/login">Login</a>
+                                </li>
+                                <li><a href="/signup">Sign Up</a>
+                                </li>
+                            </ul>
+
+                            <hr class="hidden-md hidden-lg hidden-sm">
+
+                        </div>
+                        <!-- /.col-md-3 -->
+
+                        <div class="col-md-3 col-sm-6">
+
+                            <h4>Top categories</h4>
+
+                            <h5>Men</h5>
+
+                            <ul>
+                                <li><a href="/">T-shirts</a>
+                                </li>
+                                <li><a href="/">Shirts</a>
+                                </li>
+                                <li><a href="/">Accessories</a>
+                                </li>
+                            </ul>
+
+                            <h5>Ladies</h5>
+                            <ul>
+                                <li><a href="/">T-shirts</a>
+                                </li>
+                                <li><a href="/">Skirts</a>
+                                </li>
+                                <li><a href="/">Pants</a>
+                                </li>
+                                <li><a href="/">Accessories</a>
+                                </li>
+                            </ul>
+
+                            <hr class="hidden-md hidden-lg">
+
+                        </div>
+                        <!-- /.col-md-3 -->
+
+                        <div class="col-md-3 col-sm-6">
+
+                            <h4>Where to find us</h4>
+
+                            <p><strong>CodeNx Ltd.</strong>
+                                <br>13/25 New Avenue
+                                <br>New Heaven
+                                <br>45Y 73J
+                                <br>England
+                                <br>
+                                <strong>Great Britain</strong>
+                            </p>
+
+                            <a href="/contact">Go to contact page</a>
+
+                            <hr class="hidden-md hidden-lg">
+
+                        </div>
+                        <!-- /.col-md-3 -->
+
+
+
+                        <div class="col-md-3 col-sm-6">
+
+                            <h4>Get the news</h4>
+
+                            <p class="text-muted">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+
+                            <form>
+                                <div class="input-group">
+
+                                    <input type="text" class="form-control">
+
+                                    <span class="input-group-btn">
+
+    			    <button class="btn btn-default" type="button">Subscribe!</button>
+
+    			</span>
+
+                                </div>
+                                <!-- /input-group -->
+                            </form>
+
+                            <hr>
+
+                            <h4>Stay in touch</h4>
+
+                            <p class="social">
+                                <a href="https://www.facebook.com/codenx2" class="facebook external" data-animate-hover="shake"><i class="fa fa-facebook"></i></a>
+                                <a href="https://twitter.com/itswadesh" class="twitter external" data-animate-hover="shake"><i class="fa fa-twitter"></i></a>
+                                <a href="https://instagram.com/itswadesh/" class="instagram external" data-animate-hover="shake"><i class="fa fa-instagram"></i></a>
+                                <a href="#" class="gplus external" data-animate-hover="shake"><i class="fa fa-google-plus"></i></a>
+                                <a href="#" class="email external" data-animate-hover="shake"><i class="fa fa-envelope"></i></a>
+                            </p>
+
+
+                        </div>
+                        <!-- /.col-md-3 -->
+
+                </div>
+                <!-- /.container -->
+            </div>
+            <!-- /#footer -->
+
+            <!-- *** FOOTER END *** -->
+
+
+
+
+            <!-- *** COPYRIGHT ***
+     _________________________________________________________ -->
+            <div id="copyright">
+                <div class="container">
+                    <div class="col-md-6">
+                        <p class="pull-left">© 2015 CodeNx.&nbsp;&nbsp;Developed by <a href="http://codenx.com">CodeNx</a> Team. </p>
+                    </div>
+                    <div class="col-md-6">
+                        <p class="pull-right"> Template by <a href="http://www.bootstrapious.com">Responsive Templates</a> with support from <a href="http://kakusei.cz">Designové předměty</a>
+                        Photos by <a href="https://pixabay.com/">Pixabay</a>
+                            <!-- Not removing these links is part of the licence conditions of the template. Thanks for understanding :) -->
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#all -->
+        <!--Stripe payment -->
+        <!-- <script src="js/jquery.form.js"></script>
+        <script src="js/jquery.blockUI.js"></script> -->
+        <script
+        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+        data-key="pk_test_srKHaSHynBIVLX03r33xLszb"
+        data-name="ShopNx"
+        data-description="2 widgets"
+        data-amount="2000"
+        data-locale="auto">
+        </script>
+        <!--Stripe payment -->
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -61,7 +245,7 @@
       ga('send', 'pageview');
 
     </script>
-    -->
+
     <!--[if lt IE 9]>
     <script src="bower_components/es5-shim/es5-shim.js"></script>
     <script src="bower_components/json3/lib/json3.min.js"></script>
@@ -83,12 +267,17 @@
       <script src="bower_components/angular-tablesort/js/angular-tablesort.js"></script>
       <script src="bower_components/angular-toastr/dist/angular-toastr.tpls.js"></script>
       <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-      <script src="bower_components/angularjs-slider/rzslider.js"></script>
+      <script src="bower_components/angularjs-slider/dist/rzslider.js"></script>
       <script src="bower_components/checklist-model/checklist-model.js"></script>
       <script src="bower_components/lodash/dist/lodash.compat.js"></script>
       <script src="bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
+      <script src="bower_components/bootstrap-hover-dropdown/bootstrap-hover-dropdown.js"></script>
+      <script src="bower_components/ui-select/dist/select.js"></script>
       <!-- endbower -->
+      <script src="/components/navbar/bootstrap.min.js"></script>
       <script src="socket.io-client/socket.io.js"></script>
+
+
     <!-- endbuild -->
 
 
@@ -110,13 +299,21 @@
           <script src="app/category/category.js"></script>
           <script src="app/checkout/checkout.controller.js"></script>
           <script src="app/checkout/checkout.js"></script>
+          <script src="app/contact/contact.controller.js"></script>
+          <script src="app/contact/contact.js"></script>
+          <script src="app/coupon/coupon.controller.js"></script>
+          <script src="app/coupon/coupon.js"></script>
           <script src="app/customer/customer.controller.js"></script>
           <script src="app/customer/customer.js"></script>
           <script src="app/dashboard/dashboard.controller.js"></script>
           <script src="app/dashboard/dashboard.js"></script>
           <script src="app/directive/directive.directive.js"></script>
+          <script src="app/documentation/documentation.controller.js"></script>
+          <script src="app/documentation/documentation.js"></script>
           <script src="app/factory/Cart/Cart.service.js"></script>
           <script src="app/factory/factory.service.js"></script>
+          <script src="app/feature/feature.controller.js"></script>
+          <script src="app/feature/feature.js"></script>
           <script src="app/filter/filter.filter.js"></script>
           <script src="app/inventory/inventory.controller.js"></script>
           <script src="app/inventory/inventory.js"></script>
@@ -126,14 +323,19 @@
           <script src="app/main/main.js"></script>
           <script src="app/order/order.controller.js"></script>
           <script src="app/order/order.js"></script>
+          <script src="app/paymentMethod/paymentMethod.controller.js"></script>
+          <script src="app/paymentMethod/paymentMethod.js"></script>
           <script src="app/product/product.controller.js"></script>
           <script src="app/product/product.js"></script>
+          <script src="app/shipping/shipping.controller.js"></script>
+          <script src="app/shipping/shipping.js"></script>
           <script src="app/shop/shop.controller.js"></script>
           <script src="app/shop/shop.js"></script>
           <script src="components/auth/auth.service.js"></script>
           <script src="components/auth/user.service.js"></script>
           <script src="components/modal/modal.service.js"></script>
           <script src="components/mongoose-error/mongoose-error.directive.js"></script>
+          <script src="components/navbar/bootstrap.min.js"></script>
           <script src="components/navbar/navbar.controller.js"></script>
           <script src="components/socket/socket.service.js"></script>
           <!-- endinjector -->

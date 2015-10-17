@@ -1,59 +1,54 @@
 <div class="container">
   <div class="row">
-    <div class="col-sm-12">
-      <h1>Login</h1>
-      Default account is <code>test@test.com</code> / <code>test</code></p>
-      <p>Admin account is <code>admin@admin.com</code> / <code>admin</code></p>
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <div class="box">
+            <h1>Login</h1>
+
+            <p class="lead">Already our customer?</p>
+            <p class="text-muted">
+              Default account is <code>test@test.com</code> / <code>test</code><br/>Admin account is <code>admin@admin.com</code> / <code>admin</code></p>
+            </p>
+
+            <hr>
+
+            <form ng-submit="login(form)" name="form" novalidate>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" class="form-control" ng-model="user.email" required placeholder="Youe email id">
+                    <p class="help-block" ng-show="form.email.$dirty && form.email.$error.required">
+                       Please enter your email.
+                    </p>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" class="form-control" ng-model="user.password" required placeholder="Password">
+                    <p class="help-block" ng-show="form.password.$dirty && form.password.$error.required">
+                       Please enter your password.
+                    </p>
+                </div>
+                <div class="form-group has-error">
+                  <p class="help-block" ng-show="form.email.$error.required && form.password.$error.required && submitted">
+                     Please enter your email and password.
+                  </p>
+                  <p class="help-block" ng-show="form.email.$error.email && submitted">
+                     Please enter a valid email.
+                  </p>
+
+                  <p class="help-block">{{ errors.other }}</p>
+                </div>
+                <div class="text-center">
+                  <button class="btn btn-inverse btn-lg btn-login btn-primary" type="submit" ng-disabled="form.$dirty && form.$invalid">
+                    Login
+                  </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <a class="" href="/signup">
+                    Sign up
+                  </a>
+                </div>
+            </form>
+        </div>
     </div>
-    <div class="col-sm-12">
-      <form class="form" name="form" ng-submit="login(form)" novalidate>
-
-        <div class="form-group">
-          <label>Email</label>
-
-          <input type="email" name="email" class="form-control" ng-model="user.email" required>
-        </div>
-
-        <div class="form-group">
-          <label>Password</label>
-
-          <input type="password" name="password" class="form-control" ng-model="user.password" required>
-        </div>
-
-        <div class="form-group has-error">
-          <p class="help-block" ng-show="form.email.$error.required && form.password.$error.required && submitted">
-             Please enter your email and password.
-          </p>
-          <p class="help-block" ng-show="form.email.$error.email && submitted">
-             Please enter a valid email.
-          </p>
-
-          <p class="help-block">{{ errors.other }}</p>
-        </div>
-
-        <div>
-          <button class="btn btn-inverse btn-lg btn-login" type="submit">
-            Login
-          </button>
-          <a class="btn btn-default btn-lg btn-register" href="/signup">
-            Register
-          </a>
-        </div>
-
-        <hr>
-        <!-- <div>
-          <a class="btn btn-facebook" href="" ng-click="loginOauth('facebook')">
-            <i class="fa fa-facebook"></i> Connect with Facebook
-          </a>
-          <a class="btn btn-google-plus" href="" ng-click="loginOauth('google')">
-            <i class="fa fa-google-plus"></i> Connect with Google+
-          </a>
-          <a class="btn btn-twitter" href="" ng-click="loginOauth('twitter')">
-            <i class="fa fa-twitter"></i> Connect with Twitter
-          </a>
-        </div> -->
-      </form>
-    </div>
+    <div class="col-md-3"></div>
   </div>
   <hr>
 </div>

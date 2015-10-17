@@ -7,7 +7,4 @@ dist
 /server/config/local.env.js
 npm-debug.log
 mongo.sh
-mongodb_commands.txt
 sample_data
-mongo_scripts
-/client/assets/img

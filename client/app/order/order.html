@@ -1,7 +1,8 @@
-
-<div class="container">
+<div class="col-md-12">
+<div class="box">
   <div class="row">
 <div class="col-md-12">
+  <h1>Orders History</h1>
   <h3  class="bg-info well text-center">Total Spent: {{orders.total | currency}}</h3>
 <div class="panel panel-primary" ng-repeat="o in orders | orderBy : 'orderDate' : 'reverse'">
 
@@ -19,7 +20,7 @@
           <table class="table">
               <tbody>
                 <tr ng-repeat="i in o.items" >
-                    <td><img ng-src="/assets/img/{{i.image}}" err-src="/assets/img/photo.png" width="100px" height="100px"/>
+                    <td><img ng-src="/assets/clothing/{{i.image}}" err-src="/assets/images/photo.png" width="100px" />
                     </td>
                     <td>{{i.name}}<br/><span class="text-muted">Qty: {{i.quantity}}</span><br/><span class="text-muted">Packing: {{i.packing}}</span><br/><span class="text-muted">Unit Price: {{i.price | currency}}</span></td>
                     <td><span class="text-muted">= {{i.quantity * i.price | currency}}</span></td>
@@ -37,5 +38,4 @@
 </div>
 </div>
 </div>
-<!--
-<crud-table api='Order' cols='[{"orderNo":"text"},{"orderDate":"date"},{"name":"text"},{"uid":"text"},{"address":"text"},{"city":"text"},{"phone":"text"},{"active":"boolean"}]'></crud-table> -->
+</div>

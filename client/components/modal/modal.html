@@ -10,7 +10,9 @@
     <label class="col-sm-3 control-label no-padding-right">{{i.heading | labelCase}}</label>
     <div class="col-sm-7">
       <span class="block input-icon input-icon-right">
-        <input type="text" class="form-control" name="name" ng-model="data[i.heading]" ng-disabled="i.heading=='_id'" autofocus="i.heading=='name'" placeholder="{{i.heading | labelCase}}">
+        <input type="text" class="form-control" name="name" ng-model="data[i.heading]" ng-disabled="i.heading=='_id' || (i.heading==options.disabledColumn && options.title==='Add New')" autofocus="i.heading=='name'" placeholder="{{i.heading | labelCase}}" ng-if="i.sortType==='parseFloat'" only-numbers>
+        <input type="text" class="form-control" name="name" ng-model="data[i.heading]" ng-disabled="i.heading=='_id' || (i.heading==options.disabledColumn && data._id)" autofocus="i.heading=='name'" placeholder="{{i.heading | labelCase}}"  ng-if="i.sortType!=='parseFloat' && i.dataType!=='boolean'">
+        <input type="checkbox" ng-model="data[i.heading]" ng-if="i.dataType==='boolean'" class="form-control">
       </span>
     </div>
   </div>

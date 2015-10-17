@@ -45,12 +45,12 @@
                 <td>{{$index+1}}</td>
                 <td class="product-thumbnail">
                     <a>
-                        <img ng-src="/assets/img/{{item.image}}" alt="{{item.name}}" data-err-src="img/product.jpg" width="54px" height="54px" />
+                        <img ng-src="/assets/clothing/{{item.image}}" alt="{{item.name}}" data-err-src="images/product.jpg" width="54px"/>
                     </a>
                 </td>
 
                 <td class="product-name">
-                    <a ui-sref="productDetail({id:item.sku, slug:item.slug})">{{item.name}}&nbsp;({{item.variants[0].size}})</a>
+                    <a ui-sref="productDetail({id:item.sku, slug:item.slug})" ng-click="cancel();">{{item.name}}</a>
                 </td>
 
                 <td>{{item.price | currency}}</td>

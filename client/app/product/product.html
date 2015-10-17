@@ -1,74 +1,181 @@
 <link rel="stylesheet" href="bower_components/angular-tablesort/tablesort.css" />
 <form name="product_form">
-
-<div class="container">
-  <div class="row">
     <div class="col-sm-12">
-      <h1></h1>
-
+      <div class="box">
+        <h1>Products Manager</h1>
+        <div class="alert alert-info">Shipping will be free, if no weight specified</div>
+      </div>
     </div>
-  </div>
 
-  <div class="row">
-    <div class="col-md-12">
-  <div class="row">
-    <div class="col-md-12">
-      <button type="button" class="btn btn-danger fa fa-plus" ng-click="edit({});">&nbsp;Add New</button>
-      <button type="submit" class="btn btn-info fa fa-save" ng-click="save(product);">&nbsp;    Save</button>
+  <div class="col-md-7">
+      <button type="button" class="btn btn-danger" ng-click="edit({});"><i class="fa fa-plus"></i>&nbsp;Add New</button>
+      <button type="submit" class="btn btn-info" ng-click="save(product);"><i class="fa fa-save"></i> &nbsp;Save</button>
       &nbsp;&nbsp;<a ui-sref="productDetail({id:product._id, slug:product.slug})">{{product.name}}</a>
       <hr/>
-    </div>
-  </div>
-  <div class="row">
-  <div class="col-md-8">
-<div class="row">
-  <div class="col-md-12">
+    <div class="box" ng-if="product._id">
     <form class="form-horizontal" role="form">
       <div class="form-group">
-          <div class="col-md-7">
+          <div class="col-md-12">
               <div class="form-group row">
-                  <label for="id" class="col-md-1 control-label">ID</label>
-                  <div class="col-md-2">
-                      <input ng-model="product.id" type="text" disabled="" style="width:50px" class="form-control" placeholder="ID"/>
-                  </div>
-                  <label for="sku" class="col-md-1 control-label">SKU</label>
-                  <div class="col-md-3">
-                      <input ng-model="product.sku" type="text" style="width:80px" class="form-control" placeholder="SKU"/>
-                  </div>
-                  <label for="name" class="col-md-2 control-label">Name</label>
-                  <div class="col-md-3">
-                      <input ng-model="product.name" type="text" style="width:400px" class="form-control" placeholder="Name"/>
-                  </div>
+                <label for="id" class="col-md-1 control-label">ID</label>
+                <div class="col-md-2">
+                    <input ng-model="product.id" type="text" disabled="" class="form-control" placeholder="ID"/>
                 </div>
+                <label for="sku" class="col-md-1 control-label">SKU</label>
+                <div class="col-md-2">
+                    <input ng-model="product.sku" type="text" class="form-control" placeholder="SKU"/>
+                </div>
+                <label for="name" class="col-md-1 control-label text-right">Name</label>
+                <div class="col-md-5">
+                    <input ng-model="product.name" type="text" class="form-control" placeholder="Name"/>
+                </div>
+              </div>
+              <hr/>
                 <div class="form-group row">
-                  <div class="col-md-6">
-                    Category: <select ng-model="product.category" ng-options="option.name for option in categories | orderBy:'name' track by option._id" class="form-control">
+                  <label for="id" class="col-md-2 control-label">Category</label>
+                  <div class="col-md-4">
+                    <!-- <select ng-model="product.category" ng-options="option.name for option in categories | orderBy:'name' track by option._id" class="form-control">
                         <option value="">Select Category</option>
-                    </select>
+                    </select> -->
+
+                    <ui-select ng-model="product.category" theme="bootstrap" title="Select Category">
+                      <ui-select-match placeholder="Select Category...">{{$select.selected.name}} </ui-select-match>
+                      <ui-select-choices repeat="c in categories | propsFilter: {name: $select.search}">
+                        <span ng-bind-html="c.name | highlight: $select.search"></span>
+                      </ui-select-choices>
+                    </ui-select>
+
                   </div>
-                  <div class="col-md-6">
-                    Brand: <select ng-model="product.brand" ng-options="i.name for i in brands | orderBy:'name' track by i._id" class="form-control">
+                  <label for="id" class="col-md-1 control-label">Brand</label>
+                  <div class="col-md-4">
+                    <!-- <select ng-model="product.brand" ng-options="i.name for i in brands | orderBy:'name' track by i._id" class="form-control">
                         <option value="">Select Brand</option>
-                    </select>
+                    </select> -->
+
+                    <ui-select ng-model="product.brand" theme="bootstrap" title="Select Brand">
+                      <ui-select-match placeholder="Select Brand...">{{$select.selected.name}} </ui-select-match>
+                      <ui-select-choices repeat="b in brands | propsFilter: {name: $select.search}">
+                        <span ng-bind-html="b.name | highlight: $select.search"></span>
+                      </ui-select-choices>
+                    </ui-select>
+                  </div>
+              </div>
+              <hr/>
+                <div class="form-group row">
+                  <label for="id" class="col-md-2 control-label">Description</label>
+                  <div class="col-md-12">
+                    <textarea ng-model="product.info" class="form-control"></textarea>
                   </div>
               </div>
           </div>
       </div>
-  </form>
 
+<hr/>
+<div class="clearfix"></div>
+<div class="panel panel-primary">
+  <div class="panel-heading">Features <a href="/feature" class="pull-right">Create New</a></div>
+  <div class="panel-body">
+    <table class="table table-striped table-responsive">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Key</th>
+            <th>Value</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="feature in product.features track by $index">
+            <td>{{$index+1}}</td>
+            <td>
+              <!-- <input type="text" ng-model="feature.key" style="width:150px;" placeholder="Key"/> -->
+              <select ng-model="feature.key" ng-options="o.key as o.key for o in features | unique: 'key'" class="form-control">
+                  <option value="">Select Feature Key</option>
+              </select>
+            </td>
+            <td>
+              <select ng-model="feature.val" ng-options="o.val as o.val for o in features | unique: 'val'" class="form-control">
+                  <option value="">Select Feature Value</option>
+              </select>
+              <!-- <ui-select ng-model="selected.feature[$index]" theme="bootstrap" title="Select Feature Value"
+              ng-init="selected.feature[$index] = feature" style="    max-width: 200px;">
+                <ui-select-match placeholder="Select Feature Value...">{{$select.selected.val}} </ui-select-match>
+                <ui-select-choices repeat="f in features | propsFilter: {val: $select.search}">
+                  <span ng-bind-html="f.val | highlight: $select.search"></span>
+                </ui-select-choices>
+              </ui-select> -->
+              <!-- <input type="text" ng-model="feature.val" style="width:150px;" placeholder="Value"/> -->
+            </td>
+            <td>
+                <div class="btn-group">
+                  <button type="submit" class="btn btn-info" ng-click="save(product);"><i class="fa fa-save"></i></button>
+                  <button type="button" class="btn btn-danger" ng-click="deleteFeature($index,product);"><i class="fa fa-trash-o"></i></button>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>New</td>
+            <td>
+              <!-- <input type="text" ng-model="newFeature.key" style="width:150px;" placeholder="Key"/> -->
+              <select ng-model="newFeature.key" ng-options="o.key as o.key for o in features | unique: 'key'" class="form-control">
+                  <option value="">Select Feature</option>
+              </select>
+            </td>
+            <td>
+              <select ng-model="newFeature.val" ng-options="o.val as o.val for o in features | unique: 'val'" class="form-control">
+                  <option value="">Select Feature Value</option>
+              </select>
+            <td>
 
-
-  </div>
+            </td>
+        </tr>
+    </tbody>
+    </table>
 </div>
+</div>
+<hr/>
+<div class="clearfix"></div>
+<div class="panel panel-primary">
+  <div class="panel-heading">Key Features</div>
+  <div class="panel-body">
+    <table class="table table-striped table-responsive">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="kf in product.keyFeatures track by $index">
+            <td>{{$index+1}}</td>
+            <td><input type="text" ng-model="product.keyFeatures[$index]" style="width:150px;" placeholder="Feature"/></td>
+            <td>
+                <div class="btn-group">
+                  <button type="button" class="btn btn-danger" ng-click="deleteKF($index,product);"><i class="fa fa-trash-o"></i></button>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>New</td>
+            <td><input type="text" ng-model="newKF.val" style="width:150px;" placeholder="Key Feature"></input></td>
+            <td>
 
+            </td>
+        </tr>
+    </tbody>
+    </table>
+</div>
+</div>
+<hr/>
+<div class="clearfix"></div>
 <div class="panel panel-primary">
   <div class="panel-heading">Product Variants</div>
   <div class="panel-body">
     <table class="table table-striped table-responsive">
     <thead>
         <tr>
-            <th>ID</th>
+            <th>#</th>
             <th>Size</th>
+            <th>Weight</th>
             <th>MRP</th><!--  ts-default -->
             <th>Price</th>
             <th>Image</th>
@@ -77,40 +184,44 @@
     </thead>
     <tbody>
         <tr ng-repeat="p in product.variants track by $index" id="{{p._id}}">
-            <!-- <td><img src="img/{{p.category}}/{{p.image}}"/> </td>-->
+            <!-- <td><img src="images/{{p.category}}/{{p.image}}"/> </td>-->
             <td>{{$index+1}}</td>
-            <td><input type="text" ng-model="p.size" style="width:70px;"/></td>
-            <td><input type="text" ng-model="p.mrp" style="width:70px;"/></td>
-            <td><input type="text" ng-model="p.price" style="width:70px;"/></td>
-            <td><input type="text" ng-model="p.image" style="width:150px;"/></td>
+            <td><input type="text" ng-model="p.size" style="width:70px;" placeholder="Size"/></td>
+            <td><input type="text" ng-model="p.weight" style="width:70px;" placeholder="Weight"/></td>
+            <td><input type="text" ng-model="p.mrp" style="width:70px;" placeholder="MRP"/></td>
+            <td><input type="text" ng-model="p.price" style="width:70px;" placeholder="Price"/></td>
+            <td><input type="text" ng-model="p.image" style="width:150px;" placeholder="Image"/></td>
             <td>
                 <div class="btn-group">
-                  <button type="button" class="btn btn-danger fa fa-trash-o" ng-click="delete(p);"></button>
+                  <button type="button" class="btn btn-danger" ng-click="deleteVariants($index,product);"><i class="fa fa-trash-o"></i></button>
                 </div>
             </td>
         </tr>
         <tr>
-            <!-- <td><img src="img/{{p.category}}/{{p.image}}"/> </td>-->
+            <!-- <td><img src="images/{{p.category}}/{{p.image}}"/> </td>-->
             <td>New</td>
-            <td><input type="text" ng-model="variant.size" style="width:70px;"/></td>
-            <td><input type="text" ng-model="variant.mrp" style="width:70px;"/></td>
-            <td><input type="text" ng-model="variant.price" style="width:70px;"/></td>
-            <td><input type="text" ng-model="variant.image" style="width:150px;"/></td>
+            <td><input type="text" ng-model="variant.size" style="width:70px;" placeholder="Size"/></td>
+            <td><input type="text" ng-model="variant.weight" style="width:70px;" placeholder="Weight"/></td>
+            <td><input type="text" ng-model="variant.mrp" style="width:70px;" placeholder="MRP"/></td>
+            <td><input type="text" ng-model="variant.price" style="width:70px;" placeholder="Price"/></td>
+            <td><input type="text" ng-model="variant.image" style="width:150px;" placeholder="Image"/></td>
             <td>
-                <div class="btn-group">
-                  <button type="button" class="btn btn-danger fa fa-trash-o" ng-click="delete(p);"></button>
-                </div>
+
             </td>
         </tr>
     </tbody>
     </table>
 </div>
 </div>
-
-
+  </form>
 </div>
 
-<div class="col-md-4">
+<div class="box" ng-if="!product._id">
+  <h3>Click on the product name to view details... <i class="fa fa-arrow-right"></i></h3>
+</div>
+</div>
+
+<div class="col-md-5">
 <div class="panel panel-primary">
   <div class="panel-heading">List of products
       <div class="sw-search" >
@@ -127,14 +238,14 @@
     <table class="table table-striped table-responsive" ts-wrapper>
     <thead>
         <tr>
-            <th ts-criteria="id" ts-default="descending">ID</th>
+            <th ts-criteria="id">ID</th>
             <th ts-criteria="name">Name</th>
             <th ts-criteria="active">Status</th>
         </tr>
     </thead>
     <tbody>
-        <tr ng-repeat="p in products | filter:filter | limitTo:10" id="{{p._id}}" animate-on-change='p.price+p.quantity+p.packing+p.name' ng-animate="'animate'" ts-repeat>
-            <!-- <td><img src="img/{{p.category}}/{{p.image}}"/> </td>--><td>{{$index+1}}</td><td><a href=""  ng-click="productDetail(p);">{{p.name}}</a></td>
+        <tr ng-repeat="p in products | filter:filter" id="{{p._id}}" animate-on-change='p.price+p.quantity+p.packing+p.name' ng-animate="'animate'" ts-repeat>
+            <!-- <td><img src="images/{{p.category}}/{{p.image}}"/> </td>--><td>{{$index+1}}</td><td><a href=""  ng-click="productDetail(p);">{{p.name}}</a></td>
             <td>
                 <button class="btn" ng-class="{true:'btn-success', false:''}[p.active]" ng-click="changeActive(p);">{{p.active | active}}</button>
             </td>
@@ -142,10 +253,6 @@
     </tbody>
     </table>
 </div> <!-- Infinite Scroll -->
-</div>
-</div>
-</div>
-</div>
 </div>
 </div>
 

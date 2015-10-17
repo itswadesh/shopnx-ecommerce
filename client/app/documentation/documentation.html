@@ -1,0 +1,261 @@
+<div class="col-md-12">
+    <ul class="breadcrumb">
+        <li><a href="#">Home</a>
+        </li>
+        <li>Documentation</li>
+    </ul>
+
+</div>
+<!-- *** LEFT COLUMN ***
+_________________________________________________________ -->
+
+<div class="col-sm-9" id="blog-listing" data-spy="scroll" data-target="#navbar-example">
+
+    <div class="post">
+      <h2 id="live-demos">Live Demos</h2>
+      <p class="intro">ShopNx is a ready to use single page ecommerce website developed using AngularJS, NodeJS, Express, MongoDB <br/>
+      <a class="btn btn-primary" href="http://biri.in/">Live Demo</a>
+      </p>
+      <blockquote><p>Easy to start and rich user interactive</p></blockquote>
+        <p class="read-more"><a href="#features" class="btn btn-primary">More Features...</a></p>
+        <div class="image"><img src="/assets/img/biri.jpg" class="img-responsive" alt="Live Demos"></div>
+      <hr>
+    </div>
+
+    <div class="post">
+      <h2 id="installation">Installation</h2>
+      <p class="intro">Just 3 steps to install the application in your local machine. </p>
+      <p>
+        <h4>Step-1: </h4>
+        <p>Download, Install <a href="https://nodejs.org/">NodeJS</a> (Acts as our Server) <br/>
+           Download, Install <a href="https://www.mongodb.org/">MongoDB</a> (The Database for our application). We also need to run mongodb.
+           Browse to the <em>(MongoDB installation folder)/bin</em> and run mongod
+        </p>
+        <h4>Step-2:</h4> Unzip the downloaded file
+        <h4>Step-3:</h4>
+         <em>Windows</em> Double click on start.bat found inside the directory <br/>
+         Now your browser should automatically open up with the application running on <a href="http://localhost:8080/">http://localhost:8080</a><br/>
+         <em>Linux</em> Open your terminal, navigate to the extracted directory and enter the command <em>node .</em><br/>
+         Open your browser and navigate to <a href="http://localhost:8080/">http://localhost:8080</a>
+        <br/><br/>
+      <b> If you face any issue, I will do it for you in your machine or server</b>
+      </p>
+      <blockquote>There are web hosting solutions which offers free hosting for this APP. (e.g. Openshift, Amazon web services, Heroku)</blockquote>
+      <div class="image"><a><img src="/assets/img/installation.jpg" class="img-responsive" alt="Installation instructions"></a></div>
+      <hr>
+    </div>
+
+<h3>:::::::::::::: Store Front :::::::::::::::::::::</h3>
+    <div class="post">
+    <h2 id="store">Store</h2>
+    <p>This example store is an ecommerce application to sell <em>Fashion Products</em> of different brands and types. But this single page web application is capable of selling any type of products, starting from Home Appliances, Mobiles, Grocerry, Footwear,  Cosmetics, etc...
+    </p>
+    <p>This view displays all products with following facilities
+      <ul>
+        <li>Product search</li>
+        <div class="image"><a><img src="/assets/img/search.jpg" class="img-responsive" alt="Search"></a></div>
+        <li>Filter by brand, category, price (with price slider)</li>
+        <div class="image"><a><img src="/assets/img/brand.jpg" class="img-responsive" alt="Brand Filter"></a></div>
+        <li>Sort products by price or product name</li>
+        <div class="image"><a><img src="/assets/img/sort.jpg" class="img-responsive" alt="Sort"></a></div>
+        <li>Add to cart</li>
+        <li>Checkout with paypal</li>
+        <li>Auto paging facility which activates on scroll (Like most of the advanced shopping websites)</li>
+        <li>Get detailed information about specific products by clicking in on its name or image</li>
+        <li>See a quick view of present quantity in the cart with option to change cart quantity.</li>
+      </ul>
+    </p>
+    <div class="image"><a><img src="/assets/img/store.jpg" class="img-responsive" alt="Store Front"></a></div>
+    <hr>
+    </div>
+
+    <div class="post">
+    <h2 id="product-details">Product Details</h2>
+    <p>Shows all available details of the products
+      <ul>
+        <li>Product Name</li>
+        <li>Product Description</li>
+        <li>Product Image</li>
+        <li>Brand</li>
+        <li>Category of the product</li>
+        <li>Product MRP (Max Retail Price) and Offer Price</li>
+        <li>Additional product details and instructions</li>
+        <li>This view also allow users to add the product into the cart or remove from cart</li>
+      </ul>
+
+      </p>
+    <div class="image"><a><img src="/assets/img/product-details.jpg" class="img-responsive" alt="Product Details"></a></div>
+    <hr>
+    </div>
+
+    <div class="post">
+    <h2 id="orders-history">Orders History</h2>
+    <p><em>For Users:</em> All the orders placed by the logged in user is available in this view. </p>
+      <p><em>For Administrators:</em>  This view presents all orders placed by users with the option to change order status and shipping</p>
+    <div class="image"><a><img src="/assets/img/orders.jpg" class="img-responsive" alt="Orders History"></a></div>
+    <hr>
+    </div>
+
+    <div class="post">
+    <h2 id="shopping-cart">Shopping Cart</h2>
+    <p>This store is featured with a shopping cart facility which is easy to use and fast.
+    <ul>
+      <li>Get quick summary of what is there in Cart</li>
+      <li>Modify the cart quantity</li>
+      <li>Checkout using Paypal</li>
+    </ul>
+    </p>
+    <div class="image"><a><img src="/assets/img/cart.jpg" class="img-responsive" alt="Shopping Cart"></a></div>
+    <hr>
+    </div>
+
+    <div class="post">
+    <h2 id="accounts-page">Accounts Page</h2>
+    <p>Features like Signup / SignIn / Change Password / Logout is integrated into this application already with high level of security, so that you no longer need to be worry about implementing all those features into the application</p>
+
+    <div class="image"><a><img src="/assets/img/user-menu.jpg" class="img-responsive" alt="Accounts Page"></a></div>
+    <div class="image"><a><img src="/assets/img/login.jpg" class="img-responsive" alt="Accounts Page"></a></div>
+    <hr>
+    </div>
+
+
+<h3>::::::::::::::: Store Administration ::::::::::::::</h3>
+<blockquote>
+  <em>Only administrators can access the pages</em>
+</blockquote>
+    <div class="post">
+    <h2 id="add-brands">Manage Brands</h2>
+    <p>Administrators can add, edit, delete, filter brands of their store from this view</p>
+    <div class="image"><a><img src="/assets/img/brands.jpg" class="img-responsive" alt="Manage Brands"></a></div>
+    <hr>
+    </div>
+
+    <div class="post">
+    <h2 id="add-categories">Manage Categories</h2>
+    <p>
+      <ul>
+        <li>Categories are presented in Parent-Child manner in this store for better organisation of products.</li>
+        <li>Store's navigation bar at top contains all the categories arranged in parent-child fashion.</li>
+        <div class="image"><a><img src="/assets/img/navbar.jpg" class="img-responsive" alt="Manage Categories"></a></div>
+
+        <li>This view provides facility to add both parent and child categories, edit them, re-arrange category association according to their requirement.</li>
+      </ul>
+     </p>
+    <div class="image"><a><img src="/assets/img/categories.jpg" class="img-responsive" alt="Manage Categories"></a></div>
+    <hr>
+    </div>
+
+    <div class="post">
+    <h2 id="add-products">Manage Products</h2>
+    <p><em>This is the main page for administrators to manage products at store.</em>
+    <ul>
+      <li>The right sidebar lists all the available products with a search box to filter the list.</li>
+      <li>Clicking on a product at the product list will populate the details of the product at the left sidebar</li>
+      <li>The left sidebar has option to change product name, details, brand, category</li>
+      <li>This left sidebar also contains a module to manage product variants which has facility for Size, MRP, Price and Image for that perticular variant</li>
+    </ul>
+    </p>
+    <div class="image"><a><img src="/assets/img/products.jpg" class="img-responsive" alt="Add Products"></a></div>
+    <hr>
+    </div>
+
+    <div class="post">
+    <h2 id="manage-users">Manage Users (Customers)</h2>
+    <p>Using this view administrators can add, remove or edit users of their shopping web application</p>
+    <div class="image"><a><img src="/assets/img/customers.jpg" class="img-responsive" alt="Manage customers"></a></div>
+    <hr>
+    </div>
+
+    <div class="post">
+    <h2 id="features">All Features</h2>
+    <h3>### Store Front features</h3>
+    <ul>
+      <li>Single page web app (SPA) created using AngularJS, NodeJS, Express, MongoDB (MEAN)</li>
+      <li>Fastest shop experience</li>
+      <li>Fast Product Search, Filter with AJAX</li>
+      <li>Price slider and multiple brand selector</li>
+      <li>Faster Add to Cart and Product Details</li>
+      <li>Checkout with Paypal Integration</li>
+      <li>Minimal User Registration process</li>
+      <li>Order history and Password Management</li>
+      <li>Facility for Multi level Category</li>
+      <li>Mobile optimized with Bootstrap</li>
+      <li>Instant updates for any changes made across all clients with SocketIO implementation</li>
+      <li>Loads more products on scroll (No paging required)</li>
+      <li>Clean and responsive user interface</li>
+    </ul>
+
+    <h3>### Store Back Office Features</h3>
+    <ul>
+      <li>Products, Categories, Brand, Order Management from admin panel with easy directives</li>
+      <li>Manage Order and Change Status from admin panel</li>
+      <li>Facility for Multiple product variants (size, color, price, image)</li>
+      <li>User roles - Administrator, User, Guest</li>
+      <li>SEO friendly URLs for each page</li>
+      <li>Secure and quality code - Takes care all single page web app standards</li>
+      <li>Securely built and prevent security attacks</li>
+    </ul>
+    </div>
+
+
+</div>
+<!-- /.col-md-9 -->
+
+<!-- **LEFT COLUMN END *** -->
+
+
+<div class="col-md-3">
+    <!-- *** BLOG MENU ***
+_________________________________________________________ -->
+    <div class="panel panel-default sidebar-menu">
+
+        <div class="panel-heading">
+            <h3 class="panel-title">Overview</h3>
+        </div>
+
+        <div class="panel-body" id="navbar-example">
+
+            <ul class="nav nav-pills nav-stacked">
+              <li class="active">
+                  <a href="#live-demos">Live Demos</a>
+              </li>
+              <li>
+                  <a href="#installation">Installation</a>
+              </li>
+              <li>
+                  <a href="#store">Store</a>
+              </li>
+              <li>
+                  <a href="#product-details">Product Details</a>
+              </li>
+              <li>
+                  <a href="#shopping-cart">Shopping Cart</a>
+              </li>
+              <li>
+                  <a href="#accounts-page">Accounts Page </a>
+              </li>
+              <li>
+                  <a href="#orders-history">Orders History</a>
+              </li>
+              <li>
+                  <a href="#add-brands">Add Brands</a>
+              </li>
+              <li>
+                  <a href="#add-categories">Add Categories</a>
+              </li>
+              <li>
+                  <a href="#add-products">Add Products</a>
+              </li>
+              <li>
+                  <a href="#manage-users">Manage Users</a>
+              </li>
+              <li>
+                  <a href="#features">Features</a>
+              </li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+<!-- /.col-md-9 -->
