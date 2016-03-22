@@ -1,205 +1,234 @@
 <link rel="stylesheet" href="bower_components/angular-loading/angular-loading.css"/>
 
-                <div class="col-md-12">
-                    <ul class="breadcrumb">
-                        <li><a ui-sref="main" href="">Home</a></li>
-                        <li ng-repeat="b in breadcrumb.items | reverse">
-                            <a href="/" ng-if="!$last">{{b.name}}</a>
-                            <span ng-if="$last">{{b.name}}</span>
-                        </li>
-                    </ul>
-                </div>
+<div class="col-md-12">
+    <ul class="breadcrumb">
+        <li><a ui-sref="main" href="">Home</a></li>
+        <li ng-repeat="b in breadcrumb.items | reverse">
+            <a href="/" ng-if="!$last">{{b.name}}</a>
+            <span ng-if="$last">{{b.name}}</span>
+        </li>
+    </ul>
+</div>
 
-                <div class="col-md-3">
+<div class="col-md-3">
 
-     <div class="panel panel-default sidebar-menu">
+    <div class="panel panel-default sidebar-menu">
 
-         <div class="panel-heading">
-             <h3 class="panel-title">Price Range <a class="btn btn-xs btn-danger pull-right" href="" ng-click="resetPriceRange();"><i class="fa fa-times-circle"></i> Reset</a></h3>
-         </div>
+        <div class="panel-heading">
+            <h3 class="panel-title">Price Range <a class="btn btn-xs btn-danger pull-right" href=""
+                                                   ng-click="resetPriceRange();"><i class="fa fa-times-circle"></i>
+                Reset</a></h3>
+        </div>
 
-         <div class="panel-body">
+        <div class="panel-body">
 
-             <form>
-                 <div class="form-group">
-                   <rzslider
-                     rz-slider-floor="priceSlider.floor"
-                     rz-slider-ceil="priceSlider.ceil"
-                     rz-slider-model="priceSlider.min"
-                     rz-slider-high="priceSlider.max"
-                     rz-slider-translate="currencyFormatting"
-                     rz-slider-on-end="filter()"></rzslider>
+            <form>
+                <div class="form-group">
+                    <rzslider
+                            rz-slider-floor="priceSlider.floor"
+                            rz-slider-ceil="priceSlider.ceil"
+                            rz-slider-model="priceSlider.min"
+                            rz-slider-high="priceSlider.max"
+                            rz-slider-translate="currencyFormatting"
+                            rz-slider-on-end="filter()"></rzslider>
 
                     $<strong>{{priceSlider.min}}</strong> &nbsp;-&nbsp; $<strong>{{priceSlider.max}}</strong>
-                 </div>
+                </div>
 
-             </form>
+            </form>
 
-         </div>
-      </div>
+        </div>
+    </div>
 
-      <div class="panel panel-default sidebar-menu">
+    <div class="panel panel-default sidebar-menu">
 
-          <div class="panel-heading">
-              <h3 class="panel-title">Brands
+        <div class="panel-heading">
+            <h3 class="panel-title">Brands
                 <div class="nav-search" id="nav-search">
                         <span class="input-icon">
-                            <input placeholder="Filter Brands ..." class="nav-search-input" ng-model="filterBrand" autocomplete="off" type="text" autofocus style="width:100%">
+                            <input placeholder="Filter Brands ..." class="nav-search-input" ng-model="filterBrand"
+                                   autocomplete="off" type="text" autofocus style="width:100%">
                             <i class="search-icon fa fa-search nav-search-icon"></i>
                         </span>
                 </div>
-              </h3>
-          </div>
+            </h3>
+        </div>
 
-          <div class="panel-body brand-filter-panel">
+        <div class="panel-body brand-filter-panel">
 
-              <form>
-                  <div class="form-group">
-                      <div class="checkbox" ng-repeat="b in brands | filter:filterBrand">
-                          <label>
-                            <input type="checkbox" value="{{b.name}}" checklist-model="fl.brands" checklist-value="b" ng-click="filter();" />
+            <form>
+                <div class="form-group">
+                    <div class="checkbox" ng-repeat="b in brands | filter:filterBrand">
+                        <label>
+                            <input type="checkbox" value="{{b.name}}" checklist-model="fl.brands" checklist-value="b"
+                                   ng-click="filter();"/>
                             {{b.name}}<span>&nbsp;</span>
-                          </label>
-                      </div>
-                  </div>
+                        </label>
+                    </div>
+                </div>
 
-<a class="btn btn-xs btn-warning pull-right" href="" ng-repeat="b in fl.brands" ng-click="removeBrand(b);" style="margin:0 0 5px 5px;"><i class="fa fa-times-circle"></i> {{b.name}}</a>
-              </form>
+                <a class="btn btn-xs btn-warning pull-right" href="" ng-repeat="b in fl.brands"
+                   ng-click="removeBrand(b);" style="margin:0 0 5px 5px;"><i class="fa fa-times-circle"></i> {{b.name}}</a>
+            </form>
 
-          </div>
-      </div>
+        </div>
+    </div>
 
-      <div class="panel panel-default sidebar-menu">
+    <div class="panel panel-default sidebar-menu">
 
-          <div class="panel-heading">
-              <h3 class="panel-title">Features
+        <div class="panel-heading">
+            <h3 class="panel-title">Features
                 <div class="nav-search" id="nav-search">
                         <span class="input-icon">
-                            <input placeholder="Filter Features ..." class="nav-search-input" ng-model="filterFeature" autocomplete="off" type="text" autofocus style="width:100%">
+                            <input placeholder="Filter Features ..." class="nav-search-input" ng-model="filterFeature"
+                                   autocomplete="off" type="text" autofocus style="width:100%">
                             <i class="search-icon fa fa-search nav-search-icon"></i>
                         </span>
                 </div>
-              </h3>
-          </div>
+            </h3>
+        </div>
 
-          <div class="panel-body">
-              <form>
-                  <div class="form-group">
+        <div class="panel-body">
+            <form>
+                <div class="form-group">
                     <div ng-repeat="k in features | filter:filterFeature">
                         <h4>{{k.key}}</h4>
+
                         <div class="checkbox" ng-repeat="f in k.v">
                             <label>
-                              <input type="checkbox" value="{{f}}" checklist-model="fl.features[k.key]" checklist-value="f" ng-click="filter();" />
-                              {{f}}<span>&nbsp;</span>
+                                <input type="checkbox" value="{{f}}" checklist-model="fl.features[k.key]"
+                                       checklist-value="f" ng-click="filter();"/>
+                                {{f}}<span>&nbsp;</span>
                             </label>
                         </div>
                     </div>
-                  </div>
-              </form>
-          </div>
-      </div>
-
-
                 </div>
+            </form>
+        </div>
+    </div>
 
-                <div class="col-md-9">
 
-                    <div class="box info-bar">
-                        <div class="row">
-                            <div class="col-sm-12 col-md-5 products-showing">
-                                Showing {{products.items.length}} products of {{products.count}} in: $<strong>{{priceSlider.min}}</strong> &nbsp;-&nbsp; $<strong>{{priceSlider.max}}</strong>
-                            </div>
+</div>
 
-                            <div class="col-sm-12 col-md-7 text-right products-number-sort">
-                                <div class="row">
-                                    <form class="form-inline">
+<div class="col-md-9">
 
-                                        <div class="col-md-12 col-sm-12">
-                                            <div class="products-number">
-                                                <strong>Sort</strong>
-                                                <div class="btn-group">
-                                                  <a href="" ng-repeat="o in sortOptions" ng-class="{active : o.val==products.sort}" class="btn btn-default btn-sm btn-primary"  ng-click="sortNow(o.val);">{{o.name}}</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
+    <div class="box info-bar">
+        <div class="row">
+            <div class="col-sm-12 col-md-5 products-showing">
+                Showing {{products.items.length}} products of {{products.count}} in:
+                $<strong>{{priceSlider.min}}</strong> &nbsp;-&nbsp; $<strong>{{priceSlider.max}}</strong>
+            </div>
+
+            <div class="col-sm-12 col-md-7 text-right products-number-sort">
+                <div class="row">
+                    <form class="form-inline">
+
+                        <div class="col-md-12 col-sm-12">
+                            <div class="products-number">
+                                <strong>Sort</strong>
+
+                                <div class="btn-group">
+                                    <a href="" ng-repeat="o in sortOptions" ng-class="{active : o.val==products.sort}"
+                                       class="btn btn-default btn-sm btn-primary"
+                                       ng-click="sortNow(o.val);">{{o.name}}</a>
                                 </div>
                             </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
 
-                            <div class="col-sm-12 col-md-8  products-number-sort">
-                                <div class="products-sort-by">
-                                  <span ng-if="fl.brands.length>0">Brands:</span>
-                                  <a class="btn btn-xs btn-warning" href="" ng-click="removeBrand(b);" ng-repeat="b in fl.brands" style="margin-left:5px;"><i class="fa fa-times-circle"></i> {{b.name}}</a>
+            <div class="col-sm-12 col-md-8  products-number-sort">
+                <div class="products-sort-by">
+                    <span ng-if="fl.brands.length>0">Brands:</span>
+                    <a class="btn btn-xs btn-warning" href="" ng-click="removeBrand(b);" ng-repeat="b in fl.brands"
+                       style="margin-left:5px;"><i class="fa fa-times-circle"></i> {{b.name}}</a>
 
-                                  <a ng-if="fl.categories.length>0" class="btn btn-xs btn-warning" href="" ng-click="removeCategory();" style="margin-left:5px;"><i class="fa fa-times-circle"></i>{{fl.categories[0].name}}</a>
+                    <a ng-if="fl.categories.length>0" class="btn btn-xs btn-warning" href=""
+                       ng-click="removeCategory();" style="margin-left:5px;"><i class="fa fa-times-circle"></i>{{fl.categories[0].name}}</a>
 
 <span ng-repeat="features in fl.features">
-    <a ng-if="features" ng-click="removeFeatures(features);" ng-repeat="f in features" class="btn btn-xs btn-warning" href="" style="margin-left:5px;">{{f}}</a>
+    <a ng-if="features" ng-click="removeFeatures(features);" ng-repeat="f in features" class="btn btn-xs btn-warning"
+       href="" style="margin-left:5px;">{{f}}</a>
 </span>
 
-                                  <!-- <select ng-model="products.brand"  ng-change="navigate('Brand',products.brand);" ng-options="b.name for b in brands track by b._id" class="pull-right">
-                                      <option value="">All Brands</option>
-                                  </select> -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-<div infinite-scroll='scroll()' infinite-scroll-disabled='products.busy' infinite-scroll-distance='1'>
-                    <div class="row products" dw-loading="products" dw-loading-options="{text: ''}">
-                      <div class="box" ng-if="products.items.length==0">
-                          <div class="row">
-                              <div class="col-sm-12">
-                                <h3>No product found. Try removing some filters.</h3>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="col-md-4 col-sm-6" ng-repeat="product in products.items">
-                            <div class="product">
-                                <div class="flip-container">
-                                    <div class="flipper">
-                                        <div class="front">
-                                            <a ui-sref="productDetail({id:product._id, slug:product.slug})">
-                                                <img ng-src="/assets/clothing/{{product.variants[0].image}}"
-                                                    err-src="/assets/images/photo.png"
-                                                    alt="{{product.name}}" class="img-responsive">
-                                            </a>
-                                        </div>
-                                        <div class="back">
-                                            <a ui-sref="productDetail({id:product._id, slug:product.slug})">
-                                                <img ng-src="/assets/clothing/{{product.variants[0].image}}"
-                                                    err-src="/assets/images/photo.png"
-                                                    alt="{{product.name}}" class="img-responsive">
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <a ui-sref="productDetail({id:product._id, slug:product.slug})" class="invisible">
-                                    <img src="/assets/clothing/{{product.variants[0].image}}" alt="" class="img-responsive">
-                                </a>
-                                <div class="text text-center">
-                                    <h3><a ui-sref="productDetail({id:product._id, slug:product.slug})">{{product.name}}{{product.variants[0].size}}</a></h3>
-                                    <p class="price"><del ng-if="product.variants[0].price!=product.variants[0].mrp">{{product.variants[0].mrp | currency : '$'}}</del> {{product.variants[0].price | currency : '$'}}</p>
-                                    <p class="buttons">
-                                      <div class="btn-group">
-                                      <a ui-sref="productDetail({id:product._id, slug:product.slug})" class="btn btn-default">View detail</a>
-                                      <a ng-click="cart.addItem(product._id, product.name, product.slug, product.variants[0].mrp, product.variants[0].price, -1)" ng-hide="checkCart(product._id)" class="btn btn-info">-</a>
-
-                                      <a ng-hide="checkCart(product._id)" class="btn btn-info">{{getQuantity(product._id);}}</a>
-
-                                      <a ng-click="cart.addItem(product._id, product.name, product.slug, product.variants[0].mrp, product.variants[0].price, +1)" ng-hide="checkCart(product._id)" class="btn btn-info">+</a>
-                                      </div>
-                                      <a ng-click="cart.addItem(product._id, product.name, product.slug, product.variants[0].mrp, product.variants[0].price, 1, product.variants[0].image,product.category, product.variants[0].size ,true);" ng-show="checkCart(product._id)" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                    </p>
-                                </div>
-                                <!-- /.text -->
-                            </div>
-                            <!-- /.product -->
-                        </div>
-
-                        <!-- /.col-md-4 -->
-                    </div>
-                    <!-- /.products -->
-
+                    <!-- <select ng-model="products.brand"  ng-change="navigate('Brand',products.brand);" ng-options="b.name for b in brands track by b._id" class="pull-right">
+                        <option value="">All Brands</option>
+                    </select> -->
                 </div>
-                <!-- /.col-md-9 -->
+            </div>
+        </div>
+    </div>
+    <div infinite-scroll='scroll()' infinite-scroll-disabled='products.busy' infinite-scroll-distance='1'>
+        <div class="row products" dw-loading="products" dw-loading-options="{text: ''}">
+            <div class="box" ng-if="products.items.length==0">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h3>No product found. Try removing some filters.</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6" ng-repeat="product in products.items">
+                <div class="product">
+                    <div class="flip-container">
+                        <div class="flipper">
+                            <div class="front">
+                                <a ui-sref="productDetail({id:product._id, slug:product.slug})">
+                                    <img ng-src="/assets/clothing/{{product.variants[0].image}}"
+                                         err-src="/assets/images/photo.png"
+                                         alt="{{product.name}}" class="img-responsive">
+                                </a>
+                            </div>
+                            <div class="back">
+                                <a ui-sref="productDetail({id:product._id, slug:product.slug})">
+                                    <img ng-src="/assets/clothing/{{product.variants[0].image}}"
+                                         err-src="/assets/images/photo.png"
+                                         alt="{{product.name}}" class="img-responsive">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <a ui-sref="productDetail({id:product._id, slug:product.slug})" class="invisible">
+                        <img src="/assets/clothing/{{product.variants[0].image}}" alt="" class="img-responsive">
+                    </a>
+
+                    <div class="text text-center">
+                        <h3><a ui-sref="productDetail({id:product._id, slug:product.slug})">{{product.name}}{{product.variants[0].size}}</a>
+                        </h3>
+
+                        <p class="price">
+                            <del ng-if="product.variants[0].price!=product.variants[0].mrp">{{product.variants[0].mrp |
+                                currency : '$'}}
+                            </del>
+                            {{product.variants[0].price | currency : '$'}}
+                        </p>
+                        <p class="buttons">
+
+                        <div class="btn-group">
+                            <a ui-sref="productDetail({id:product._id, slug:product.slug})" class="btn btn-default">View
+                                detail</a>
+                            <a ng-click="cart.addItem(product._id, product.name, product.slug, product.variants[0].mrp, product.variants[0].price, -1)"
+                               ng-hide="checkCart(product._id)" class="btn btn-info">-</a>
+
+                            <a ng-hide="checkCart(product._id)" class="btn btn-info">{{getQuantity(product._id);}}</a>
+
+                            <a ng-click="cart.addItem(product._id, product.name, product.slug, product.variants[0].mrp, product.variants[0].price, +1)"
+                               ng-hide="checkCart(product._id)" class="btn btn-info">+</a>
+                        </div>
+                        <a ng-click="cart.addItem(product._id, product.name, product.slug, product.variants[0].mrp, product.variants[0].price, 1, product.variants[0].image,product.category, product.variants[0].size ,true);"
+                           ng-show="checkCart(product._id)" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add
+                            to cart</a>
+                        </p>
+                    </div>
+                    <!-- /.text -->
+                </div>
+                <!-- /.product -->
+            </div>
+
+            <!-- /.col-md-4 -->
+        </div>
+        <!-- /.products -->
+
+    </div>
+    <!-- /.col-md-9 -->
 </div> <!-- /just to enable infinite scroll -->

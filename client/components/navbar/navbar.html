@@ -1,214 +1,226 @@
 <div ng-controller="NavbarCtrl">
-<!-- *** TOPBAR ***
-_________________________________________________________ -->
-<div id="top">
-    <div class="container">
-        <div class="col-md-6 offer" data-animate="fadeInDown">
-            <a href="#" class="btn btn-success btn-sm" data-animate-hover="shake">Offer of the day</a>  <a href="#">Get flat 35% off on orders over $50!</a>
+    <!-- *** TOPBAR ***
+    _________________________________________________________ -->
+    <div id="top">
+        <div class="container">
+            <div class="col-md-6 offer" data-animate="fadeInDown">
+                <!--<a href="#" class="btn btn-success btn-sm" data-animate-hover="shake">Offer of the day</a>  <a href="#">Get flat 35% off on orders over $50!</a>-->
+            </div>
+            <div class="col-md-6" data-animate="fadeInDown">
+                <ul class="menu">
+                    <li ng-hide="isLoggedIn()" ng-class="{active: isActive('/signup')}"><a href="/signup">Sign up</a>
+                    </li>
+                    <li ng-hide="isLoggedIn()" ng-class="{active: isActive('/login')}"><a href="/login">Login</a></li>
+                    <li ng-show="isLoggedIn()"><a href="">Hello {{ getCurrentUser().name }} </a></li>
+                    <li class="dropdown" ng-show="isLoggedIn()" dropdown="">
+                        <a href="#" dropdown-toggle="" class="dropdown-toggle" data-toggle="dropdown"><i
+                                class="fa fa-dashboard">&nbsp;</i>Dashboard<b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li ng-show="isAdmin()" ng-class="{active: isActive('/product')}">
+                                <a href="/product"><i class="fa fa-truck">&nbsp;</i>Products</a>
+                            </li>
+                            <li ng-show="isAdmin()" ng-class="{active: isActive('/category')}">
+                                <a href="/category"><i class="fa fa-ticket">&nbsp;</i>Categories</a>
+                            </li>
+                            <li ng-show="isAdmin()" ng-class="{active: isActive('/brand')}">
+                                <a href="/brand"><i class="fa fa-tag">&nbsp;</i>Brands</a>
+                            </li>
+                            <li ng-show="isAdmin()" ng-class="{active: isActive('/feature')}">
+                                <a href="/feature"><i class="fa fa-tag">&nbsp;</i>Features</a>
+                            </li>
+                            <li ng-show="isAdmin()" ng-class="{active: isActive('/coupon')}">
+                                <a href="/coupon"><i class="fa fa-tag">&nbsp;</i>Coupons</a>
+                            </li>
+                            <li ng-show="isLoggedIn()" ng-class="{active: isActive('/order')}">
+                                <a href="/order"><i class="fa fa-road">&nbsp;</i>Orders</a>
+                            </li>
+                            <li class="divider"></li>
+                            <!-- <li ng-show="isAdmin()" ng-class="{active: isActive('/admin')}">
+                              <a href="/admin"><i class="fa fa-user">&nbsp;</i>Shop Settings</a>
+                            </li> -->
+                            <li ng-show="isAdmin()" ng-class="{active: isActive('/customer')}">
+                                <a href="/customer"><i class="fa fa-user">&nbsp;</i>Customers</a>
+                            </li>
+                            <li ng-show="isLoggedIn()" ng-class="{active: isActive('/paymentMethod')}">
+                                <a href="/paymentMethod"><i class="fa fa-wrench">&nbsp;</i>Payment Method</a>
+                            </li>
+                            <li ng-show="isLoggedIn()" ng-class="{active: isActive('/shipping')}">
+                                <a href="/shipping"><i class="fa fa-wrench">&nbsp;</i>Shipping Settings</a>
+                            </li>
+                            <li ng-show="isLoggedIn()" ng-class="{active: isActive('/logout')}">
+                                <a href="" ng-click="logout()"><i class="fa fa-sign-out">&nbsp;</i>Logout</a>
+                            </li>
+                            <li class="divider"></li>
+                        </ul>
+                    </li>
+                    <li><a href="/contact">Contact</a>
+                    </li>
+                    <li><a href="/documentation">Documentation</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <div class="col-md-6" data-animate="fadeInDown">
-            <ul class="menu">
-              <li ng-hide="isLoggedIn()" ng-class="{active: isActive('/signup')}"><a href="/signup">Sign up</a></li>
-              <li ng-hide="isLoggedIn()" ng-class="{active: isActive('/login')}"><a href="/login">Login</a></li>
-              <li ng-show="isLoggedIn()"><a href="">Hello {{ getCurrentUser().name }} </a></li>
-              <li class="dropdown" ng-show="isLoggedIn()" dropdown="">
-                <a href="#" dropdown-toggle="" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-dashboard">&nbsp;</i>Dashboard<b class="caret"></b>
-                  </a>
-                <ul class="dropdown-menu" role="menu">
-                  <li ng-show="isAdmin()" ng-class="{active: isActive('/product')}">
-                    <a href="/product"><i class="fa fa-truck">&nbsp;</i>Products</a>
-                  </li>
-                  <li ng-show="isAdmin()" ng-class="{active: isActive('/category')}">
-                    <a href="/category"><i class="fa fa-ticket">&nbsp;</i>Categories</a>
-                  </li>
-                  <li ng-show="isAdmin()" ng-class="{active: isActive('/brand')}">
-                    <a href="/brand"><i class="fa fa-tag">&nbsp;</i>Brands</a>
-                  </li>
-                  <li ng-show="isAdmin()" ng-class="{active: isActive('/feature')}">
-                    <a href="/feature"><i class="fa fa-tag">&nbsp;</i>Features</a>
-                  </li>
-                  <li ng-show="isAdmin()" ng-class="{active: isActive('/coupon')}">
-                    <a href="/coupon"><i class="fa fa-tag">&nbsp;</i>Coupons</a>
-                  </li>
-                  <li ng-show="isLoggedIn()" ng-class="{active: isActive('/order')}">
-                    <a href="/order"><i class="fa fa-road">&nbsp;</i>Orders</a>
-                  </li>
-                  <li class="divider"></li>
-                  <!-- <li ng-show="isAdmin()" ng-class="{active: isActive('/admin')}">
-                    <a href="/admin"><i class="fa fa-user">&nbsp;</i>Shop Settings</a>
-                  </li> -->
-                  <li ng-show="isAdmin()" ng-class="{active: isActive('/customer')}">
-                    <a href="/customer"><i class="fa fa-user">&nbsp;</i>Customers</a>
-                  </li>
-                  <li ng-show="isLoggedIn()" ng-class="{active: isActive('/paymentMethod')}">
-                    <a href="/paymentMethod"><i class="fa fa-wrench">&nbsp;</i>Payment Method</a>
-                  </li>
-                  <li ng-show="isLoggedIn()" ng-class="{active: isActive('/shipping')}">
-                    <a href="/shipping"><i class="fa fa-wrench">&nbsp;</i>Shipping Settings</a>
-                  </li>
-                  <li ng-show="isLoggedIn()" ng-class="{active: isActive('/logout')}">
-                    <a href="" ng-click="logout()"><i class="fa fa-sign-out">&nbsp;</i>Logout</a>
-                  </li>
-                  <li class="divider"></li>
-                  </ul>
-                </li>
-                <li><a href="/contact">Contact</a>
-                </li>
-                <li><a href="/documentation">Documentation</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
-        <div class="modal-dialog modal-sm">
+        <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
 
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="Login">Customer login</h4>
-                </div>
-                <div class="modal-body">
-                    <form action="customer-orders.html" method="post">
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="email-modal" placeholder="email">
-                        </div>
-                        <div class="form-group">
-                            <input type="password" class="form-control" id="password-modal" placeholder="password">
-                        </div>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="Login">Customer login</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form action="customer-orders.html" method="post">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="email-modal" placeholder="email">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" id="password-modal" placeholder="password">
+                            </div>
 
-                        <p class="text-center">
-                            <button class="btn btn-primary"><i class="fa fa-sign-in"></i> Log in</button>
+                            <p class="text-center">
+                                <button class="btn btn-primary"><i class="fa fa-sign-in"></i> Log in</button>
+                            </p>
+
+                        </form>
+
+                        <p class="text-center text-muted">Not registered yet?</p>
+
+                        <p class="text-center text-muted"><a href="register.html"><strong>Register now</strong></a>! It
+                            is easy and done in 1&nbsp;minute and gives you access to special discounts and much more!
                         </p>
 
-                    </form>
-
-                    <p class="text-center text-muted">Not registered yet?</p>
-                    <p class="text-center text-muted"><a href="register.html"><strong>Register now</strong></a>! It is easy and done in 1&nbsp;minute and gives you access to special discounts and much more!</p>
-
+                    </div>
                 </div>
             </div>
         </div>
+
     </div>
 
-</div>
+    <!-- *** TOP BAR END *** -->
 
-<!-- *** TOP BAR END *** -->
+    <!-- *** NAVBAR ***
+    _________________________________________________________ -->
 
-<!-- *** NAVBAR ***
-_________________________________________________________ -->
+    <div class="navbar navbar-default yamm" role="navigation" id="navbar">
+        <div class="container">
+            <div class="col-md-12">
+                <div class="navbar-header">
 
-<div class="navbar navbar-default yamm" role="navigation" id="navbar">
-    <div class="container">
-  <div class="col-md-12">
-        <div class="navbar-header">
+                    <a class="navbar-brand home" href="index.html" data-animate-hover="bounce">
+                        <img src="/assets/img/logo.gif" alt="CodeNx logo" class="hidden-xs">
+                        <img src="/assets/img/logo.gif" alt="CodeNx logo" class="visible-xs"><span class="sr-only">ShopNx - go to homepage</span>
+                    </a>
 
-            <a class="navbar-brand home" href="index.html" data-animate-hover="bounce">
-                <img src="/assets/img/logo.gif" alt="CodeNx logo" class="hidden-xs">
-                <img src="/assets/img/logo.gif" alt="CodeNx logo" class="visible-xs"><span class="sr-only">ShopNx - go to homepage</span>
-            </a>
-            <div class="navbar-buttons">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation" ng-click="isCollapsed1 = !isCollapsed1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <i class="fa fa-align-justify"></i>
-                </button>
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#search">
-                    <span class="sr-only">Toggle search</span>
-                    <i class="fa fa-search"></i>
-                </button>
-                <a class="btn btn-default navbar-toggle" ng-click="openCart(cart,'lg');" href=""><i class="fa fa-shopping-cart">&nbsp;</i> <span class="hidden-xs">Cart ({{cart.getTotalCount()}}) - {{cart.getTotalPrice() | currency:"$"}}</span></a>
+                    <div class="navbar-buttons">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation"
+                                ng-click="isCollapsed1 = !isCollapsed1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <i class="fa fa-align-justify"></i>
+                        </button>
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#search">
+                            <span class="sr-only">Toggle search</span>
+                            <i class="fa fa-search"></i>
+                        </button>
+                        <a class="btn btn-default navbar-toggle" ng-click="openCart(cart,'lg');" href=""><i
+                                class="fa fa-shopping-cart">&nbsp;</i> <span class="hidden-xs">Cart ({{cart.getTotalCount()}}) - {{cart.getTotalPrice() | currency:"$"}}</span></a>
 
-            </div>
-        </div>
-        <!--/.navbar-header -->
+                    </div>
+                </div>
+                <!--/.navbar-header -->
 
-        <div class="navbar-collapse collapse navbar-static-top megamenu" id="navigation">
-          <div collapse="isCollapsed1" class="navbar-collapse collapse" id="navbar-main2">
-            <ul class="nav navbar-nav navbar-left">
-                <li class="dropdown yamm-fw" ng-repeat= "p in categories">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">{{p.name}} <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <div class="yamm-content">
-                                <div class="row">
-                                    <div class="col-sm-3" ng-repeat="c in p.sub_categories">
-                                        <!-- <h5>All</h5> -->
-                                        <ul>
-                                            <li><a href="/Category/{{c.slug}}/{{c._id}}" ng-click="hideSubMenu();">{{c.name}}</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /.yamm-content -->
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-          </div>
-        </div>
-        <!--/.nav-collapse -->
+                <div class="navbar-collapse collapse navbar-static-top megamenu" id="navigation">
+                    <div collapse="isCollapsed1" class="navbar-collapse collapse" id="navbar-main2">
+                        <ul class="nav navbar-nav navbar-left">
+                            <li class="dropdown yamm-fw" ng-repeat="p in categories">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
+                                   data-delay="200">{{p.name}} <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <div class="yamm-content">
+                                            <div class="row">
+                                                <div class="col-sm-3" ng-repeat="c in p.sub_categories">
+                                                    <!-- <h5>All</h5> -->
+                                                    <ul>
+                                                        <li><a href="/Category/{{c.slug}}/{{c._id}}"
+                                                               ng-click="hideSubMenu();">{{c.name}}</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- /.yamm-content -->
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!--/.nav-collapse -->
 
-        <div class="navbar-buttons">
+                <div class="navbar-buttons">
 
-            <div class="navbar-collapse collapse right" id="basket-overview">
-                <a class="btn btn-primary navbar-btn" ng-click="openCart(cart,'lg');" href=""><i class="fa fa-shopping-cart">&nbsp;</i> <span class="hidden-sm">Cart ({{cart.getTotalCount()}}) - {{cart.getTotalPrice() | currency:"$"}}</span></a>
-            </div>
-            <!--/.nav-collapse -->
+                    <div class="navbar-collapse collapse right" id="basket-overview">
+                        <a class="btn btn-primary navbar-btn" ng-click="openCart(cart,'lg');" href=""><i
+                                class="fa fa-shopping-cart">&nbsp;</i> <span class="hidden-sm">Cart ({{cart.getTotalCount()}}) - {{cart.getTotalPrice() | currency:"$"}}</span></a>
+                    </div>
+                    <!--/.nav-collapse -->
 
-            <div class="navbar-collapse collapse right" id="search-not-mobile">
-                <button type="button" class="btn navbar-btn btn-primary" data-toggle="collapse" data-target="#search">
-                    <span class="sr-only">Toggle search</span>
-                    <i class="fa fa-search"></i>
-                </button>
-            </div>
+                    <div class="navbar-collapse collapse right" id="search-not-mobile">
+                        <button type="button" class="btn navbar-btn btn-primary" data-toggle="collapse"
+                                data-target="#search">
+                            <span class="sr-only">Toggle search</span>
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
 
-        </div>
+                </div>
 
-        <div class="collapse clearfix" id="search">
-          <form id="searchForm" class="ng-scope ng-pristine ng-valid navbar-form" role="search">
-            <div class="nav-search text-center" id="nav-search">
+                <div class="collapse clearfix" id="search">
+                    <form id="searchForm" class="ng-scope ng-pristine ng-valid navbar-form" role="search">
+                        <div class="nav-search text-center" id="nav-search">
               <span class="input-icon">
                 <script type="text/ng-template" id="searchTemplate.html">
                     <a><span>{{match.model.name}}</span></a>
                 </script>
                 <div class="input-group">
-                <input class="form-control text-left" type="text" name="q" id="q" autocomplete="off"
-                placeholder="Search for a product, category or brand..."
-                ng-model="search"
-                typeahead="p as p.name for p in globalSearch($viewValue)"
-                typeahead-loading="loadingLocations"
-                typeahead-no-results="noResults"
-                typeahead-template-url="searchTemplate.html"
-                typeahead-on-select="onSelectProduct($item, $model, $label)"
-                autofocus=""
-                >
+                    <input class="form-control text-left" type="text" name="q" id="q" autocomplete="off"
+                           placeholder="Search for a product, category or brand..."
+                           ng-model="search"
+                           typeahead="p as p.name for p in globalSearch($viewValue)"
+                           typeahead-loading="loadingLocations"
+                           typeahead-no-results="noResults"
+                           typeahead-template-url="searchTemplate.html"
+                           typeahead-on-select="onSelectProduct($item, $model, $label)"
+                           autofocus=""
+                    >
                 <span class="input-group-btn">
 
 <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i>Search</button>
 
 </span>
-              </div>
-            </span>
-          </form>
-
-            <!-- <form class="navbar-form" role="search">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search">
-                    <span class="input-group-btn">
-
-  <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
-
-    </span>
                 </div>
-            </form> -->
+            </span>
+                    </form>
 
+                    <!-- <form class="navbar-form" role="search">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search">
+                            <span class="input-group-btn">
+
+          <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+
+            </span>
+                        </div>
+                    </form> -->
+
+                </div>
+                <!--/.nav-collapse -->
+
+            </div>
+            <!-- /.container -->
         </div>
-        <!--/.nav-collapse -->
-
+        <!-- /#navbar -->
     </div>
-    <!-- /.container -->
-</div>
-<!-- /#navbar -->
-</div>
-<!-- *** NAVBAR END *** -->
+    <!-- *** NAVBAR END *** -->
 </div>
