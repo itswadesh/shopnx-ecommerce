@@ -1,7 +1,7 @@
 # ShopNX - Shopping Cart with AngularJS (eCommerce web application)
 A single page Shopping Cart web applications with many necessary features of an ecommerce application.
 
-### A more matured/bugfree version of ShopNx released now<a href="https://codecanyon.net/item/material-shop-material-designed-shopping-cart-using-angularjs/17904231">Material Shop</a> 
+### A more matured/bugfree version of ShopNx released now <a href="https://codecanyon.net/item/material-shop-material-designed-shopping-cart-using-angularjs/17904231">Material Shop</a> 
 
 # Requirements
 Install the following 2 softwares
