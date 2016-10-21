@@ -34,7 +34,7 @@ exports.update = function(req, res) {
   Invoice.findById(req.params.id, function (err, invoice) {
     if (err) { return handleError(res, err); }
     if(!invoice) { return res.status(404).send('Not Found'); }
-    var updated = _.merge(invoice, req.body);
+    var updated = _.extend(invoice, req.body);
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
       return res.status(200).json(invoice);

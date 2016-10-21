@@ -1,15 +1,15 @@
 {
   "name": "shopnx",
-  "version": "0.0.0",
+  "version": "0.6.0",
   "dependencies": {
-    "angular": ">=1.2.*",
-    "angular-animate": "~1.4.5",
+    "angular": "^1.5.8",
+    "angular-animate": "^1.5.8",
     "angular-bootstrap": "~0.13.4",
-    "angular-cookies": ">=1.2.*",
+    "angular-cookies": "^1.5.8",
     "angular-loading": "~0.1.4",
     "angular-moment": "~0.10.3",
-    "angular-resource": ">=1.2.*",
-    "angular-sanitize": ">=1.2.*",
+    "angular-resource": "^1.5.8",
+    "angular-sanitize": "^1.5.8",
     "angular-socket-io": "~0.6.0",
     "angular-tablesort": "~1.1.0",
     "angular-toastr": "~1.5.0",
@@ -27,7 +27,10 @@
     "ui-select": "angular-ui-select#~0.13.2"
   },
   "devDependencies": {
-    "angular-mocks": ">=1.2.*",
-    "angular-scenario": ">=1.2.*"
+    "angular-mocks": "^1.5.8",
+    "angular-scenario": "^1.5.8"
+  },
+  "resolutions": {
+    "angular": "1.5.8"
   }
 }

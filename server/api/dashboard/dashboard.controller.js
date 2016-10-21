@@ -34,7 +34,7 @@ exports.update = function(req, res) {
   Dashboard.findById(req.params.id, function (err, dashboard) {
     if (err) { return handleError(res, err); }
     if(!dashboard) { return res.status(404).send('Not Found'); }
-    var updated = _.merge(dashboard, req.body);
+    var updated = _.extend(dashboard, req.body);
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
       return res.status(200).json(dashboard);

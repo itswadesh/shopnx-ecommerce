@@ -85,7 +85,7 @@ exports.update = function(req, res) {
   Feature.findById(req.params.id, function (err, feature) {
     if (err) { return handleError(res, err); }
     if(!feature) { return res.status(404).send('Not Found'); }
-    var updated = _.merge(feature, req.body);
+    var updated = _.extend(feature, req.body);
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
       return res.status(200).json(feature);

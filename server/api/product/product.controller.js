@@ -93,7 +93,7 @@ exports.update = function(req, res) {
     product.variants = req.body.variants;
     product.features = req.body.features;
     product.keyFeatures = req.body.keyFeatures;
-    var updated = _.merge(product, req.body);
+    var updated = _.extend(product, req.body);
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
       return res.status(200).json(product);

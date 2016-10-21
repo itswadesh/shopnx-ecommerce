@@ -85,7 +85,7 @@ exports.update = function(req, res) {
   Category.findById(req.params.id, function (err, category) {
     if (err) { return handleError(res, err); }
     if(!category) { return res.status(404).send('Not Found'); }
-    var updated = _.merge(category, req.body);
+    var updated = _.extend(category, req.body);
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
       return res.status(200).json(category);

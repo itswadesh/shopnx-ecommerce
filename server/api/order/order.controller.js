@@ -49,7 +49,7 @@ exports.update = function(req, res) {
   Order.findById(req.params.id, function (err, order) {
     if (err) { return handleError(res, err); }
     if(!order) { return res.status(404).send('Not Found'); }
-    var updated = _.merge(order, req.body);
+    var updated = _.extend(order, req.body);
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
       return res.status(200).json(order);

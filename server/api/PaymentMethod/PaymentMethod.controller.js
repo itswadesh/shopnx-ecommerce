@@ -42,7 +42,7 @@ exports.update = function(req, res) {
   PaymentMethod.findById(req.params.id, function (err, PaymentMethod) {
     if (err) { return handleError(res, err); }
     if(!PaymentMethod) { return res.status(404).send('Not Found'); }
-    var updated = _.merge(PaymentMethod, req.body);
+    var updated = _.extend(PaymentMethod, req.body);
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
       return res.status(200).json(PaymentMethod);

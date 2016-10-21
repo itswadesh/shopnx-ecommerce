@@ -3,20 +3,31 @@ A single page Shopping Cart web applications with many necessary features of an 
 
 ### Please have a look at a more matured/bugfree version of ShopNx release <a href="http://preview.codecanyon.net/item/material-shop-material-designed-shopping-cart-using-angularjs/full_screen_preview/17904231">Material Shop</a> 
 
-# Requirements
-Install the following 2 softwares
+# Installation Instructions
+## Requirements
 
-1.    Node http://nodejs.org/ (Server)
-2.    MongoDB https://www.mongodb.org/ (Database)
+We need Node https://nodejs.org/en/ (To create web server) + Git https://git-scm.com/ (Version Control System) + MongoDB https://www.mongodb.com/ (Database) + Python 2.7 https://www.python.org/downloads/release/python-2710/ 
+Go ahead download and install them
+
+Install Visual C++ Build Tools using the Default Install option. 
+Run the following commands (Required Once) [Note: Second command is required only for Windows]
+
+`npm config set python python2.7
+npm config set msvs_version 2015`
+
+We need to start an instance of MongoDB. In my case it was sitting @
+`C:\Program Files\MongoDB\Server\3.0\bin\mongod.exe`
+
 
 # Install
 Run the following commands and the application will start automatically
 
-1.    npm install yo -g (Install yeoman for scaffolding web application)
-2.    npm install grunt-cli -g (This creates and runs javascript repetative tasks )
-3.    npm install bower -g ( A frontend package manager for web applications)
-4.    npm install (Install all nodejs dependencies, also automatically installs bower components)
-5.    grunt serve
+1.    npm i -g grunt-cli (This creates and runs javascript repetative tasks )
+2.    npm i -g bower ( A frontend package manager for web applications)
+3.    npm i -g --production windows-build-tools (Only for Windows)
+4.    npm i (Install all nodejs dependencies)
+5.    bower i (Installs bower components)
+6.    grunt serve
 
 # Features
 ### Store Front features
@@ -40,6 +51,3 @@ Run the following commands and the application will start automatically
 *  User roles - Administrator, User, Guest
 *  SEO friendly URLs for each page
 *  Secure and quality code - Takes care all single page web app standards
-
-### Future Plan
-* Plan to add OAUTH login with facebook, gmail, twitter

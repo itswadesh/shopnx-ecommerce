@@ -34,7 +34,7 @@ exports.update = function(req, res) {
   Cart.findById(req.params.id, function (err, cart) {
     if (err) { return handleError(res, err); }
     if(!cart) { return res.status(404).send('Not Found'); }
-    var updated = _.merge(cart, req.body);
+    var updated = _.extend(cart, req.body);
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
       return res.status(200).json(cart);

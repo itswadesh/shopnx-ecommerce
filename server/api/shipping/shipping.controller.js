@@ -66,7 +66,7 @@ exports.update = function(req, res) {
   Shipping.findById(req.params.id, function (err, shipping) {
     if (err) { return handleError(res, err); }
     if(!shipping) { return res.status(404).send('Not Found'); }
-    var updated = _.merge(shipping, req.body);
+    var updated = _.extend(shipping, req.body);
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
       return res.status(200).json(shipping);

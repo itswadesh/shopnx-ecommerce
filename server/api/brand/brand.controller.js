@@ -57,7 +57,7 @@ exports.update = function(req, res) {
   Brand.findById(req.params.id, function (err, brand) {
     if (err) { return handleError(res, err); }
     if(!brand) { return res.status(404).send('Not Found'); }
-    var updated = _.merge(brand, req.body);
+    var updated = _.extend(brand, req.body);
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
       return res.status(200).json(brand);
