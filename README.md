@@ -12,8 +12,8 @@ Go ahead download and install them
 Install Visual C++ Build Tools using the Default Install option. 
 Run the following commands (Required Once) [Note: Second command is required only for Windows]
 
-`npm config set python python2.7
-npm config set msvs_version 2015`
+`npm config set python python2.7`
+`npm config set msvs_version 2015`
 
 We need to start an instance of MongoDB. In my case it was sitting @
 `C:\Program Files\MongoDB\Server\3.0\bin\mongod.exe`
