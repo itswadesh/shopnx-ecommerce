@@ -49,7 +49,7 @@ exports.show = function (req, res, next) {
 
 /**
 * update  User(name , email,password)
-* restriction: authenticated
+* restriction: user is authenticated you can chage it and make restricted to specified role
 **/
 
 exports.update = function(req, res) {
