@@ -46,10 +46,12 @@ exports.show = function (req, res, next) {
     res.json(user.profile);
   });
 };
-+/**
-+* update  User(name , email,password)
-+* restriction: authenticated
-+**/
+
+/**
+* update  User(name , email,password)
+* restriction: authenticated
+**/
+
 exports.update = function(req, res) {
   var userId = req.user._id;
   var oldPass = String(req.body.oldPassword);
@@ -60,7 +62,7 @@ exports.update = function(req, res) {
     if(user.authenticate(oldPass)) {
       user.password = newPass;
       user.name = newN;
-      user.email = newM; 
+      user.email = newM;
       user.save(function(err) {
         if (err) return validationError(res, err);
         res.status(200).send('OK');
