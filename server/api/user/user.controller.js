@@ -46,10 +46,12 @@ exports.show = function (req, res, next) {
     res.json(user.profile);
   });
 };
+
 /**
 * update  User(name , email,password)
 * restriction: authenticated
 **/
+
 exports.update = function(req, res) {
   var userId = req.user._id;
   var oldPass = String(req.body.oldPassword);
@@ -65,9 +67,9 @@ exports.update = function(req, res) {
         if (err) return validationError(res, err);
         res.status(200).send('OK');
       });
-    } else {
-      res.status(403).send('Forbidden');
-    }
+   } else {
+     res.status(403).send('Forbidden');
+   }
   });
 };
 /**
