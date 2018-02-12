@@ -1,3 +1,17 @@
+# KarmYoga.Com  
+## A free ecommerce consulting and ecommerce development platform.
+### KarmYoga.Com - free ecommerce consulting and ecommerce development platform. I focused on empowering people to earn more from their regular LIVING. We are focus on providing free Business buisness consulting on digital selling of your any products.
+
+### The people we are taregtng now : -
+1. Traditional Handicraft manufacturers.
+2. People who are into han made products like home based busicuits maker.
+3. Empowring non working women.
+4. Empowering women by consulting them what to be be maniufacture and what to be manufacture.
+5. Supporting artisians to sell their talent on digital platfrom.
+6. Supporting STARTUPS too.
+7. Supporting new ecommerce platforms too.
+
+## And this "eComStoreFront" repository is to support people to contribute their suggetsing and skills to make it a more better solution and anyone can use this for their own setup of websites independent of KARMYOGA too.
 
 # eComStoreFront - Shopping Cart with AngularJS (eCommerce web application)
 A single page Shopping Cart web applications with many necessary features of an ecommerce application.
@@ -50,3 +64,10 @@ Run the following commands and the application will start automatically
 *  User roles - Administrator, User, Guest
 *  SEO friendly URLs for each page
 *  Secure and quality code - Takes care all single page web app standards
+
+
+Help others to help yourself.
+
+Thanks
+Shailender Ahuja (CEO,MD)
+Karmyoga.Com
