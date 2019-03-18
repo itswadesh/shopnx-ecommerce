@@ -1,6 +1,6 @@
 # ShopNX - Shopping Cart with AngularJS (eCommerce web application)
 A single page Shopping Cart web applications with many necessary features of an ecommerce application.
- ### Please have a look at a more matured/bugfree version of ShopNx release <a href="https://preview.codecanyon.net/item/progressive-single-page-ecommerce-app-using-vuejs/full_screen_preview/20596887">Arial Shop</a> 
+
  # Installation Instructions
 ## Requirements
  We need Node https://nodejs.org/en/ (To create web server) + Git https://git-scm.com/ (Version Control System) + MongoDB https://www.mongodb.com/ (Database) + Python 2.7 https://www.python.org/downloads/release/python-2710/ 
