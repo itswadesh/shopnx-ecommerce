@@ -1,3 +1,6 @@
+This project is created using AngularJS which is getting older. Hence Its getting hard to maintain. 
+I am working on a latest open source ecommerce project using Svelte/Sapper https://github.com/itswadesh/sapper-ecommerce#readme which is super fast and easy to get started
+
 # ShopNX - Shopping Cart with AngularJS (eCommerce web application)
 A single page Shopping Cart web applications with many necessary features of an ecommerce application.
 
