@@ -38,7 +38,7 @@
     "jsonwebtoken": "^5.0.0",
     "lodash": "~2.4.1",
     "method-override": "~1.0.0",
-    "mongoose": "~4.0.3",
+    "mongoose": "~5.7.7",
     "morgan": "~1.0.0",
     "passport": "~0.2.0",
     "passport-facebook": "latest",
